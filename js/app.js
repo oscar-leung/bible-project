@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  var VIEWS = ["story", "map", "characters", "timeline", "game"];
+  var VIEWS = ["story", "map", "battle", "family", "characters", "timeline", "game"];
 
   window.App = {
     showView: function (name) {
@@ -54,7 +54,10 @@
       ["MapView", window.MapView],
       ["CharactersView", window.CharactersView],
       ["TimelineView", window.TimelineView],
-      ["GameView", window.GameView]
+      ["GameView", window.GameView],
+      ["BattleView", window.BattleView],
+      ["FamilyTreeView", window.FamilyTreeView],
+      ["EasterEggs", window.EasterEggs]
     ];
     for (var m = 0; m < modules.length; m++) {
       try {
