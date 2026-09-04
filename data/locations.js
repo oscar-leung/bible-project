@@ -128,7 +128,7 @@ window.LOCATIONS = [
     name: "Jabesh-gilead",
     modernName: "Tell el-Maqlub (or Tell Abu Kharaz), Wadi Yabis",
     lat: 32.363, lon: 35.632,
-    description: "Israelite town east of the Jordan besieged by Nahash the Ammonite, rescued by Saul in his first act as king. Its grateful men later retrieved the bodies of Saul and his sons from the wall of Beth-shan.",
+    description: "Israelite town east of the Jordan besieged by Nahash the Ammonite, rescued by Saul in his first act as king. Its grateful men later retrieved the bodies of Saul and his sons from the wall of Beth-shan — a kindness for which the newly crowned David sent them a message of blessing (2 Samuel 2:5-7).",
     chapters: [11, 31]
   },
   {
@@ -208,7 +208,7 @@ window.LOCATIONS = [
     name: "Ziklag",
     modernName: "identification debated: Tel Sera, Tel Halif, or Khirbet a-Ra'i",
     lat: 31.386, lon: 34.686,
-    description: "Negev border town that Achish of Gath granted to David as a base for sixteen months. Amalekite raiders burned it and carried off the families while David was away; he pursued and recovered everything.",
+    description: "Negev border town that Achish of Gath granted to David as a base for sixteen months. Amalekite raiders burned it and carried off the families while David was away; he pursued and recovered everything. Here David received the news of Saul's death and sang the Song of the Bow (2 Samuel 1).",
     chapters: [27, 29, 30]
   },
   {
@@ -250,5 +250,32 @@ window.LOCATIONS = [
     lat: 32.503, lon: 35.500,
     description: "Strategic city guarding the junction of the Jezreel and Jordan valleys, held by the Philistines. They fastened the bodies of Saul and his sons to its wall until the men of Jabesh-gilead took them down by night.",
     chapters: [31]
+  },
+  // ——— 2 Samuel additions (Historian). New places below appear only in 2 Samuel,
+  // so their `chapters` arrays are empty: that field drives the 1 Samuel chapter
+  // filter on the map. The 2 Samuel references live in the description text.
+  {
+    id: "hebron",
+    name: "Hebron",
+    modernName: "Tell Rumeida (Jebel er-Rumeida), in modern Hebron / el-Khalil",
+    lat: 31.524, lon: 35.100,
+    description: "Chief city of Judah, high in the hill country, burial place of the patriarchs at the cave of Machpelah. David had courted its elders with spoil from Ziklag (1 Samuel 30:31); here the men of Judah anointed him king, and he reigned over Judah seven years and six months before taking Jerusalem (2 Samuel 2:1-4, 11).",
+    chapters: []
+  },
+  {
+    id: "mahanaim",
+    name: "Mahanaim",
+    modernName: "likely Tulul adh-Dhahab, on the Jabbok (Wadi az-Zarqa)",
+    lat: 32.197, lon: 35.689,
+    description: "Fortified town east of the Jordan on the Jabbok, where Jacob once met the angels of God ('two camps'). Safely beyond Philistine reach, it became the capital where Abner made Ish-bosheth king over Israel (2 Samuel 2:8-9) — and later David's own refuge from Absalom.",
+    chapters: []
+  },
+  {
+    id: "gibeon",
+    name: "Gibeon",
+    modernName: "el-Jib",
+    lat: 31.847, lon: 35.184,
+    description: "Benjaminite city famed for its great rock-cut pool, excavated at el-Jib along with jar handles stamped with the city's name. Beside this pool the servants of Ish-bosheth under Abner met the servants of David under Joab; twelve champions of each side fell together, and the battle of Gibeon began the long war between the two houses (2 Samuel 2:12-32).",
+    chapters: []
   }
 ];

@@ -92,5 +92,20 @@ window.JOURNEYS = [
       { loc: "jabesh-gilead", note: "The men of Jabesh march all night to recover and bury their rescuer (31:11-13)." }
     ],
     chapters: [28, 29, 31]
+  },
+  // ——— 2 Samuel addition (Historian). `chapters` is empty because that field
+  // drives the 1 Samuel chapter filter; the verse references below are 2 Samuel.
+  {
+    id: "two-kings-one-land",
+    title: "Two Kings, One Land",
+    color: "#00838f",
+    description: "After Gilboa the kingdom splits: David goes up from Ziklag to be anointed at Hebron over Judah, while Abner crowns Saul's son Ish-bosheth across the Jordan at Mahanaim. The rival armies collide at the pool of Gibeon — first blood in the long war between the two houses (2 Samuel 1–2).",
+    stops: [
+      { loc: "ziklag", note: "An Amalekite brings word of Saul's death — and the crown; David executes him and laments the mighty fallen (2 Samuel 1:1-27)." },
+      { loc: "hebron", note: "At the Lord's word David goes up with his household, and the men of Judah anoint him king over the house of Judah (2 Samuel 2:1-4)." },
+      { loc: "mahanaim", note: "Abner takes Ish-bosheth to the far side of the Jordan and makes him king over Israel; he reigns two years (2 Samuel 2:8-10)." },
+      { loc: "gibeon", note: "The armies meet at the pool; twelve champions fall to twelve at Helkath-hazzurim, Abner is routed, and Asahel dies in the pursuit. Joab and Abishai chase Abner until sundown, then both hosts march all night home — Abner through the Arabah to Mahanaim, Joab to Hebron (2 Samuel 2:12-32)." }
+    ],
+    chapters: []
   }
 ];

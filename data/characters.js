@@ -117,7 +117,7 @@ window.CHARACTERS = [
     id: "abner",
     name: "Abner",
     title: "Commander of Saul's army",
-    description: "Saul's cousin and general, who brought the victorious David before the king after Goliath fell. David publicly shamed him at Hachilah for failing to guard his sleeping master — a scene that showed all Israel who really held the Lord's favor.",
+    description: "Saul's cousin and general, who brought the victorious David before the king after Goliath fell. David publicly shamed him at Hachilah for failing to guard his sleeping master — a scene that showed all Israel who really held the Lord's favor. After Gilboa he became the kingmaker of the north, crowning Ish-bosheth at Mahanaim, leading Israel's army at the pool of Gibeon, and reluctantly killing the pursuing Asahel with the butt of his spear (2 Samuel 2).",
     chapters: [14, 17, 20, 26]
   },
   {
@@ -147,5 +147,43 @@ window.CHARACTERS = [
     title: "King of Gath",
     description: "The Philistine ruler before whom David first feigned madness, and who later took him on as a trusted vassal, giving him Ziklag. He believed David's cover stories entirely and wanted him at Gilboa, but the other Philistine lords overruled him.",
     chapters: [21, 27, 28, 29]
+  },
+  // ——— 2 Samuel additions (Historian). `chapters` holds 1 Samuel chapter numbers;
+  // people who appear only in 2 Samuel get an empty array, with the 2 Samuel
+  // references cited in the description.
+  {
+    id: "ish-bosheth",
+    name: "Ish-bosheth",
+    title: "Son of Saul, rival king of Israel",
+    description: "Saul's surviving son — called Esh-baal in the genealogies — whom Abner took to Mahanaim and made king over Gilead, Benjamin, and all Israel at forty years old, while Judah followed David (2 Samuel 2:8-10). A weak ruler propped up entirely by his general, he reigned two years in the shadow of the long war with the house of David.",
+    chapters: []
+  },
+  {
+    id: "joab",
+    name: "Joab",
+    title: "Son of Zeruiah, commander of David's army",
+    description: "David's nephew, son of his sister Zeruiah, and the ruthless captain of his forces. He led the servants of David at the pool of Gibeon, and only Abner's sundown appeal — 'shall the sword devour for ever?' — made him call off the pursuit after his brother Asahel fell (2 Samuel 2:12-28). His blood feud with Abner would darken the years ahead.",
+    chapters: []
+  },
+  {
+    id: "abishai",
+    name: "Abishai",
+    title: "Son of Zeruiah, brother of Joab",
+    description: "The fierce eldest of Zeruiah's three sons, who alone dared go with David into Saul's sleeping camp at Hachilah and had to be restrained from spearing the king (1 Samuel 26:6-9). He fought beside Joab at Gibeon and joined the pursuit of Abner after their brother Asahel was slain (2 Samuel 2:24).",
+    chapters: [26]
+  },
+  {
+    id: "asahel",
+    name: "Asahel",
+    title: "Son of Zeruiah, swift of foot",
+    description: "The youngest of David's three warrior nephews, 'as light of foot as a wild roe.' At the battle of Gibeon he fixed his chase on Abner alone, refusing every warning to turn aside, until the veteran killed him with the butt end of his spear — a death that seeded the feud between Joab and Abner (2 Samuel 2:18-23).",
+    chapters: []
+  },
+  {
+    id: "amalekite-messenger",
+    name: "The Amalekite Messenger",
+    title: "Bearer of Saul's crown",
+    description: "A young Amalekite sojourner who came to Ziklag from Saul's camp with torn clothes, carrying the king's crown and armlet, and claimed to have dealt Saul his death-blow at his own request. Expecting a reward, he instead condemned himself out of his own mouth: David had him executed for stretching forth his hand against the Lord's anointed (2 Samuel 1:2-16).",
+    chapters: []
   }
 ];

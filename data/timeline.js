@@ -22,5 +22,11 @@ window.TIMELINE = [
   { year: "c. 1013 BC", event: "Fugitive years in Judah's wilderness: Keilah rescued, betrayals at Ziph, and Saul spared in the cave at En-gedi.", chapters: [23, 24] },
   { year: "c. 1012 BC", event: "Samuel dies and is buried at Ramah; Abigail turns David from bloodguilt, and Saul is spared a second time at Hachilah.", chapters: [25, 26] },
   { year: "c. 1011 BC", event: "David crosses to Achish of Gath and receives Ziklag, raiding the desert tribes for sixteen months.", chapters: [27] },
-  { year: "c. 1010 BC", event: "The final campaign: Saul consults the medium at Endor, David recovers Ziklag's captives, and Saul and Jonathan die on Mount Gilboa. The men of Jabesh-gilead bury their king.", chapters: [28, 29, 30, 31] }
+  { year: "c. 1010 BC", event: "The final campaign: Saul consults the medium at Endor, David recovers Ziklag's captives, and Saul and Jonathan die on Mount Gilboa. The men of Jabesh-gilead bury their king.", chapters: [28, 29, 30, 31] },
+  // ——— 2 Samuel additions (Historian). `chapters` is empty because the field
+  // holds 1 Samuel chapter numbers for cross-links; the references are in the text.
+  { year: "c. 1010 BC", event: "David is anointed king over the house of Judah at Hebron, where he reigns seven years and six months (2 Samuel 2:1-4, 11).", chapters: [] },
+  { year: "c. 1010 BC", event: "Abner makes Saul's son Ish-bosheth king over Israel at Mahanaim, east of the Jordan; he reigns two years (2 Samuel 2:8-10).", chapters: [] },
+  { year: "c. 1009 BC", event: "Battle of Gibeon: twelve champions fall to twelve at Helkath-hazzurim, Joab routs Abner's men, and the fleeing Abner kills the swift Asahel (2 Samuel 2:12-32).", chapters: [] },
+  { year: "c. 1009 BC", event: "'Now there was long war between the house of Saul and the house of David' — David waxes stronger and stronger, and the house of Saul weaker and weaker (2 Samuel 3:1).", chapters: [] }
 ];
