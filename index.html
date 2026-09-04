@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>1 Samuel — An Interactive Journey</title>
+  <meta name="description" content="Walk the book of Samuel like an illuminated manuscript brought to life — 31 chapters, an interactive map of ancient Israel, playable battles, family lines, and hidden mysteries.">
+  <meta property="og:title" content="1 Samuel — An Interactive Journey">
+  <meta property="og:description" content="An illuminated, interactive study of the book of Samuel: story, map, battles, family lines, timeline, and quest.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="screenshots/map.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f6efdf" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1510" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%9C%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -12,8 +20,26 @@
   <header class="app-header">
     <div class="header-inner">
       <div class="titles">
-        <h1 class="app-title">1 Samuel <span class="title-dash">—</span> An Interactive Journey</h1>
-        <p class="app-subtitle">The Bible Project · Book of Samuel</p>
+        <span class="emblem" aria-hidden="true">
+          <!-- the shepherd-king's lyre -->
+          <svg viewBox="0 0 48 48" width="42" height="42" role="img" aria-hidden="true" focusable="false">
+            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 6 C10 13 10 21 14 27"/>
+              <path d="M34 6 C38 13 38 21 34 27"/>
+              <path d="M14 27 C14 36 34 36 34 27"/>
+              <path d="M12 13 H36"/>
+              <path d="M19 13 V31.5" stroke-width="1.2"/>
+              <path d="M24 13 V33" stroke-width="1.2"/>
+              <path d="M29 13 V31.5" stroke-width="1.2"/>
+              <path d="M24 38 V41 M20 41 H28"/>
+            </g>
+            <circle cx="24" cy="3.5" r="1.4" fill="currentColor" stroke="none"/>
+          </svg>
+        </span>
+        <div class="title-stack">
+          <h1 class="app-title">1 Samuel <span class="title-dash">—</span> An Interactive Journey</h1>
+          <p class="app-subtitle">The Bible Project · Book of Samuel</p>
+        </div>
       </div>
       <nav class="tabs" aria-label="App views">
         <button class="tab" data-view="story">📖 Story</button>
@@ -24,6 +50,10 @@
         <button class="tab" data-view="timeline">📜 Timeline</button>
         <button class="tab" data-view="game">🎮 Quest</button>
       </nav>
+    </div>
+    <div class="reading-progress" id="reading-progress" role="progressbar"
+         aria-label="Chapters read" aria-valuemin="0" aria-valuemax="31" aria-valuenow="0">
+      <span class="reading-progress-fill" id="reading-progress-fill"></span>
     </div>
   </header>
 

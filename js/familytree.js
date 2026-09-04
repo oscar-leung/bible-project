@@ -12,7 +12,7 @@
   // ---- geometry -----------------------------------------------------------
   var VIEW_W = 2160;
   var VIEW_H = 880;
-  var RENDER_W = 1836;                       // rendered px width (scrolls inside its box)
+  var RENDER_W = 2160;                       // rendered px width (scrolls inside its box); 1:1 with viewBox so labels stay legible
   var RENDER_H = Math.round(VIEW_H * RENDER_W / VIEW_W);
   var SCALE = RENDER_W / VIEW_W;
   var NODE_W = 118, NODE_H = 54;             // default node box (SVG units)
@@ -138,7 +138,11 @@
     "border-radius:10px;background:var(--panel,#fdf9ee);box-shadow:0 2px 10px rgba(0,0,0,.08);" +
     "cursor:grab;-webkit-overflow-scrolling:touch;}" +
     "#view-family .ft-scroll.ft-dragging{cursor:grabbing;user-select:none;}" +
-    "#view-family svg.ft-svg{display:block;}" +
+    /* max-width:none overrides the global `img,svg{max-width:100%}` rule — without it the
+       SVG is squeezed to the box width while its height attribute stands, and the drawing
+       letterboxes into a small centered band with dead space above it. */
+    "#view-family svg.ft-svg{display:block;max-width:none;}" +
+    "#view-family .ft-scroll{max-height:74vh;}" +
 
     /* houses */
     "#view-family .ft-house{stroke-width:1.5;rx:14;}" +
@@ -165,9 +169,9 @@
     "#view-family .ft-node.ft-h-saul rect{stroke:var(--ft-saul);}" +
     "#view-family .ft-node.ft-h-ancestry rect{stroke:var(--ft-david);stroke-dasharray:3 3;}" +
     "#view-family .ft-node text{pointer-events:none;}" +
-    "#view-family .ft-node .ft-name{font-family:var(--serif,Georgia,serif);font-size:15px;font-weight:bold;" +
+    "#view-family .ft-node .ft-name{font-family:var(--serif,Georgia,serif);font-size:16px;font-weight:bold;" +
     "fill:var(--ink,#2e2418);text-anchor:middle;}" +
-    "#view-family .ft-node .ft-sub{font-size:10.5px;fill:var(--muted,#8a7a62);text-anchor:middle;}" +
+    "#view-family .ft-node .ft-sub{font-size:11.5px;fill:var(--muted,#8a7a62);text-anchor:middle;}" +
     "#view-family .ft-node .ft-badge{font-size:13px;text-anchor:middle;}" +
     "#view-family .ft-node:hover rect,#view-family .ft-node:focus rect{stroke-width:2.6;}" +
     "#view-family .ft-node:focus{outline:none;}" +
@@ -585,11 +589,15 @@
     if (note) addClass(note, "ft-lineage");
   }
 
-  function scrollToX(svgX) {
+  function scrollToX(svgX, svgY) {
     if (!els.scroll) return;
     try {
       var cw = els.scroll.clientWidth || 600;
       els.scroll.scrollLeft = Math.max(0, svgX * SCALE - cw / 2);
+      if (svgY != null) {
+        var chH = els.scroll.clientHeight || 400;
+        els.scroll.scrollTop = Math.max(0, svgY * SCALE - chH / 2);
+      }
     } catch (err) { /* non-scrolling environments */ }
   }
 
@@ -605,7 +613,7 @@
     renderDetail(p);
     if (id === "ruth") applyLineageGlow();  // Easter egg
     var B = boxOf(id);
-    if (B) scrollToX(B.x);
+    if (B) scrollToX(B.x, B.y);
   }
 
   function applySpotlight() {
@@ -625,7 +633,8 @@
       else if (from === "zeruiah" && SPOT_KEEP.indexOf(to) !== -1) addClass(edge, "ft-spot-keep");
     });
     renderSpotlightCard();
-    scrollToX(boxOf("abishai") ? boxOf("abishai").x : 1045);
+    var ab = boxOf("abishai");
+    scrollToX(ab ? ab.x : 1045, ab ? ab.y : 590);
   }
 
   // ---- drag-to-pan --------------------------------------------------------
