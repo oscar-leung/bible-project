@@ -279,6 +279,14 @@
       }
       return false;
     }
+    // Reserve every marker dot up front so no label can sit on any dot,
+    // including dots of markers placed later in the loop.
+    for (var d = 0; d < locs.length; d++) {
+      var ld = locs[d];
+      if (!ld || typeof ld.lat !== "number" || typeof ld.lon !== "number") continue;
+      var pd = project(ld.lat, ld.lon);
+      placed.push({ x: pd.x - 6, y: pd.y - 6, w: 12, h: 12 });
+    }
     // Place top-to-bottom for stable results.
     var sorted = locs.slice().sort(function (a, b) {
       var ya = typeof a.lat === "number" ? project(a.lat, a.lon).y : 0;
@@ -289,8 +297,6 @@
       var loc = sorted[i];
       if (typeof loc.lat !== "number" || typeof loc.lon !== "number") continue;
       var p = project(loc.lat, loc.lon);
-      // Reserve the marker dot itself.
-      placed.push({ x: p.x - 6, y: p.y - 6, w: 12, h: 12 });
       var chosen = candidates[0], b = null;
       for (var c = 0; c < candidates.length; c++) {
         b = boxFor(p, String(loc.name || loc.id || ""), candidates[c]);
