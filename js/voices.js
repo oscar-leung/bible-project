@@ -38,8 +38,21 @@
     try { return document.getElementById("view-story"); } catch (e) { return null; }
   }
 
-  // Read the currently displayed chapter straight from StoryView's DOM.
+  // Read the currently displayed book+chapter straight from StoryView's DOM.
+  // DIALOGUE keys: 1 Samuel chapters are numbers (1–31); 2 Samuel chapters are
+  // strings "2s1", "2s2", … The chapter panel <article> carries
+  // data-book="samuel1|samuel2" and data-chapter="N" (multi-book StoryView);
+  // the old 1 Samuel-only selectors are kept as fallbacks.
   function currentChapterKey(root) {
+    try {
+      var panel = root.querySelector("article.card[data-book][data-chapter]") ||
+        root.querySelector("[data-book][data-chapter]");
+      if (panel) {
+        var book = panel.getAttribute("data-book");
+        var pn = parseInt(panel.getAttribute("data-chapter"), 10);
+        if (pn >= 1) return book === "samuel2" ? "2s" + pn : pn;
+      }
+    } catch (e) {}
     try {
       var btn = root.querySelector(".story-chapbtn.current");
       if (btn && btn.getAttribute("data-chapter")) {

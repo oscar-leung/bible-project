@@ -28,10 +28,12 @@
       }
     },
 
-    goToChapter: function (num) {
+    // goToChapter(num) -> 1 Samuel chapter num (unchanged contract).
+    // goToChapter(num, "samuel2") -> 2 Samuel chapter num.
+    goToChapter: function (num, book) {
       window.App.showView("story");
       if (window.StoryView && typeof window.StoryView.show === "function") {
-        window.StoryView.show(num);
+        window.StoryView.show(num, book);
       }
     }
   };
@@ -81,27 +83,47 @@
   });
 
   /* ---- thin gold reading-progress bar under the header ------------------
-     Reads the same localStorage key story.js writes ("samuel1.story.readChapters"). */
-  var READ_KEY = "samuel1.story.readChapters";
-  var TOTAL_CHAPTERS = 31;
+     Counts BOTH books: reads the localStorage keys story.js writes
+     ("samuel1.story.readChapters" + "samuel2.story.readChapters"). The total
+     is 31 (1 Samuel) plus however many 2 Samuel chapters exist at runtime. */
+  var SAMUEL1_CHAPTERS = 31;
+
+  function samuel2ChapterCount() {
+    try {
+      var d = window.SAMUEL2;
+      if (d && Object.prototype.toString.call(d.chapters) === "[object Array]") {
+        return d.chapters.length;
+      }
+    } catch (e) {}
+    return 0;
+  }
+
+  function countReadKey(key, maxN) {
+    var count = 0;
+    try {
+      var arr = JSON.parse(localStorage.getItem(key) || "[]");
+      if (Object.prototype.toString.call(arr) === "[object Array]") {
+        for (var i = 0; i < arr.length; i++) {
+          var n = parseInt(arr[i], 10);
+          if (n >= 1 && n <= maxN) count++;
+        }
+      }
+    } catch (e) { /* private mode etc. — bar just stays empty */ }
+    return count;
+  }
 
   window.App.updateReadingProgress = function () {
     var bar = document.getElementById("reading-progress");
     var fill = document.getElementById("reading-progress-fill");
     if (!bar || !fill) return;
-    var count = 0;
-    try {
-      var arr = JSON.parse(localStorage.getItem(READ_KEY) || "[]");
-      if (Object.prototype.toString.call(arr) === "[object Array]") {
-        for (var i = 0; i < arr.length; i++) {
-          var n = parseInt(arr[i], 10);
-          if (n >= 1 && n <= TOTAL_CHAPTERS) count++;
-        }
-      }
-    } catch (e) { /* private mode etc. — bar just stays empty */ }
-    fill.style.width = (count / TOTAL_CHAPTERS * 100) + "%";
+    var s2total = samuel2ChapterCount();
+    var total = SAMUEL1_CHAPTERS + s2total;
+    var count = countReadKey("samuel1.story.readChapters", SAMUEL1_CHAPTERS);
+    if (s2total > 0) count += countReadKey("samuel2.story.readChapters", s2total);
+    fill.style.width = (count / total * 100) + "%";
+    bar.setAttribute("aria-valuemax", String(total));
     bar.setAttribute("aria-valuenow", String(count));
-    bar.setAttribute("title", count + " of " + TOTAL_CHAPTERS + " chapters read");
+    bar.setAttribute("title", count + " of " + total + " chapters read");
   };
 
   // Any click may have toggled a chapter's read state; refresh just after.
