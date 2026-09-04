@@ -272,7 +272,7 @@ window.SAMUEL1 = {
       summary: "Despairing of surviving Saul's pursuit, David crosses to Achish king of Gath with his six hundred men and their households, and Saul seeks him no more. David asks for a country town and is given Ziklag, which thereafter belonged to the kings of Judah. For sixteen months David raids the Geshurites, Girzites, and Amalekites — ancient enemies in the southern desert — leaving no survivors to contradict the reports he gives Achish, whom he tells he has been raiding the Negev of Judah. Achish trusts him completely, believing David has made himself odious to his own people forever.",
       keyVerse: { ref: "1 Samuel 27:1", text: "And David said in his heart, I shall now perish one day by the hand of Saul: there is nothing better for me than that I should speedily escape into the land of the Philistines." },
       locations: ["gath", "ziklag"],
-      characters: ["david", "achish"],
+      characters: ["david", "achish", "abigail"],
       historianNote: "Political refugees taking service with a rival state was common ancient practice — compare the Egyptian tale of Sinuhe or Idrimi of Alalakh, exiled princes who served foreign masters before returning to power. Ziklag's location is debated among Tel Sera, Tel Halif, and (since 2019 excavations) Khirbet a-Ra'i; all sit in the Negev borderland where a warlord could operate between Philistine, Judahite, and Amalekite spheres. David's double game builds Judahite goodwill (see 30:26-31) while his patron pays the bills — morally murky statecraft the narrator reports without varnish.",
       era: "c. 1011 BC"
     },
@@ -281,7 +281,7 @@ window.SAMUEL1 = {
       title: "Saul and the Medium of Endor",
       summary: "The Philistines mass at Shunem for a decisive northern campaign, and Achish makes David his bodyguard for life. Saul, encamped at Gilboa, is terrified; the Lord answers him neither by dreams, nor Urim, nor prophets — and Samuel is dead. Though he himself had expelled mediums from the land, Saul disguises himself and goes by night to a medium at Endor, asking her to bring up Samuel. To her own terror Samuel appears, and his word is unchanged: the kingdom is torn away and given to David, and tomorrow Saul and his sons will be with him. Saul collapses; the woman and his servants persuade the broken king to eat before he goes out into the night.",
       keyVerse: { ref: "1 Samuel 28:15", text: "I am sore distressed; for the Philistines make war against me, and God is departed from me, and answereth me no more, neither by prophets, nor by dreams." },
-      locations: ["shunem", "mount-gilboa", "endor", "aphek"],
+      locations: ["shunem", "mount-gilboa", "endor"],
       characters: ["saul", "samuel", "medium-of-endor", "achish", "david"],
       historianNote: "Necromancy was a developed profession across the ancient Near East — Mesopotamian texts preserve rituals and incantations for raising and questioning the dead — which is precisely why Israelite law banned it so emphatically (Deuteronomy 18:10-11). By marching up the coast and inland to Jezreel, the Philistines aimed to cut Israel in two at its most vulnerable corridor, where their chariots could operate on level ground. The reversal is total: the king who once prophesied among the prophets now scratches at the door of a forbidden practitioner in enemy-held country.",
       era: "c. 1010 BC"

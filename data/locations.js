@@ -41,7 +41,7 @@ window.LOCATIONS = [
     modernName: "possibly Izbet Sartah",
     lat: 32.105, lon: 34.968,
     description: "Israel's camp opposite Aphek where the ark was lost in battle. Years later Samuel raised a memorial stone he named Ebenezer, 'stone of help,' after the victory at Mizpah.",
-    chapters: [4, 5, 7]
+    chapters: [4, 7]
   },
   {
     id: "ashdod",
@@ -49,7 +49,7 @@ window.LOCATIONS = [
     modernName: "Tel Ashdod",
     lat: 31.756, lon: 34.655,
     description: "One of the five lordly cities of the Philistines, home of the temple of Dagon. The captured ark was brought here first, where Dagon's image fell broken before it and plague struck the city.",
-    chapters: [5, 6]
+    chapters: [5]
   },
   {
     id: "gath",
@@ -97,7 +97,7 @@ window.LOCATIONS = [
     modernName: "unidentified; near Khirbet el-Mefjer, east of Jericho",
     lat: 31.871, lon: 35.470,
     description: "Camp and shrine in the Jordan Valley near Jericho, rich with memories of Joshua's crossing. Saul's kingship was renewed here — and it was also here that Saul's disobedient sacrifice and the Amalek affair cost him the kingdom.",
-    chapters: [7, 10, 11, 13, 15]
+    chapters: [7, 10, 11, 12, 13, 15]
   },
   {
     id: "gibeah",
@@ -105,7 +105,7 @@ window.LOCATIONS = [
     modernName: "Tell el-Ful, north Jerusalem",
     lat: 31.824, lon: 35.231,
     description: "Saul's hometown and royal seat, a Benjaminite hilltop fortress from which he ruled. David served Saul here, married Michal here, and fled from here when Saul's spear flew.",
-    chapters: [10, 11, 13, 14, 15, 18, 19, 20, 22, 23, 26]
+    chapters: [10, 11, 13, 14, 15, 16, 18, 19, 20, 22, 23, 26]
   },
   {
     id: "geba",
@@ -209,7 +209,7 @@ window.LOCATIONS = [
     modernName: "identification debated: Tel Sera, Tel Halif, or Khirbet a-Ra'i",
     lat: 31.386, lon: 34.686,
     description: "Negev border town that Achish of Gath granted to David as a base for sixteen months. Amalekite raiders burned it and carried off the families while David was away; he pursued and recovered everything.",
-    chapters: [27, 30]
+    chapters: [27, 29, 30]
   },
   {
     id: "beersheba",
