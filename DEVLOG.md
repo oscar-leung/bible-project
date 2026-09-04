@@ -61,8 +61,34 @@ commentary.
   views verified rendering with zero console errors; battle/family screenshots
   captured.
 
+### Phase 5 — Family-tree fix + illuminated identity pass
+- **Family Lines bug fixed:** the global `img,svg{max-width:100%}` rule was
+  squeezing the tree SVG's width while its `height` attribute stood, so the
+  2160×880 drawing letterboxed into a small band with dead space above it.
+  Fixed with a scoped `max-width:none`, 1:1 render scale (labels now legible),
+  a capped scroll box, and vertical+horizontal centering that re-applies when
+  the hidden tab activates (scroll positions don't stick on `display:none`).
+- **Illuminated-manuscript identity:** once-per-session opening moment (title
+  ink-fades in over an unfurling gold rule, click to skip, honors
+  prefers-reduced-motion); lyre emblem beside the title; colophon-styled
+  subtitle and footer; parchment grain (inline SVG feTurbulence data-URI) on
+  page/cards/header; gold-leaf drop caps on chapter summaries and the battle's
+  opening prose; gold ring on the active tab; thin gold reading-progress bar
+  under the header (reads story.js's localStorage key); micro-motion on tabs,
+  chips, map markers, and timeline nodes; aged-leather dark mode; og:/theme-color
+  social meta. No external fonts — still works offline over file://.
+- **QA:** zero console errors/warnings across all 7 tabs, light+dark,
+  1280×900 and 390×844 (no page horizontal scroll); all screenshots retaken,
+  plus a new `hero.png`.
+
+### Phase 6 — Voices integrated
+- 🎭 Voices wired into the shell: 43 KJV dialogue scenes (150 speech lines)
+  render as script-style bubbles with commentary inside the story view,
+  covering 1 Sam 1–31 and 2 Sam 1–2. Verified in-browser: zero console
+  errors, scenes present on ch. 1 and ch. 17; `screenshots/voices.png`.
+
 ### Known issues / next up
-- Family tree renders undersized with dead space above it — layout fix queued.
-- Voices module integration + QA round 2 + rebuilt single-file bundle queued.
-- Visual distinctiveness pass ("make it stick out") queued.
+- Family tree "neuron maps" (2 Sam 3 Hebron sons + per-person mentions and
+  connections) — data in progress, panel rendering next.
+- QA round 2 across everything + rebuilt single-file bundle queued.
 - 2 Samuel content: chapter structure ready to extend; user is studying 2 Sam 2.

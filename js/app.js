@@ -57,7 +57,8 @@
       ["GameView", window.GameView],
       ["BattleView", window.BattleView],
       ["FamilyTreeView", window.FamilyTreeView],
-      ["EasterEggs", window.EasterEggs]
+      ["EasterEggs", window.EasterEggs],
+      ["Voices", window.Voices]
     ];
     for (var m = 0; m < modules.length; m++) {
       try {

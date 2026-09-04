@@ -78,8 +78,10 @@
     inited: false,
     selected: null,       // person id or null
     spotlight: false,
-    pendingFocus: null
+    pendingFocus: null,
+    scrollTarget: null    // {x, y} in SVG units; re-applied when the view shows
   };
+  var visObserver = null; // watches #view-family for .active so scroll can apply
   var els = {};           // cached DOM refs, rebuilt each init()
 
   // ---- tiny DOM helpers (map.js conventions) ------------------------------
@@ -591,12 +593,22 @@
 
   function scrollToX(svgX, svgY) {
     if (!els.scroll) return;
+    state.scrollTarget = { x: svgX, y: svgY };
+    applyScrollTarget();
+  }
+
+  // While #view-family is display:none, scroll positions don't stick — so the
+  // target is remembered and re-applied when the view becomes visible.
+  function applyScrollTarget() {
+    var t = state.scrollTarget;
+    if (!t || !els.scroll) return;
     try {
-      var cw = els.scroll.clientWidth || 600;
-      els.scroll.scrollLeft = Math.max(0, svgX * SCALE - cw / 2);
-      if (svgY != null) {
+      var cw = els.scroll.clientWidth;
+      if (!cw) return;                      // hidden: wait for the view to activate
+      els.scroll.scrollLeft = Math.max(0, t.x * SCALE - cw / 2);
+      if (t.y != null) {
         var chH = els.scroll.clientHeight || 400;
-        els.scroll.scrollTop = Math.max(0, svgY * SCALE - chH / 2);
+        els.scroll.scrollTop = Math.max(0, t.y * SCALE - chH / 2);
       }
     } catch (err) { /* non-scrolling environments */ }
   }
@@ -744,6 +756,15 @@
       }
     });
     wirePan(scroll);
+
+    // when the tab activates, honor any scroll target set while hidden
+    if (visObserver) { try { visObserver.disconnect(); } catch (e) {} }
+    if (typeof MutationObserver === "function") {
+      visObserver = new MutationObserver(function () {
+        if (root.classList && root.classList.contains("active")) applyScrollTarget();
+      });
+      visObserver.observe(root, { attributes: true, attributeFilter: ["class"] });
+    }
 
     state.inited = true;
 
