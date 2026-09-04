@@ -271,23 +271,27 @@
     var card = el("div", "card");
     card.appendChild(el("p", "sq-q", esc(q.q)));
 
+    // display the choices in a shuffled order so the right answer moves around
+    var order = shuffle((q.choices || []).map(function (_, i) { return i; }));
+    var correctPos = order.indexOf(q.answer);
+
     var choicesBox = el("div", "sq-choices");
     var buttons = [];
-    (q.choices || []).forEach(function (choice, ci) {
-      var b = el("button", "sq-choice", esc(choice));
-      b.addEventListener("click", function () { answer(ci, b); });
+    order.forEach(function (origIdx, pos) {
+      var b = el("button", "sq-choice", esc(q.choices[origIdx]));
+      b.addEventListener("click", function () { answer(pos, b); });
       buttons.push(b);
       choicesBox.appendChild(b);
     });
     card.appendChild(choicesBox);
 
     var answered = false;
-    function answer(ci, btn) {
+    function answer(pos, btn) {
       if (answered) return;
       answered = true;
-      var correct = ci === q.answer;
+      var correct = pos === correctPos;
       buttons.forEach(function (b) { b.disabled = true; });
-      if (buttons[q.answer]) buttons[q.answer].classList.add("sq-correct", "sq-pop");
+      if (buttons[correctPos]) buttons[correctPos].classList.add("sq-correct", "sq-pop");
       if (correct) {
         state.score++;
         state.streak++;
