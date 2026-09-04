@@ -129,13 +129,6 @@ window.QUIZ = [
     explain: "As Jesse's sons passed by, the LORD said man looks on the outward appearance, but the LORD looks on the heart — and chose David, the youngest."
   },
   {
-    q: "How did David first enter Saul's service?",
-    choices: ["As his cupbearer", "As a skilled player of the lyre to soothe Saul's tormenting spirit", "As a scribe in his court", "As commander of his bodyguard"],
-    answer: 1,
-    chapter: 16,
-    explain: "When a harmful spirit tormented Saul, David's lyre playing refreshed him, and Saul made David his armor-bearer."
-  },
-  {
     q: "In which valley did Israel face the Philistines when Goliath issued his challenge?",
     choices: ["The Valley of Jezreel", "The Valley of Elah", "The Valley of Aijalon", "The Valley of Sorek"],
     answer: 1,
@@ -171,25 +164,11 @@ window.QUIZ = [
     explain: "Michal lowered David through the window, then laid a household idol in the bed with goats' hair at its head to buy him time."
   },
   {
-    q: "How did Jonathan secretly signal to David whether it was safe to return to Saul's court?",
-    choices: ["By lighting a fire on the hill", "By the pattern of shooting arrows and his word to the boy who fetched them", "By sending Michal with a letter", "By a trumpet blast at dawn"],
-    answer: 1,
-    chapter: 20,
-    explain: "As agreed, Jonathan shot arrows and called to his boy, \"Is not the arrow beyond you?\" — the sign that David must flee."
-  },
-  {
     q: "What did Ahimelech the priest at Nob give to the fleeing David?",
     choices: ["The holy bread and the sword of Goliath", "A donkey and provisions for a month", "The Ark of God", "The ephod and a company of priests"],
     answer: 0,
     chapter: 21,
     explain: "Having nothing else, Ahimelech gave David the consecrated bread of the Presence and Goliath's sword, kept behind the ephod."
-  },
-  {
-    q: "Who carried out Saul's order to slaughter the eighty-five priests of Nob when the king's servants refused?",
-    choices: ["Abner", "Jonathan", "Doeg the Edomite", "Joab"],
-    answer: 2,
-    chapter: 22,
-    explain: "Doeg the Edomite, who had informed on Ahimelech, killed the priests and put the city of Nob to the sword; only Abiathar escaped to David."
   },
   {
     q: "In the cave at En-gedi, what did David do instead of killing Saul?",
@@ -218,13 +197,6 @@ window.QUIZ = [
     answer: 1,
     chapter: 28,
     explain: "With the Philistines massed and the LORD silent, a terrified Saul disguised himself and asked the medium to bring up Samuel, who foretold his doom."
-  },
-  {
-    q: "When the Amalekites burned Ziklag and carried off the families, what did David do first before pursuing?",
-    choices: ["He strengthened himself in the LORD and inquired of Him by the ephod", "He swore vengeance on his own men", "He sent messengers to Saul for help", "He marched immediately without counsel"],
-    answer: 0,
-    chapter: 30,
-    explain: "Though his men spoke of stoning him, David strengthened himself in the LORD, inquired through Abiathar's ephod, and recovered all."
   },
   {
     q: "How did Saul die on Mount Gilboa?",

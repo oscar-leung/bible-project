@@ -165,11 +165,11 @@
     var sea = svgEl("path", { d: seaD, fill: "var(--mv-water)", stroke: "var(--mv-shore)", "stroke-width": "1.6" });
     svg.appendChild(sea);
 
-    // A softer inner-water band for depth.
+    // A softer inner-water band for depth along the west edge.
     var deep = svgEl("path", {
-      d: "M0 0 L" + (project(33.0, 34.75).x) + " 0 " +
-         "C" + pts([[32.4, 34.55], [31.6, 34.2]]).split(" ").join(" ") + " " +
-         project(30.8, 34.0).x + " " + VIEW_H + " L0 " + VIEW_H + " Z",
+      d: "M0 0 L" + project(33.0, 34.75).x.toFixed(1) + " 0 " +
+         "C " + pts([[32.4, 34.55], [31.6, 34.2], [30.8, 34.02]]) +
+         " L0 " + VIEW_H + " Z",
       fill: "var(--mv-water-deep)", opacity: "0.45", "pointer-events": "none"
     });
     svg.appendChild(deep);
@@ -281,7 +281,9 @@
     }
     // Place top-to-bottom for stable results.
     var sorted = locs.slice().sort(function (a, b) {
-      return project(b.lat, b.lon).y - project(a.lat, a.lon).y ? project(a.lat, a.lon).y - project(b.lat, b.lon).y : 0;
+      var ya = typeof a.lat === "number" ? project(a.lat, a.lon).y : 0;
+      var yb = typeof b.lat === "number" ? project(b.lat, b.lon).y : 0;
+      return ya - yb;
     });
     for (var i = 0; i < sorted.length; i++) {
       var loc = sorted[i];
