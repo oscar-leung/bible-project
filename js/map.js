@@ -262,7 +262,16 @@
       { dx: 0, dy: -10, anchor: "middle" },
       { dx: 0, dy: 17, anchor: "middle" },
       { dx: 11, dy: -7, anchor: "start" },
-      { dx: -11, dy: 15, anchor: "end" }
+      { dx: -11, dy: 15, anchor: "end" },
+      // Farther fallbacks for dense clusters (e.g. the Benjamin plateau).
+      { dx: 16, dy: 4, anchor: "start" },
+      { dx: -16, dy: 4, anchor: "end" },
+      { dx: 14, dy: 15, anchor: "start" },
+      { dx: -14, dy: -7, anchor: "end" },
+      { dx: 0, dy: -18, anchor: "middle" },
+      { dx: 0, dy: 26, anchor: "middle" },
+      { dx: 22, dy: 4, anchor: "start" },
+      { dx: -22, dy: 4, anchor: "end" }
     ];
     function boxFor(p, name, c) {
       var w = Math.max(30, name.length * 6.6), h = 13;
