@@ -251,6 +251,20 @@
   }
 
   // ---- marker label placement (avoid collisions) --------------------------
+  // Hand-tuned placements for the dense Benjamin plateau cluster, where the
+  // dots sit too close for any automatic placement to succeed.
+  var LABEL_OVERRIDES = {
+    bethel: { dx: -9, dy: 4, anchor: "end" },
+    mizpah: { dx: -9, dy: 4, anchor: "end" },
+    michmash: { dx: 10, dy: -11, anchor: "start" },
+    geba: { dx: 12, dy: 4, anchor: "start" },
+    ramah: { dx: -9, dy: 6, anchor: "end" },
+    gibeah: { dx: 11, dy: 7, anchor: "start" },
+    nob: { dx: 0, dy: 17, anchor: "middle" },
+    "kiriath-jearim": { dx: -9, dy: 1, anchor: "end" },
+    "beth-shemesh": { dx: -9, dy: 8, anchor: "end" }
+  };
+
   function placeLabels(locs) {
     // Returns map id -> {dx, dy, anchor}. Greedy: try candidates, keep first
     // whose estimated text box doesn't hit an already placed box or a marker.
@@ -296,6 +310,14 @@
       var pd = project(ld.lat, ld.lon);
       placed.push({ x: pd.x - 6, y: pd.y - 6, w: 12, h: 12 });
     }
+    // Hand-tuned overrides claim their spots first.
+    for (var o = 0; o < locs.length; o++) {
+      var lo = locs[o];
+      if (!lo || !LABEL_OVERRIDES[lo.id]) continue;
+      if (typeof lo.lat !== "number" || typeof lo.lon !== "number") continue;
+      out[lo.id] = LABEL_OVERRIDES[lo.id];
+      placed.push(boxFor(project(lo.lat, lo.lon), String(lo.name || lo.id || ""), out[lo.id]));
+    }
     // Place top-to-bottom for stable results.
     var sorted = locs.slice().sort(function (a, b) {
       var ya = typeof a.lat === "number" ? project(a.lat, a.lon).y : 0;
@@ -305,6 +327,7 @@
     for (var i = 0; i < sorted.length; i++) {
       var loc = sorted[i];
       if (typeof loc.lat !== "number" || typeof loc.lon !== "number") continue;
+      if (LABEL_OVERRIDES[loc.id]) continue;
       var p = project(loc.lat, loc.lon);
       var chosen = candidates[0], b = null;
       for (var c = 0; c < candidates.length; c++) {
