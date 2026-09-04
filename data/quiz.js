@@ -10,13 +10,6 @@ window.QUIZ = [
     explain: "Hannah, childless and grieved, made this vow at Shiloh, and Samuel was born in answer to her prayer."
   },
   {
-    q: "When Eli the priest first saw Hannah praying silently at Shiloh, what did he assume about her?",
-    choices: ["That she was a prophetess", "That she was mourning a death", "That she was drunk", "That she was a foreigner"],
-    answer: 2,
-    chapter: 1,
-    explain: "Only Hannah's lips moved as she prayed, so Eli thought she was drunk and told her to put away her wine."
-  },
-  {
     q: "Eli's sons Hophni and Phinehas were notorious for what?",
     choices: ["Treating the LORD's offering with contempt", "Worshiping Dagon in secret", "Refusing to fight the Philistines", "Stealing from the king's treasury"],
     answer: 0,
@@ -31,25 +24,11 @@ window.QUIZ = [
     explain: "Eli realized the LORD was calling the boy and taught Samuel to answer, \"Speak, LORD, for your servant hears.\""
   },
   {
-    q: "How many times did the LORD call Samuel before Eli understood who was calling the boy?",
-    choices: ["Once", "Twice", "Three times", "Seven times"],
-    answer: 2,
-    chapter: 3,
-    explain: "After the third time Samuel ran to Eli, the old priest perceived that the LORD was calling the child."
-  },
-  {
     q: "What happened to the Ark of God at the battle of Ebenezer and Aphek?",
     choices: ["It was hidden in a cave", "It was captured by the Philistines", "It was burned with fire", "It was carried safely back to Shiloh"],
     answer: 1,
     chapter: 4,
     explain: "Israel was routed, Hophni and Phinehas were killed, and the Philistines captured the Ark of God."
-  },
-  {
-    q: "How did Eli die?",
-    choices: ["He was struck down in battle", "He fell backward from his seat and broke his neck", "He died in his sleep at Shiloh", "He was killed by his own sons"],
-    answer: 1,
-    chapter: 4,
-    explain: "At the news that the Ark was taken, Eli fell backward from his seat by the gate and his neck was broken."
   },
   {
     q: "The dying wife of Phinehas named her son Ichabod. What does the name signify?",
@@ -92,13 +71,6 @@ window.QUIZ = [
     answer: 1,
     chapter: 9,
     explain: "Saul, son of Kish, was searching for lost donkeys when his servant suggested consulting the seer — Samuel."
-  },
-  {
-    q: "From which tribe of Israel did Saul come?",
-    choices: ["Judah", "Ephraim", "Benjamin", "Levi"],
-    answer: 2,
-    chapter: 9,
-    explain: "Saul was a Benjaminite, from the smallest of the tribes of Israel, as he himself protested to Samuel."
   },
   {
     q: "When Saul was chosen king by lot at Mizpah, where was he found?",
