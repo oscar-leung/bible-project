@@ -101,5 +101,20 @@ commentary.
 - Zero-error matrix re-passed (light/dark × desktop/mobile); single-file
   bundle rebuilt with all 19 scripts and verified over file://.
 
+### Phase 8 — The app becomes a two-book study (2 Samuel begins)
+- 📖 The story view now has a book switcher: 1 Samuel (31 chapters) and
+  2 Samuel (chapters 1–2 so far, growing as the study continues). Per-book
+  read tracking; the gold progress bar counts both books; Voices keys to
+  the active book so the Gibeon dialogue plays under 2 Samuel 2.
+- Historian content for 2 Sam 1 ("The Song of the Bow") and 2 Sam 2
+  ("Two Kings: Hebron and Mahanaim"), with Hebron, Mahanaim, and Gibeon
+  added to the map and a new "Two Kings, One Land" journey route.
+- Incident log: a temporary frontend mock briefly overwrote the historian's
+  real chapter file in a same-path race; caught in review, the real file was
+  regenerated and re-validated (51/51 assertions). Lesson recorded: one
+  owner per file path, mocks live outside the repo.
+- Verified in-browser: real content on 2 Sam 2, zero console errors, all
+  7 tabs clean; single-file bundle rebuilt with all 20 scripts.
+
 ### Next up
-- 2 Samuel content: chapter structure ready to extend; user is studying 2 Sam 2.
+- 2 Samuel chapters 3+ as the study continues.
