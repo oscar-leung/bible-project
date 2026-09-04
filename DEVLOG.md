@@ -87,8 +87,19 @@ commentary.
   covering 1 Sam 1–31 and 2 Sam 1–2. Verified in-browser: zero console
   errors, scenes present on ch. 1 and ch. 17; `screenshots/voices.png`.
 
-### Known issues / next up
-- Family tree "neuron maps" (2 Sam 3 Hebron sons + per-person mentions and
-  connections) — data in progress, panel rendering next.
-- QA round 2 across everything + rebuilt single-file bundle queued.
+### Phase 7 — Neuron maps rendered; bundle rebuilt
+- Family data grown to 47 people: the six Hebron sons of 2 Sam 3:2–5 as
+  individuals under their four mothers (all added as nodes), plus Phaltiel;
+  every person carries a "neuron map" — 195 mentions (ref/when/what/why)
+  and 148 person-to-person connections, all id-validated.
+- Tree canvas widened to 2510×880: wives row + sons row under David, each
+  son below his mother, Phaltiel beside Michal (both her marriages drawn).
+  Zero box overlaps, verified programmatically.
+- Detail panel now shows "🧠 Every mention" and clickable "🔗 Connections"
+  rows that hop the selection through the web (asahel → abner → joab chain
+  verified).
+- Zero-error matrix re-passed (light/dark × desktop/mobile); single-file
+  bundle rebuilt with all 19 scripts and verified over file://.
+
+### Next up
 - 2 Samuel content: chapter structure ready to extend; user is studying 2 Sam 2.
