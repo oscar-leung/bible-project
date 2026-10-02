@@ -191,6 +191,15 @@
       "#view-story .story-histnote{margin:1rem 0;padding:.85rem 1.1rem;border-left:4px solid var(--gold);background:color-mix(in srgb,var(--gold) 9%,transparent);border-radius:0 .4rem .4rem 0;}" +
       "#view-story .story-histnote h4{margin:0 0 .35rem;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);}" +
       "#view-story .story-histnote p{margin:0;line-height:1.6;font-size:.95rem;}" +
+      "#view-story .story-studynote{margin:1rem 0;padding:.9rem 1.15rem;border:1px dashed var(--accent);background:color-mix(in srgb,var(--accent) 5%,transparent);border-radius:.5rem;}" +
+      "#view-story .story-studynote h4{margin:0 0 .4rem;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);}" +
+      "#view-story .story-studynote h5{margin:.7rem 0 .25rem;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}" +
+      "#view-story .story-studydate{font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-size:.8rem;}" +
+      "#view-story .story-studytheme{margin:0 0 .5rem;font-family:Georgia,'Times New Roman',serif;font-style:italic;line-height:1.55;color:var(--accent);}" +
+      "#view-story .story-studynote p{margin:.3rem 0;line-height:1.6;font-size:.95rem;}" +
+      "#view-story .story-studylist{margin:.3rem 0 .3rem 1.2rem;padding:0;line-height:1.55;font-size:.93rem;}" +
+      "#view-story .story-studylist li{margin:.3rem 0;}" +
+      "#view-story .story-studyreflect{margin:.7rem 0 0;padding:.55rem .8rem;background:color-mix(in srgb,var(--gold) 8%,transparent);border-radius:.4rem;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:.92rem;line-height:1.55;}" +
       "#view-story .story-chips{margin:.85rem 0 0;}" +
       "#view-story .story-chips h4{margin:0 0 .35rem;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}" +
       "#view-story .story-chiprow{display:flex;flex-wrap:wrap;gap:.4rem;}" +
@@ -297,6 +306,40 @@
     return h;
   }
 
+  // The family's own study notebook (data/study-notes.js, window.STUDY_NOTES):
+  // distilled from real chapter-by-chapter devotional studies. Keys match the
+  // dialogue convention: "20" for 1 Samuel 20, "2s13" for 2 Samuel 13.
+  function studyNoteHtml(ch) {
+    try {
+      var notes = window.STUDY_NOTES;
+      if (!notes || !ch) return "";
+      var key = currentBook === "samuel2" ? "2s" + ch.num : String(ch.num);
+      var n = notes[key];
+      if (!n) return "";
+      var h = '<aside class="story-studynote"><h4>📓 From the study notebook' +
+        (n.studied ? ' <span class="story-studydate">· studied ' + esc(n.studied) + "</span>" : "") + "</h4>";
+      if (n.theme) h += '<p class="story-studytheme">' + esc(n.theme) + "</p>";
+      if (n.context) h += "<p>" + esc(n.context) + "</p>";
+      if (n.insights && n.insights.length) {
+        h += '<ul class="story-studylist">';
+        for (var i = 0; i < n.insights.length; i++) h += "<li>" + esc(n.insights[i]) + "</li>";
+        h += "</ul>";
+      }
+      if (n.takeaways && n.takeaways.length) {
+        h += '<h5>Carrying forward</h5><ol class="story-studylist">';
+        for (var t = 0; t < n.takeaways.length; t++) h += "<li>" + esc(n.takeaways[t]) + "</li>";
+        h += "</ol>";
+      }
+      if (n.reflection) {
+        h += '<p class="story-studyreflect">✍️ ' + esc(n.reflection) + "</p>";
+      }
+      h += "</aside>";
+      return h;
+    } catch (e) {
+      return ""; // the notebook is optional; never break the chapter
+    }
+  }
+
   function chapterPanelHtml(ch, max) {
     if (!ch) {
       return '<div class="card story-placeholder"><p>This chapter isn\u2019t available yet.</p></div>';
@@ -317,6 +360,8 @@
       h += '<aside class="story-histnote"><h4>\uD83D\uDCDC Historian\u2019s note</h4><p>' +
         esc(ch.historianNote) + "</p></aside>";
     }
+
+    h += studyNoteHtml(ch);
 
     var i;
     if (ch.locations && ch.locations.length) {

@@ -185,5 +185,159 @@ window.CHARACTERS = [
     title: "Bearer of Saul's crown",
     description: "A young Amalekite sojourner who came to Ziklag from Saul's camp with torn clothes, carrying the king's crown and armlet, and claimed to have dealt Saul his death-blow at his own request. Expecting a reward, he instead condemned himself out of his own mouth: David had him executed for stretching forth his hand against the Lord's anointed (2 Samuel 1:2-16).",
     chapters: []
+  },
+  {
+    id: "rizpah",
+    name: "Rizpah",
+    title: "Daughter of Aiah, concubine of Saul",
+    description: "Saul's concubine, over whom Ish-bosheth accused Abner — in the ancient world, taking a dead king's concubine was a claim on his throne, so the charge amounted to treason and drove Abner into David's camp (2 Samuel 3:7-10). Years later she would keep her terrible vigil over the bodies of her sons, beating the birds of the air away from harvest until the rains came (2 Samuel 21:8-11).",
+    chapters: []
+  },
+  {
+    id: "phaltiel",
+    name: "Phaltiel",
+    title: "Son of Laish, second husband of Michal",
+    description: "The man of Gallim to whom Saul gave Michal after David fled (1 Samuel 25:44). When Abner's covenant returned her to David, Phaltiel followed the escort, weeping behind his wife all the way to Bahurim, until Abner ordered him, 'Go, return' — and he went (2 Samuel 3:15-16). The Bible gives him no words at all; only the tears.",
+    chapters: []
+  },
+  {
+    "id": "rechab-baanah",
+    "name": "Rechab and Baanah",
+    "title": "Sons of Rimmon the Beerothite, captains of Ish-bosheth",
+    "description": "Brothers of Beeroth, a Gibeonite town reckoned to Benjamin, who commanded raiding bands for Ish-bosheth and murdered him in his bed at noon after Abner's death (2 Samuel 4:2, 5-7). They carried his head all night to Hebron expecting David's reward, and were instead executed as wicked men who had slain a righteous person in his own house; their hands and feet were hanged over the pool in Hebron (2 Samuel 4:8-12).",
+    "chapters": []
+  },
+  {
+    "id": "mephibosheth",
+    "name": "Mephibosheth",
+    "title": "Son of Jonathan, lame in both feet",
+    "description": "Jonathan's son, five years old when the news came from Jezreel that Saul and Jonathan were dead; his nurse fled with him, he fell, and he was lame in both feet ever after (2 Samuel 4:4). The last heir of Saul's house, he was later sought out by David for Jonathan's sake, given all Saul's land, and set at the king's table continually (2 Samuel 9), though his loyalty would be slandered by his servant Ziba during Absalom's revolt (2 Samuel 16, 19).",
+    "chapters": []
+  },
+  {
+    "id": "uzzah",
+    "name": "Uzzah",
+    "title": "Son of Abinadab, keeper of the ark",
+    "description": "A son of Abinadab, in whose house on the hill the ark had rested since its return from Philistia; he drove the new cart that carried the ark toward Jerusalem (2 Samuel 6:3). When the oxen stumbled at Nachon's threshingfloor he put out his hand to steady the ark and God smote him there for his error, and he died by the ark of God — the place was named Perez-uzzah, 'the breach of Uzzah' (2 Samuel 6:6-8).",
+    "chapters": []
+  },
+  {
+    "id": "nathan",
+    "name": "Nathan",
+    "title": "The prophet in David's court",
+    "description": "The prophet who served in David's Jerusalem court, first appearing when David proposed to build the LORD a house; that night he received the great oracle of the Davidic covenant — that the LORD would make David a house instead (2 Samuel 7:2-17). He would later confront the king over Bathsheba with the parable of the ewe lamb and the words 'Thou art the man' (2 Samuel 12:1-7), name Solomon Jedidiah (2 Samuel 12:25), and secure Solomon's succession (1 Kings 1).",
+    "chapters": []
+  },
+  {
+    "id": "ziba",
+    "name": "Ziba",
+    "title": "Servant of the house of Saul",
+    "description": "An old retainer of Saul's household with fifteen sons and twenty servants of his own, summoned by David to locate any survivor of Saul's line and appointed steward of the lands restored to Mephibosheth (2 Samuel 9:2-12). Years later, during Absalom's revolt, he meets the fleeing David with provisions and accuses his master of treason, winning Mephibosheth's estate for himself (2 Samuel 16:1-4) — a charge Mephibosheth denies at David's return, leaving the king to split the land between them (2 Samuel 19:24-30). Whether opportunist or loyalist, the text never finally says.",
+    "chapters": []
+  },
+  {
+    "id": "bathsheba",
+    "name": "Bathsheba",
+    "title": "Daughter of Eliam, wife of Uriah the Hittite, later wife of David",
+    "description": "Seen washing from the palace roof and taken by the king while her husband fought at Rabbah, she speaks only three Hebrew words in the whole affair — 'I am with child' (2 Samuel 11:2-5). After Uriah's arranged death she mourns him, becomes David's wife, and loses the son born of the sin; David comforts her, and she bears Solomon, whom the LORD loved (2 Samuel 11:26-27; 12:24). In David's old age she acts decisively at Nathan's side to secure Solomon's throne (1 Kings 1), and Matthew's genealogy remembers her, pointedly, as 'her that had been the wife of Urias.'",
+    "chapters": []
+  },
+  {
+    "id": "uriah",
+    "name": "Uriah the Hittite",
+    "title": "Soldier of David, husband of Bathsheba",
+    "description": "A foreigner numbered among David's thirty-seven mighty men (2 Samuel 23:39), whose house stood close under the palace in Jerusalem. Recalled from the siege of Rabbah, he twice refused the comfort of his own home while the ark and his comrades lay in tents (2 Samuel 11:9-13), and carried unopened to Joab the letter that ordered his own death in the forefront of the hottest battle (2 Samuel 11:14-17). His integrity, set against his king's deceit, is the moral hinge of the whole Bathsheba narrative; Nathan's oracle names his killing twice (2 Samuel 12:9).",
+    "chapters": []
+  },
+  {
+    "id": "amnon",
+    "name": "Amnon",
+    "title": "Firstborn son of David",
+    "description": "David's eldest son, born at Hebron to Ahinoam of Jezreel (2 Samuel 3:2) and presumptive heir to the throne. Obsessed with his half-sister Tamar, he followed his cousin Jonadab's scheme to trap her alone, forced her, and then cast her out with a hatred greater than his so-called love (2 Samuel 13:1-19). Two years later Absalom had him killed at the sheep-shearing feast at Baal-hazor (2 Samuel 13:28-29) — the first stroke of the sword Nathan had said would never depart from David's house.",
+    "chapters": []
+  },
+  {
+    "id": "tamar",
+    "name": "Tamar",
+    "title": "Daughter of David, sister of Absalom",
+    "description": "David's daughter by Maacah of Geshur, full sister of Absalom, who wore the long robe of the king's virgin daughters (2 Samuel 13:18). The only wise voice in her chapter, she pleaded against Amnon's folly on every lawful ground and was overpowered, then cast out to bear a shame that was entirely his (2 Samuel 13:12-17). She lived on 'desolate' in Absalom's house (2 Samuel 13:20); her brother named his own daughter Tamar after her (2 Samuel 14:27).",
+    "chapters": []
+  },
+  {
+    "id": "absalom",
+    "name": "Absalom",
+    "title": "Third son of David, prince of the revolt",
+    "description": "David's third son, born at Hebron to Maacah, daughter of Talmai king of Geshur (2 Samuel 3:3), famed for flawless beauty and the two-hundred-shekel weight of his hair (2 Samuel 14:25-26). He avenged his sister Tamar by killing Amnon after two silent years, fled to Geshur, was recalled by Joab's stratagem, and repaid restoration with rebellion — stealing Israel's hearts at the gate and proclaiming himself king at Hebron (2 Samuel 13–15). His revolt drove David from Jerusalem and ended in the wood of Ephraim, where the hair that made him famous helped make him dead (2 Samuel 18:9-15).",
+    "chapters": []
+  },
+  {
+    "id": "ahithophel",
+    "name": "Ahithophel",
+    "title": "The Gilonite, counselor of David",
+    "description": "David's counselor from Giloh in the hills of Judah, whose advice was esteemed 'as if a man had enquired at the oracle of God' (2 Samuel 16:23). He defected to Absalom's conspiracy at its proclamation (2 Samuel 15:12), prompting David's one-line prayer that his counsel be turned to foolishness (2 Samuel 15:31). Possibly grandfather of Bathsheba (compare 2 Samuel 11:3 with 23:34); when Hushai's counter-counsel prevailed, he set his house in order and hanged himself (2 Samuel 17:23).",
+    "chapters": []
+  },
+  {
+    "id": "hushai",
+    "name": "Hushai",
+    "title": "The Archite, David's friend",
+    "description": "David's 'friend' — likely a formal court office — who met the fleeing king at the summit of Olivet with his coat rent, the immediate answer to David's prayer against Ahithophel (2 Samuel 15:32). Sent back to feign allegiance to Absalom, he defeated Ahithophel's swift-strike counsel with a delay dressed in epic flattery, and relayed the rebels' plans to David through the priests' sons (2 Samuel 15:33-37; 17:5-16).",
+    "chapters": []
+  },
+  {
+    "id": "ittai",
+    "name": "Ittai",
+    "title": "The Gittite, captain of the six hundred",
+    "description": "A Philistine soldier of Gath who had joined David only the day before the flight from Jerusalem, leading six hundred countrymen. Offered honorable release, he answered with an oath in the LORD's name to stand with the king 'whether in death or life' (2 Samuel 15:19-22) — a Gentile's loyalty echoing Ruth's, given when Israel's own hearts were stolen. David trusted him with a third of the army against Absalom (2 Samuel 18:2).",
+    "chapters": []
+  },
+  {
+    "id": "zadok",
+    "name": "Zadok",
+    "title": "The priest, son of Ahitub",
+    "description": "Priest of the line of Aaron who carried the ark out of Jerusalem behind the fleeing David and was sent back with it — 'if I shall find favour in the eyes of the LORD, he will bring me again' (2 Samuel 15:24-29). With Abiathar he ran David's intelligence link from the city through their sons Ahimaaz and Jonathan (2 Samuel 15:35-36; 17:15-21). He stayed loyal through every later revolt, anointed Solomon king (1 Kings 1:39), and fathered the high-priestly line of the temple era.",
+    "chapters": []
+  },
+  {
+    "id": "shimei",
+    "name": "Shimei",
+    "title": "Son of Gera, a Benjamite of Bahurim, of the house of Saul",
+    "description": "A kinsman of Saul who cursed David and stoned his column from the ridge above Bahurim during the flight from Absalom, calling him a bloody man and a man of Belial (2 Samuel 16:5-13). He met the returning king at the Jordan with a thousand Benjamites and a swift confession, and David spared him by oath over Abishai's protest (2 Samuel 19:16-23). The pardon bound only David: on his deathbed he remitted the case to Solomon, who confined Shimei to Jerusalem and executed him when he broke bounds (1 Kings 2:8-9, 36-46).",
+    "chapters": []
+  },
+  {
+    "id": "barzillai",
+    "name": "Barzillai the Gileadite",
+    "title": "A very great man of Rogelim in Gilead",
+    "description": "A wealthy Transjordanian landowner, eighty years old, who with Shobi and Machir met David's exhausted column at Mahanaim with beds, basins, wheat, honey, butter, and cheese of kine (2 Samuel 17:27-29). He escorted the king over the Jordan at the return but declined a place at court — too old to taste his food or hear the singers — asking only to die in his own city and that Chimham go in his stead (2 Samuel 19:31-40). David's deathbed charge secured his sons a place at the royal table forever (1 Kings 2:7).",
+    "chapters": []
+  },
+  {
+    "id": "amasa",
+    "name": "Amasa",
+    "title": "Son of Ithra and Abigail, David's nephew, captain of Absalom's host",
+    "description": "David's nephew by his sister Abigail, and so Joab's own cousin, whom Absalom set over the rebel army in Joab's place (2 Samuel 17:25; 1 Chronicles 2:16-17). After the revolt David offered him Joab's command — 'art thou not of my bone, and of my flesh?' — a stroke of amnesty that wooed Judah home and punished Joab for Absalom's death in one move (2 Samuel 19:13). Slow to muster against Sheba, he was met by Joab at the great stone in Gibeon and murdered with a kiss and a hidden sword (2 Samuel 20:4-12).",
+    "chapters": []
+  },
+  {
+    "id": "sheba",
+    "name": "Sheba",
+    "title": "Son of Bichri, a Benjamite rebel",
+    "description": "A 'man of Belial' of Saul's own tribe who blew a trumpet at Gilgal and led all Israel away from David with the cry 'We have no part in David' (2 Samuel 20:1-2). Pursued by Joab the length of the land, he shut himself in Abel-beth-maachah, where the wise woman of the city bargained his head over the wall to end the siege (2 Samuel 20:14-22). His slogan resurfaced, word for word, when the northern tribes finally seceded under Jeroboam (1 Kings 12:16).",
+    "chapters": []
+  },
+  {
+    "id": "araunah",
+    "name": "Araunah",
+    "title": "The Jebusite, owner of the threshingfloor",
+    "description": "A Jebusite — perhaps the last lord of pre-Israelite Jerusalem, since his name may be a Hurrian title meaning 'the lord' — whose threshingfloor above the City of David was where the destroying angel stayed his hand (2 Samuel 24:16). He offered David the floor, his oxen, and his threshing sledges freely, 'as a king'; David insisted on paying full price, bought the site for fifty shekels of silver, and built the altar that stayed the plague (2 Samuel 24:18-25). Called Ornan in 1 Chronicles 21, his floor became the site of Solomon's temple (2 Chronicles 3:1).",
+    "chapters": []
+  },
+  {
+    "id": "gad-prophet",
+    "name": "Gad",
+    "title": "The prophet, David's seer",
+    "description": "A prophet who served David from the outlaw years — it was Gad who told him to leave the hold of Moab for the land of Judah (1 Samuel 22:5) — and who reappears at the end of the reign bearing the LORD's three choices after the census: famine, flight, or pestilence (2 Samuel 24:11-14). It was Gad who commanded David to rear an altar in the threshingfloor of Araunah (2 Samuel 24:18), and Chronicles remembers him as a court historian whose book recorded the acts of David (1 Chronicles 29:29).",
+    "chapters": []
   }
 ];

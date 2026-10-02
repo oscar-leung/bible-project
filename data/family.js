@@ -1172,6 +1172,58 @@ window.FAMILY = {
         { to: "david", how: "The king who should have feared Saul's heir called him to Jerusalem and treated him as a son." },
         { to: "saul", how: "Grandson and last public face of the fallen house — lame, landless, and yet spared every purge." }
       ]
+    },
+
+    // ================= 2 SAMUEL COMPLETIONS: Tamar & Uriah =================
+    {
+      id: "tamar",
+      name: "Tamar",
+      meaning: "\"Date palm\"",
+      title: "David's daughter — Absalom's full sister",
+      description: "Daughter of David and Maacah, \"a fair sister\" to Absalom. Violated by her half-brother Amnon despite her desperate, clear-eyed protests, she tore her robe of many colours, laid her hand on her head, and \"remained desolate in her brother Absalom's house.\" Her name did not die: Absalom called his own daughter Tamar.",
+      refs: ["2 Samuel 13:1-20", "2 Samuel 14:27", "1 Chronicles 3:9"],
+      house: "david",
+      gen: 2,
+      parents: ["david", "maacah"],
+      spouses: [],
+      mentions: [
+        { ref: "2 Samuel 13:1-2", when: "c. 990 BC, Jerusalem", what: "Amnon, David's firstborn, is so obsessed with his beautiful half-sister that he makes himself ill.", why: "The palace's next catastrophe begins not with an army but with an appetite." },
+        { ref: "2 Samuel 13:12-13", when: "c. 990 BC, Amnon's house", what: "Trapped, she argues with him point by point — 'no such thing ought to be done in Israel… speak unto the king; for he will not withhold me from thee.'", why: "The clearest moral voice in the whole chapter belongs to its victim." },
+        { ref: "2 Samuel 13:19", when: "c. 990 BC, Jerusalem", what: "She puts ashes on her head, rends her garment of divers colours, lays her hand on her head, and goes on crying.", why: "The robe of a king's virgin daughter torn in the street — grief made public and unanswerable." },
+        { ref: "2 Samuel 13:20", when: "c. 990 BC, Absalom's house", what: "Absalom takes her in — 'So Tamar remained desolate in her brother Absalom's house' — while David is angry but does nothing.", why: "The king's silence here is the seed of Absalom's revolt: where justice sleeps, vengeance wakes." },
+        { ref: "2 Samuel 14:27", when: "c. 985 BC, Jerusalem", what: "Absalom names his own daughter Tamar, 'a woman of a fair countenance.'", why: "A brother's quiet memorial — her name carried forward when nothing else could be restored." }
+      ],
+      connections: [
+        { to: "amnon", how: "Her half-brother's crime against her set the house of David on the road to Baal-hazor and the wood of Ephraim." },
+        { to: "absalom", how: "The brother who sheltered her desolation, avenged her after two silent years, and named his daughter for her." },
+        { to: "david", how: "Her father was 'wroth' — and did nothing; his silence taught his sons that the sword settles what the throne will not." },
+        { to: "maacah", how: "Her mother, the princess of Geshur — the foreign court Tamar's brother would one day flee to." }
+      ]
+    },
+    {
+      id: "uriah",
+      name: "Uriah the Hittite",
+      meaning: "\"The LORD is my light\"",
+      title: "Bathsheba's first husband — one of the thirty",
+      description: "A Hittite by blood with the LORD's name in his own, listed among David's thirty mighty men. Recalled from the siege of Rabbah, he refused every comfort of home while the ark and Israel camped in the open field — so David sent him back carrying his own death warrant, to fall before the wall with the letter's instructions fulfilled.",
+      refs: ["2 Samuel 11:3-27", "2 Samuel 23:39", "1 Kings 15:5", "Matthew 1:6"],
+      house: "david",
+      gen: 1,
+      parents: [],
+      spouses: ["bathsheba"],
+      mentions: [
+        { ref: "2 Samuel 11:9-11", when: "c. 995 BC, Jerusalem", what: "Summoned home, he sleeps at the palace door and refuses his own house: 'the ark, and Israel, and Judah, abide in tents… shall I then go into mine house?'", why: "The foreign soldier keeps a holy-war discipline the king of Israel has just abandoned on his rooftop." },
+        { ref: "2 Samuel 11:14-15", when: "c. 995 BC, Jerusalem", what: "David writes to Joab — 'Set ye Uriah in the forefront of the hottest battle… that he may be smitten, and die' — and sends it by Uriah's own hand.", why: "He carries his own death sentence, sealed, and never breaks the seal: faithful even as courier of his murder." },
+        { ref: "2 Samuel 11:16-17", when: "c. 995 BC, before the wall of Rabbah", what: "Joab assigns him where the valiant men are, and Uriah the Hittite dies in the sortie with others of the king's servants.", why: "The cover-up costs extra lives — the letter's arithmetic never stays at one." },
+        { ref: "2 Samuel 23:39", when: "the roll of the mighty men", what: "The honour roll of David's thirty-seven closes with three words: 'Uriah the Hittite.'", why: "The list's last name is the king's own indictment, filed in his hall of fame." },
+        { ref: "1 Kings 15:5", when: "the verdict of the historians", what: "David did right 'save only in the matter of Uriah the Hittite.'", why: "Of all David's sins, scripture files the exception under Uriah's name, not Bathsheba's." }
+      ],
+      connections: [
+        { to: "bathsheba", how: "The wife he would not visit for discipline's sake was taken from him by the king he served." },
+        { to: "david", how: "He drank at the king's table carrying the king's letter — and the prophet's parable made David sentence himself for it." },
+        { to: "joab", how: "His commander read the letter, obeyed it, and knew from that day what the king was capable of." },
+        { to: "solomon", how: "Matthew's genealogy remembers Solomon as born 'of her that had been the wife of Urias' — his name shadows the succession itself." }
+      ]
     }
   ]
 };

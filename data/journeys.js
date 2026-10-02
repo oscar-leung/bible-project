@@ -107,5 +107,34 @@ window.JOURNEYS = [
       { loc: "gibeon", note: "The armies meet at the pool; twelve champions fall to twelve at Helkath-hazzurim, Abner is routed, and Asahel dies in the pursuit. Joab and Abishai chase Abner until sundown, then both hosts march all night home — Abner through the Arabah to Mahanaim, Joab to Hebron (2 Samuel 2:12-32)." }
     ],
     chapters: []
+  },
+  {
+    "id": "absalom-revolt",
+    "title": "The Revolt of Absalom",
+    "color": "#8e3b46",
+    "description": "The conspiracy hatched at Hebron empties Jerusalem: David flees barefoot over Kidron and up Olivet, is cursed through Bahurim, and finds refuge and an army at Mahanaim. After the wood of Ephraim, Judah brings the weeping king back over the Jordan by way of Gilgal to his own house (2 Samuel 15–19).",
+    "stops": [
+      {
+        "loc": "jerusalem",
+        "note": "At news of the conspiracy David flees the city barefoot and weeping, over the brook Kidron and up the ascent of Olivet (2 Samuel 15:14-30)."
+      },
+      {
+        "loc": "bahurim",
+        "note": "Shimei of the house of Saul walks the ridge above the road, cursing and casting stones — and David forbids Abishai to answer (2 Samuel 16:5-13)."
+      },
+      {
+        "loc": "mahanaim",
+        "note": "Refuge and muster east of the Jordan, where Shobi, Machir, and Barzillai provision the exhausted column and David organizes his host (2 Samuel 17:24-29)."
+      },
+      {
+        "loc": "gilgal",
+        "note": "Judah comes down 'as the heart of one man' to conduct the king back over Jordan at the old crossing-place (2 Samuel 19:15-40)."
+      },
+      {
+        "loc": "jerusalem",
+        "note": "The king comes again in peace to his own house — into a quarrel between Israel and Judah that is already seeding the next revolt (2 Samuel 19:39-20:3)."
+      }
+    ],
+    "chapters": []
   }
 ];

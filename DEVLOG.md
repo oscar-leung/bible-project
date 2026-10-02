@@ -116,5 +116,96 @@ commentary.
 - Verified in-browser: real content on 2 Sam 2, zero console errors, all
   7 tabs clean; single-file bundle rebuilt with all 20 scripts.
 
+## 2026-09-09 — Session 2: 2 Samuel 3
+
+### Phase 9 — Abner changes sides
+- 📖 2 Samuel 3 added to the story view: "Abner Changes Sides — and Falls at
+  the Gate." Historian note covers the concubine-as-throne-claim convention
+  (Rizpah), Michal's political return, and why Joab pulled Abner *outside*
+  the gate of Hebron — a city of refuge — to kill him.
+- 🎭 Four new Voices scenes ("Am I a dog's head?", Michal returned /
+  Phaltiel weeping, the gate of Hebron, "a prince and a great man fallen").
+- New characters Rizpah and Phaltiel; new map location Bahurim (Ras et-Tmim);
+  two new timeline entries (Hebron sons, Abner's defection and murder).
+- Verified in-browser: real content on 2 Sam 3, both Voices scenes present,
+  zero console errors across all 7 tabs; `screenshots/samuel2-ch3.png`.
+
+## 2026-09-20 — Session 3: the whole book
+
+### Phase 10 — 2 Samuel completed (chapters 4–24)
+- Five historian agents wrote the remaining 21 chapters in parallel, each
+  owning an isolated fragment file (chs 4–8, 9–12, 13–15, 16–19, 20–24);
+  the lead merged them with a validating splice script — no shared paths,
+  no repeats of the phase-8 mock race.
+- 📖 Every chapter of both books now has a summary, KJV key verse, and
+  archaeology-grounded historian note (Warren's Shaft and the tsinnor,
+  the Tel Dan stele, Rabbah/Amman citadel, Tel Abil el-Qamh, Psalm 18 as
+  a doublet of 2 Sam 22, census anxiety from Mari to Exodus 30…).
+- 🎭 Voices grew to 55 chapter keys — Michal at the window, Nathan's
+  "Thou art the man," Tamar's plea, Ahithophel vs. Hushai, "O my son
+  Absalom," Rizpah's vigil, the psalm, Gad's three choices, Araunah.
+- New characters (20 more, 48 total): Nathan, Bathsheba, Uriah, Ziba,
+  Mephibosheth, Uzzah, Rechab & Baanah, Amnon, Tamar, Absalom, Ahithophel,
+  Hushai, Ittai, Zadok, Shimei, Barzillai, Amasa, Sheba, Araunah, Gad.
+- New map places: Jerusalem, Rabbah, Geshur, Baal-hazor; new journey
+  route "The Revolt of Absalom" (Jerusalem → Bahurim → Mahanaim →
+  Gilgal → Jerusalem). Timeline extended to the altar on Araunah's
+  threshingfloor — the future temple site.
+- Cross-references machine-validated (every character/location id, one
+  dialogue key per chapter, all 24 chapters present); full browser sweep.
+
+### Phase 11 — The encore: battles, quest pack, and the last two names
+- ⚔️ The Battle tab became an armory: a new battle hub with three playable
+  battles and `#battle/<id>` deep links. Two new battles by two game-dev
+  agents working in parallel (each owning only its own two files):
+  - **The Valley of Rephaim** (2 Sam 5:17–25) — the inquire-of-the-LORD
+    mechanic where yesterday's winning plan is not today's guidance, and a
+    timing interaction: strike only at "the sound of a going in the tops
+    of the mulberry trees." Historian cards on Emek Refaim, Baal-perazim's
+    wordplay, the bekha'im-tree debate, and Ebenezer reversed.
+  - **The Wood of Ephraim** (2 Sam 18) — the hazard-wood sweep where the
+    wood devours more than the sword, the refuse-the-shekels choice at
+    the oak, the two-runners race with the watchman's recognition, and a
+    quiet final stage in the chamber over the gate: victory for the
+    kingdom, desolation for the father. Historian cards on why the wood
+    of "Ephraim" is east of Jordan, the royal mule, Absalom's Monument
+    misattribution, and the heap of stones.
+- 🎮 Quest: 24 new 2 Samuel questions (one per chapter, 54 total); the
+  Scroll of Knowledge now draws from both books and links each answer to
+  the right book's chapter.
+- 🌳 Family Lines: Tamar (the clearest moral voice of 2 Sam 13) and Uriah
+  the Hittite (the roll of the mighty men's last name) join the tree with
+  full neuron maps — 49 people; 48 rendered boxes, zero overlaps, all
+  cross-references machine-validated.
+- Verified in-browser: hub → each battle → back, deep link, quest copy,
+  both new family nodes, all 7 tabs — zero console errors.
+
+## 2026-09-29 — Session 4: the study notebook, and going public
+
+### Phase 12 — The reader's own notes join the app
+- 📓 New "From the study notebook" panel in the story view: 29 chapters
+  now carry distilled notes from the family's real chapter-by-chapter
+  devotional studies (Living by the Book method) — the studied date,
+  the chapter's theme in the reader's own words, where it sits in the
+  arc, the sharpest observations, "carrying forward" takeaways, and
+  (where they exist) handwritten after-reflections.
+- Source: the personal devotional-study database, distilled by three
+  parallel agents with a shared spec (public-site privacy rules baked
+  in: principles yes, private details no) and merged with a validating
+  script — split-passage studies (12, 18, 19, 23, 24:1-7/8-22) merged
+  under one chapter key each.
+- Coverage: 1 Samuel 20, 21, 22, 24, 31 and every chapter of 2 Samuel.
+- Verified in-browser: notebook renders on studied chapters, absent on
+  others, zero console errors; `screenshots/study-notebook.png`.
+
+### Phase 13 — Shipped to the public web
+- The app now lives at its own public repo (oscar-leung/bible-project,
+  per the inventory's Tier A plan) and deploys to GitHub Pages via
+  Actions on every push to main.
+- The workspace copy remains the working source until the full subtree
+  extraction; syncs are wholesale copies.
+
 ### Next up
-- 2 Samuel chapters 3+ as the study continues.
+- Full extraction via scripts/extract-bible-project.sh once the dual
+  home should end; more Easter eggs; OneNote notes import if they hold
+  material beyond the devotional database.

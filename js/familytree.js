@@ -59,6 +59,8 @@
     "shephatiah":     { x: 810,  y: 700, lines: ["Shephatiah"], sub: "fifth son" },
     "ithream":        { x: 950,  y: 700, lines: ["Ithream"], sub: "sixth son" },
     "solomon":        { x: 1080, y: 700, lines: ["Solomon"], sub: "temple builder" },
+    "tamar":          { x: 160,  y: 700, lines: ["Tamar"], sub: "Absalom's sister" },
+    "uriah":          { x: 1210, y: 700, lines: ["Uriah"], sub: "the Hittite" },
     // house of Saul
     "abiel":          { x: 2110, y: 70,  lines: ["Abiel"], sub: "of Benjamin" },
     "kish":           { x: 1980, y: 170, lines: ["Kish"], sub: "father of Saul" },

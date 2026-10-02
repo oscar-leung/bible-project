@@ -1,6 +1,7 @@
 // data/quiz.js — window.QUIZ (Game Dev)
-// Multiple-choice questions spanning 1 Samuel 1–31.
-// Schema: { q, choices: [4 strings], answer: <index into choices>, chapter: <num>, explain }
+// Multiple-choice questions spanning 1 Samuel 1–31 and 2 Samuel 1–24.
+// Schema: { q, choices: [4 strings], answer: <index into choices>, chapter: <num>, explain,
+//           book?: "samuel2" (absent = 1 Samuel) }
 window.QUIZ = [
   {
     q: "Who vowed that if the LORD gave her a son, she would give him to the LORD all the days of his life?",
@@ -211,5 +212,319 @@ window.QUIZ = [
     answer: 0,
     chapter: 31,
     explain: "Remembering Saul's rescue of their city, the valiant men of Jabesh-gilead traveled all night to recover the bodies and buried the bones under a tamarisk tree."
+  },
+
+  // ——— 2 Samuel pack (Game Dev): one question per chapter, 1–24. ———
+  {
+    "q": "What did the Amalekite messenger claim to have done, hoping to win David's favor?",
+    "choices": [
+      "Rescued Saul's body from the Philistines",
+      "Fought beside Jonathan to the very end",
+      "Slain Saul at Saul's own request, bringing his crown and bracelet",
+      "Captured the standard of the Philistine army"
+    ],
+    "answer": 2,
+    "book": "samuel2",
+    "chapter": 1,
+    "explain": "The young man said he stood upon Saul and slew him, and brought the crown and bracelet to David — who had him put to death for destroying the LORD's anointed, then lamented Saul and Jonathan with the Song of the Bow."
+  },
+  {
+    "q": "What happened when Abner's men and Joab's men met at the pool of Gibeon?",
+    "choices": [
+      "Twelve young men from each side caught his fellow by the head and fell down together",
+      "Abner and Joab made a covenant of peace by the water",
+      "The pool was poisoned and both armies withdrew",
+      "David and Ish-bosheth met face to face to divide the kingdom"
+    ],
+    "answer": 0,
+    "book": "samuel2",
+    "chapter": 2,
+    "explain": "Abner said, \"Let the young men now arise, and play before us\" — twelve against twelve thrust swords into each other's sides, so the place was called Helkath-hazzurim, and a sore battle followed."
+  },
+  {
+    "q": "Why did Joab kill Abner at the gate of Hebron?",
+    "choices": [
+      "Because Abner still supported the house of Ish-bosheth",
+      "To avenge the blood of his brother Asahel, whom Abner had slain",
+      "Because King David commanded Abner's death",
+      "Because Abner had claimed the throne for himself"
+    ],
+    "answer": 1,
+    "book": "samuel2",
+    "chapter": 3,
+    "explain": "Joab took Abner aside in the gate and smote him under the fifth rib \"for the blood of Asahel his brother.\" David mourned Abner publicly, saying a prince and a great man had fallen in Israel."
+  },
+  {
+    "q": "How did David respond when Rechab and Baanah brought him the head of Ish-bosheth?",
+    "choices": [
+      "He rewarded them with places in his army",
+      "He sent them back to Mahanaim in peace",
+      "He wept and made them swear silence",
+      "He had them slain, their hands and feet cut off, and hanged over the pool in Hebron"
+    ],
+    "answer": 3,
+    "book": "samuel2",
+    "chapter": 4,
+    "explain": "They had murdered a righteous man upon his bed in his own house, so David required his blood of their hand — as he had done to the Amalekite who claimed to slay Saul."
+  },
+  {
+    "q": "From whom did David take the stronghold of Zion, which became the city of David?",
+    "choices": [
+      "The Philistines",
+      "The Ammonites",
+      "The Jebusites",
+      "The Amorites"
+    ],
+    "answer": 2,
+    "book": "samuel2",
+    "chapter": 5,
+    "explain": "The Jebusites taunted that even the blind and the lame could keep David out, but he took the stronghold of Zion — and later smote the Philistines twice in the valley of Rephaim."
+  },
+  {
+    "q": "Why did the LORD smite Uzzah as the ark was being carried toward Jerusalem?",
+    "choices": [
+      "He put forth his hand and took hold of the ark when the oxen shook it",
+      "He looked inside the ark of God",
+      "He refused to let the ark rest at his house",
+      "He mocked David's dancing before the LORD"
+    ],
+    "answer": 0,
+    "book": "samuel2",
+    "chapter": 6,
+    "explain": "When the oxen shook the cart at Nachon's threshingfloor, Uzzah took hold of the ark and God smote him there for his error. The ark then blessed the house of Obed-edom for three months."
+  },
+  {
+    "q": "When David desired to build a house for the LORD, what did the LORD promise him through Nathan?",
+    "choices": [
+      "That David himself would build the temple within seven years",
+      "That the LORD would make David a house, and establish his seed's throne for ever",
+      "That the ark would remain in a tent until the end of days",
+      "That Solomon would reign over all the nations of the earth"
+    ],
+    "answer": 1,
+    "book": "samuel2",
+    "chapter": 7,
+    "explain": "The LORD turned David's offer around: David would not build the LORD a house, but the LORD would build David a house — a seed to build the temple, and a kingdom and throne established for ever."
+  },
+  {
+    "q": "After defeating Moab, how did David decide which Moabites would live?",
+    "choices": [
+      "He spared all who swore loyalty to Israel",
+      "He spared only the women and children",
+      "He cast lots before the LORD at Hebron",
+      "He measured them with a line — two lines to put to death, one full line to keep alive"
+    ],
+    "answer": 3,
+    "book": "samuel2",
+    "chapter": 8,
+    "explain": "David made them lie down on the ground and measured them with a line; the Moabites became David's servants and brought gifts, as the LORD preserved David whithersoever he went."
+  },
+  {
+    "q": "For whose sake did David show kindness to Mephibosheth, giving him a place at the king's table?",
+    "choices": [
+      "For Jonathan's sake",
+      "For Saul's sake",
+      "For Michal's sake",
+      "For the sake of Ziba's faithful service"
+    ],
+    "answer": 0,
+    "book": "samuel2",
+    "chapter": 9,
+    "explain": "David asked, \"Is there yet any that is left of the house of Saul, that I may shew him kindness for Jonathan's sake?\" Mephibosheth, lame on both feet, ate at the king's table continually."
+  },
+  {
+    "q": "What did Hanun king of Ammon do to the servants David sent to comfort him?",
+    "choices": [
+      "He imprisoned them in Rabbah for a year",
+      "He sent them home laden with insulting gifts",
+      "He shaved off half their beards and cut off their garments in the middle",
+      "He forced them to bow before the gods of Ammon"
+    ],
+    "answer": 2,
+    "book": "samuel2",
+    "chapter": 10,
+    "explain": "Hanun's princes convinced him the envoys were spies. David told the shamed men, \"Tarry at Jericho until your beards be grown\" — and the insult brought Ammon and Syria to war and defeat."
+  },
+  {
+    "q": "What instruction did David write in the letter he sent to Joab by the hand of Uriah himself?",
+    "choices": [
+      "\"Send Uriah home to his wife with honor.\"",
+      "\"Set ye Uriah in the forefront of the hottest battle, and retire ye from him.\"",
+      "\"Keep Uriah in the camp until the city falls.\"",
+      "\"Give Uriah command over a third of the army.\""
+    ],
+    "answer": 1,
+    "book": "samuel2",
+    "chapter": 11,
+    "explain": "After Bathsheba conceived and Uriah refused the comforts of home, David sent Uriah carrying his own death warrant — and Uriah the Hittite fell before Rabbah. \"But the thing that David had done displeased the LORD.\""
+  },
+  {
+    "q": "What name did the LORD give to Solomon, sent by the hand of Nathan the prophet?",
+    "choices": [
+      "Adonijah",
+      "Shephatiah",
+      "Ithream",
+      "Jedidiah"
+    ],
+    "answer": 3,
+    "book": "samuel2",
+    "chapter": 12,
+    "explain": "After Nathan's parable of the ewe lamb — \"Thou art the man\" — and the death of the first child, Bathsheba bore Solomon; the LORD loved him and named him Jedidiah, \"beloved of the LORD.\""
+  },
+  {
+    "q": "How did Absalom avenge his sister Tamar against Amnon?",
+    "choices": [
+      "After two full years, he had his servants kill Amnon at a sheepshearing feast when his heart was merry with wine",
+      "He challenged Amnon to single combat at Hebron",
+      "He accused Amnon before the king and demanded judgment",
+      "He drove Amnon into exile at Geshur"
+    ],
+    "answer": 0,
+    "book": "samuel2",
+    "chapter": 13,
+    "explain": "Absalom spake unto Amnon neither good nor bad for two years, then commanded his servants to strike at Baal-hazor. It was Absalom himself who then fled to Geshur, to Talmai his grandfather."
+  },
+  {
+    "q": "Who sent the wise woman of Tekoah to the king with a feigned story, to bring Absalom home from exile?",
+    "choices": [
+      "Nathan the prophet",
+      "Absalom himself",
+      "Joab the son of Zeruiah",
+      "Zadok the priest"
+    ],
+    "answer": 2,
+    "book": "samuel2",
+    "chapter": 14,
+    "explain": "Joab perceived that the king's heart was toward Absalom and put the words in the woman's mouth. David saw through it — \"Is not the hand of Joab with thee in all this?\" — yet Absalom was brought back."
+  },
+  {
+    "q": "How did Absalom win the loyalty of the people before his rebellion?",
+    "choices": [
+      "He distributed the spoils of war among the tribes",
+      "He rose early at the gate, flattered every man's cause, and kissed those who bowed — stealing the hearts of the men of Israel",
+      "He promised to abolish the king's taxes",
+      "He rebuilt the altars in every city of Israel"
+    ],
+    "answer": 1,
+    "book": "samuel2",
+    "chapter": 15,
+    "explain": "Absalom told every man his cause was good but no man of the king would hear it, saying \"Oh that I were made judge in the land!\" Then, under color of a vow at Hebron, he raised his conspiracy, and David fled Jerusalem weeping up the mount of Olivet."
+  },
+  {
+    "q": "Who cursed David and cast stones at him as he fled from Jerusalem?",
+    "choices": [
+      "Ziba the servant of Mephibosheth",
+      "Ahithophel the Gilonite",
+      "Mephibosheth the son of Jonathan",
+      "Shimei the son of Gera"
+    ],
+    "answer": 3,
+    "book": "samuel2",
+    "chapter": 16,
+    "explain": "Shimei, of the house of Saul, cried \"Come out, come out, thou bloody man.\" David restrained Abishai, saying, \"Let him curse; for the LORD hath bidden him\" — trusting the LORD to requite good for the cursing."
+  },
+  {
+    "q": "Why did Absalom follow the counsel of Hushai the Archite rather than that of Ahithophel?",
+    "choices": [
+      "The LORD had appointed to defeat Ahithophel's good counsel, to bring evil upon Absalom",
+      "Ahithophel had secretly returned to David's side",
+      "Hushai promised to lead the attack himself",
+      "Joab persuaded Absalom that Ahithophel was a traitor"
+    ],
+    "answer": 0,
+    "book": "samuel2",
+    "chapter": 17,
+    "explain": "Ahithophel's counsel to strike at once was sound, but Hushai — David's planted friend — urged delay. When his counsel was not followed, Ahithophel put his household in order and hanged himself."
+  },
+  {
+    "q": "How did Absalom come to hang helpless in a great oak during the battle in the wood of Ephraim?",
+    "choices": [
+      "His chariot overturned among the trees",
+      "His head caught hold of the thick boughs, and the mule under him went away",
+      "He climbed the oak to escape David's servants",
+      "His armor snagged on the branches as he fell"
+    ],
+    "answer": 1,
+    "book": "samuel2",
+    "chapter": 18,
+    "explain": "Taken up between heaven and earth, Absalom was struck through by three darts from Joab's hand. Ahimaaz outran Cushi with the tidings, and David wept, \"O my son Absalom, would God I had died for thee.\""
+  },
+  {
+    "q": "When David invited aged Barzillai the Gileadite to come live with him in Jerusalem, what did Barzillai ask instead?",
+    "choices": [
+      "A portion of land beyond Jordan for his sons",
+      "Command of the king's household",
+      "To turn back and die in his own city, and that Chimham go with the king in his place",
+      "Silver and gold from the king's treasury"
+    ],
+    "answer": 2,
+    "book": "samuel2",
+    "chapter": 19,
+    "explain": "Barzillai, fourscore years old, who had sustained David at Mahanaim, asked only to die near the grave of his father and mother — so the king took Chimham over Jordan with him and blessed Barzillai."
+  },
+  {
+    "q": "How was the rebellion of Sheba the son of Bichri finally ended at Abel of Beth-maachah?",
+    "choices": [
+      "Joab breached the wall and burned the city",
+      "Sheba fled to the Philistines and was never found",
+      "Amasa captured Sheba and brought him to David",
+      "A wise woman persuaded the city, and Sheba's head was thrown over the wall to Joab"
+    ],
+    "answer": 3,
+    "book": "samuel2",
+    "chapter": 20,
+    "explain": "The wise woman asked why Joab would swallow up a mother city in Israel; the people cut off Sheba's head and cast it out, and Joab blew the trumpet and retired from the city. Earlier on this pursuit Joab had treacherously slain Amasa."
+  },
+  {
+    "q": "What did Rizpah the daughter of Aiah do after seven descendants of Saul were hanged before the LORD?",
+    "choices": [
+      "She pleaded with David to bury them in Hebron",
+      "She spread sackcloth upon the rock and kept the birds and beasts from the bodies from harvest until the rains came",
+      "She fasted forty days at Gibeah",
+      "She fled to the Gibeonites to plead for mercy"
+    ],
+    "answer": 1,
+    "book": "samuel2",
+    "chapter": 21,
+    "explain": "The famine had come because Saul slew the Gibeonites. Rizpah's long vigil moved David to gather the bones of Saul and Jonathan and bury them in Zela — and after that God was intreated for the land."
+  },
+  {
+    "q": "Complete the opening of David's song of deliverance: \"The LORD is my rock, and my fortress, and my ___.\"",
+    "choices": [
+      "Shield",
+      "Strong tower",
+      "Deliverer",
+      "High tower"
+    ],
+    "answer": 2,
+    "book": "samuel2",
+    "chapter": 22,
+    "explain": "David sang this song when the LORD had delivered him from all his enemies and from the hand of Saul: \"The LORD is my rock, and my fortress, and my deliverer\" — the shield and high tower follow in the next verse."
+  },
+  {
+    "q": "When three mighty men broke through the Philistine host to bring David water from the well of Bethlehem, what did David do with it?",
+    "choices": [
+      "He drank it and blessed the three men",
+      "He would not drink it, but poured it out unto the LORD",
+      "He divided it among his thirsty soldiers",
+      "He kept it as a memorial in his tent"
+    ],
+    "answer": 1,
+    "book": "samuel2",
+    "chapter": 23,
+    "explain": "David said, \"Is not this the blood of the men that went in jeopardy of their lives?\" He counted the water too costly to drink — a chapter that also records his last words and the roll of his mighty men."
+  },
+  {
+    "q": "Why did David refuse to take Araunah's threshingfloor and oxen as a free gift for the altar?",
+    "choices": [
+      "Araunah was a Jebusite, so the gift was unclean",
+      "Gad the seer forbade him to receive gifts",
+      "He would not offer burnt offerings to the LORD of that which cost him nothing",
+      "The law required the king to purchase all altar sites"
+    ],
+    "answer": 2,
+    "book": "samuel2",
+    "chapter": 24,
+    "explain": "After the census and the plague that stayed at Araunah's threshingfloor, David bought the floor and oxen for fifty shekels of silver, built an altar, and the LORD was intreated for the land."
   }
 ];

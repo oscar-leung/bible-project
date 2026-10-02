@@ -225,6 +225,12 @@
     if (!host) return null;
     host.innerHTML = "";
     var wrap = el("div", "bg-wrap bg-fade");
+    if (window.BattleHub && typeof window.BattleHub.home === "function") {
+      var back = el("button", "bg-stagechip bg-open", "🏰 All battles");
+      back.style.cssText = "display:block;margin:0 auto 6px;";
+      back.addEventListener("click", function () { window.BattleHub.home(); });
+      wrap.appendChild(back);
+    }
     wrap.appendChild(el("h2", "bg-title", "⚔️ " + esc((d && d.title) || "The Battle of Gibeon")));
     wrap.appendChild(el("p", "bg-sub", esc((d && d.subtitle) || "")));
 

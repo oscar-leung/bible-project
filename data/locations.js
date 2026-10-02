@@ -277,5 +277,49 @@ window.LOCATIONS = [
     lat: 31.847, lon: 35.184,
     description: "Benjaminite city famed for its great rock-cut pool, excavated at el-Jib along with jar handles stamped with the city's name. Beside this pool the servants of Ish-bosheth under Abner met the servants of David under Joab; twelve champions of each side fell together, and the battle of Gibeon began the long war between the two houses (2 Samuel 2:12-32).",
     chapters: []
+  },
+  {
+    id: "bahurim",
+    name: "Bahurim",
+    modernName: "likely Ras et-Tmim, east of the Mount of Olives",
+    lat: 31.790, lon: 35.253,
+    description: "Benjaminite village on the road descending east from Jerusalem toward the Jordan. Here Abner ordered the weeping Phaltiel to turn back as Michal was escorted to David (2 Samuel 3:16); later it is Shimei's town, from whose ridge he curses the fleeing David, and the place where two of David's messengers hide in a well during Absalom's revolt.",
+    chapters: []
+  },
+  {
+    "id": "jerusalem",
+    "name": "Jerusalem",
+    "modernName": "the Jebusite stronghold Zion / City of David, Ophel ridge",
+    "lat": 31.777,
+    "lon": 35.235,
+    "description": "The Jebusite ridge fortress between Judah and Benjamin, taken by David's men through the tsinnor, the water shaft, and renamed the city of David (2 Samuel 5:6-9). Belonging to no tribe, it became the capital of the united kingdom, the resting place of the ark (2 Samuel 6), and the seat of the covenant promise that David's throne would be established for ever (2 Samuel 7:16).",
+    "chapters": []
+  },
+  {
+    "id": "rabbah",
+    "name": "Rabbah",
+    "modernName": "Amman citadel, Jabal al-Qal'a",
+    "lat": 31.951,
+    "lon": 35.933,
+    "description": "The royal city of the Ammonites, east of the Jordan at the headwaters of the Jabbok, besieged by Joab through the war of 2 Samuel 10-12. Uriah the Hittite fell beneath its wall (2 Samuel 11:16-17); Joab took its 'city of waters' — the lower town guarding the spring — and summoned David to take the citadel and the Ammonite crown (2 Samuel 12:26-30). The site is the fortified hill of Jabal al-Qal'a in the heart of modern Amman, Jordan, continuously occupied from the Bronze Age.",
+    "chapters": []
+  },
+  {
+    "id": "geshur",
+    "name": "Geshur",
+    "modernName": "Aramean kingdom east of the Sea of Galilee, et-Tell/Bethsaida region",
+    "lat": 32.82,
+    "lon": 35.64,
+    "description": "A small Aramean kingdom east of the Sea of Galilee, ruled by Talmai, whose daughter Maacah David married at Hebron (2 Samuel 3:3) — a treaty match that made Geshur Absalom's mother's homeland and his refuge for three years after the killing of Amnon (2 Samuel 13:37-38). Excavations at et-Tell near Bethsaida have uncovered a massive Iron Age gate complex befitting the capital of such a kingdom.",
+    "chapters": []
+  },
+  {
+    "id": "baal-hazor",
+    "name": "Baal-hazor",
+    "modernName": "Tell 'Asur, highest peak of the central hills",
+    "lat": 31.99,
+    "lon": 35.27,
+    "description": "The highest summit of the central hill country, rising over 1,000 meters beside Ephraim north of Bethel — identified with Tell 'Asur. Here Absalom held the sheep-shearing feast at which, at his command, Amnon was killed when his heart was merry with wine (2 Samuel 13:23-29), two years after the wrong done to Tamar.",
+    "chapters": []
   }
 ];

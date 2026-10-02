@@ -57,7 +57,7 @@
       ["CharactersView", window.CharactersView],
       ["TimelineView", window.TimelineView],
       ["GameView", window.GameView],
-      ["BattleView", window.BattleView],
+      ["BattleHub", window.BattleHub || window.BattleView],
       ["FamilyTreeView", window.FamilyTreeView],
       ["EasterEggs", window.EasterEggs],
       ["Voices", window.Voices]
@@ -79,8 +79,41 @@
 
     // --- illuminated shell extras (additive; failures must stay silent) ---
     try { window.App.updateReadingProgress(); } catch (e) {}
+    try { applyHashRoute(); } catch (e) {}
     try { runOpeningMoment(); } catch (e) {}
+    window.addEventListener("hashchange", function () {
+      try { applyHashRoute(); } catch (e) {}
+    });
   });
+
+  /* ---- hash deep links ---------------------------------------------------
+     #<view>            -> open that tab            (#family, #map, #timeline…)
+     #family/<personId> -> open the tree on someone (#family/david)
+     #map/<locationId>  -> open the map on a place  (#map/hebron)
+     #story/<chapter>   -> open a chapter: "17" = 1 Samuel 17, "2s3" = 2 Sam 3 */
+  function applyHashRoute() {
+    var hash = String(window.location.hash || "").replace(/^#\/?/, "");
+    if (!hash) return;
+    var parts = hash.split("/");
+    var view = decodeURIComponent(parts[0] || "");
+    var arg = parts.length > 1 ? decodeURIComponent(parts.slice(1).join("/")) : "";
+    if (VIEWS.indexOf(view) === -1) return;
+    if (view === "family" && arg && window.FamilyTreeView && typeof window.FamilyTreeView.focus === "function") {
+      window.App.showView("family");
+      window.FamilyTreeView.focus(arg);
+    } else if (view === "map" && arg) {
+      window.App.focusLocation(arg);
+    } else if (view === "battle" && arg && window.BattleHub && typeof window.BattleHub.open === "function") {
+      window.App.showView("battle");
+      window.BattleHub.open(arg);
+    } else if (view === "story" && arg) {
+      var m = /^(2s)?(\d+)$/.exec(arg);
+      if (m) window.App.goToChapter(parseInt(m[2], 10), m[1] ? "samuel2" : undefined);
+      else window.App.showView("story");
+    } else {
+      window.App.showView(view);
+    }
+  }
 
   /* ---- thin gold reading-progress bar under the header ------------------
      Counts BOTH books: reads the localStorage keys story.js writes
