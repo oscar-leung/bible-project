@@ -19,17 +19,20 @@
   var EDGE = 24;
   function projectLoc(loc) {
     var p = project(loc.lat, loc.lon);
-    var x = Math.min(VIEW_W - EDGE, Math.max(EDGE, p.x));
-    var y = Math.min(VIEW_H - EDGE, Math.max(EDGE, p.y));
-    var dx = p.x - x, dy = p.y - y;
-    var off = Math.abs(dx) > 6 || Math.abs(dy) > 6;
-    var arrow = "";
-    if (off) {
-      var a = Math.atan2(dy, dx) * 180 / Math.PI; // 0 = east, 90 = south
-      var dirs = ["\u2192", "\u2198", "\u2193", "\u2199", "\u2190", "\u2196", "\u2191", "\u2197"];
-      arrow = dirs[((Math.round(a / 45) % 8) + 8) % 8];
+    // Pin far-off places where the ray from the map's centre toward them
+    // meets the frame, so places in different directions (Damascus, Riblah,
+    // Nineveh, Babylon…) spread along the edge instead of piling into a corner.
+    var cx = VIEW_W / 2, cy = VIEW_H / 2;
+    var dx = p.x - cx, dy = p.y - cy;
+    var hx = cx - EDGE, hy = cy - EDGE;
+    var t = Math.min(dx ? hx / Math.abs(dx) : Infinity, dy ? hy / Math.abs(dy) : Infinity);
+    var off = t < 1 && (Math.abs(dx) - hx > 6 || Math.abs(dy) - hy > 6);
+    if (!off) {
+      return { x: Math.min(VIEW_W - EDGE, Math.max(EDGE, p.x)), y: Math.min(VIEW_H - EDGE, Math.max(EDGE, p.y)), off: false, arrow: "" };
     }
-    return { x: x, y: y, off: off, arrow: arrow };
+    var a = Math.atan2(dy, dx) * 180 / Math.PI; // 0 = east, 90 = south
+    var dirs = ["\u2192", "\u2198", "\u2193", "\u2199", "\u2190", "\u2196", "\u2191", "\u2197"];
+    return { x: cx + dx * t, y: cy + dy * t, off: true, arrow: dirs[((Math.round(a / 45) % 8) + 8) % 8] };
   }
   function markerLabel(loc) {
     var name = String(loc.name || loc.id || "");
@@ -440,9 +443,17 @@
       if (typeof loc.lat !== "number" || typeof loc.lon !== "number") continue;
       if (out[loc.id] || !isVisible(loc)) continue;
       var p = projectLoc(loc);
-      var chosen = scaled(candidates[0]), b = null;
-      for (var c = 0; c < candidates.length; c++) {
-        var sc = scaled(candidates[c]);
+      // Fallback when nothing fits: label toward the map's interior, so
+      // places pinned to the right edge don't run off the frame.
+      // Edge-pinned places try the side facing into the map first.
+      var order = candidates;
+      if (p.off) {
+        var inward = p.y <= EDGE + 1 ? [3, 0, 1] : p.y >= VIEW_H - EDGE - 1 ? [2, 0, 1] : p.x > VIEW_W / 2 ? [1, 2, 3] : [0, 2, 3];
+        order = inward.map(function (k) { return candidates[k]; }).concat(candidates);
+      }
+      var chosen = scaled(order[0]), b = null;
+      for (var c = 0; c < order.length; c++) {
+        var sc = scaled(order[c]);
         b = boxFor(p, markerLabel(loc), sc, loc.id);
         if (!hits(b) && b.x >= 12 && b.x + b.w <= VIEW_W - 12 && b.y >= 2) { chosen = sc; break; }
       }
@@ -461,6 +472,7 @@
         var p = projectLoc(loc);
         var minor = !!MINOR_TOWNS[loc.id];
         var tier = minor ? " mv-minor" : (TIER1[loc.id] ? " mv-t1" : " mv-t2");
+        if (p.off) tier = " mv-minor";
         var g = svgEl("g", { "class": "mv-marker" + tier + (p.off ? " mv-off" : ""), "data-loc": loc.id, tabindex: "0", role: "button" });
         g.appendChild(svgEl("title", null, String(loc.name || loc.id)));
         var halo = svgEl("circle", { "class": "mv-halo", cx: p.x, cy: p.y, r: 14, visibility: "hidden" });

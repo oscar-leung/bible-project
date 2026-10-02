@@ -138,7 +138,7 @@
     for (var i = 0; i < g.kings.length; i++) {
       var k = g.kings[i];
       if (kingFilter !== "all" && k.realm !== kingFilter && k.realm !== "united") continue;
-      var realm = { judah: "Judah (south)", israel: "Israel (north)", moab: "Moab (rebel vassal)", aram: "Aram (Damascus)" }[k.realm] || "United kingdom";
+      var realm = { judah: "Judah (south)", israel: "Israel (north)", moab: "Moab (rebel vassal)", aram: "Aram (Damascus)", assyria: "Assyria", babylon: "Babylon", egypt: "Egypt" }[k.realm] || "United kingdom";
       var vtxt = k.verdict === "good" ? "Right in the LORD's sight" : k.verdict === "mixed" ? "Began well, ended badly" : "Evil in the LORD's sight";
       h += "<tr><td class=\"sk-kname\">" + esc(k.name) + "<span class=\"sk-kmeta\">" + esc(realm) + "</span></td>" +
         "<td>" + esc(k.reign) + "<span class=\"sk-kmeta\">" + esc(k.years) + "</span></td>" +

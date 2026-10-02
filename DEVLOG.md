@@ -380,3 +380,25 @@ commentary.
   the Kings edge-pinned places and trail scale with it, the offline cache
   now precaches every Kings file (cache `samuel-kings-v2`), and the
   installable app is named "Samuel & Kings".
+
+## 2026-10-02 — Session 10: all of Kings
+
+### Phase 20 — 2 Kings 11–25: from the hidden prince to Babylon
+- 📖 The last fifteen chapters, written by two historian agents in parallel
+  (11–17, 18–25) and merged with a validating script: Athaliah and Joash,
+  Elisha's bones, Jeroboam II, the five northern kings, the fall of Samaria
+  and chapter 17's verdict, Hezekiah and Sennacherib, Manasseh, Josiah's
+  book and reform, Megiddo, the fall of Jerusalem, and Jehoiachin's release.
+  Every chapter carries the full study block. Samuel and Kings are now
+  complete: 102 chapters.
+- 👑 The 2 Kings primer spans the whole book (ten sections, eleven themes)
+  and the report card grows to 40 rulers, from Ahaziah to Nebuchadnezzar.
+- ❓ 59 more common questions (180 in all): Elisha's bones, the bronze
+  serpent, the 185,000 and Sennacherib's prism, the shadow on the dial,
+  Manasseh's repentance, the book of the law, Josiah's death, the end of
+  the book.
+- 🗺️ Nine places (Lachish, Libnah, Gaza, Sela, Hamath, Abel-beth-maacah,
+  Nineveh, Babylon, Riblah) and four journeys: Assyria takes the north,
+  Sennacherib's campaign, Josiah's reform, and the road to Babylon. Timeline
+  through 561 BC. 36 characters and 45 quest questions.
+

@@ -100,6 +100,258 @@
       "title": "Austere ally who rode with Jehu",
       "description": "Jehonadab (Jonadab) son of Rechab met Jehu on the road to Samaria, gave him his hand, and rode in his chariot to witness his 'zeal for the LORD' and the destruction of Baal's worshippers (2 Kings 10:15–23). He was the founder of the Rechabites, who by his command drank no wine, built no houses, and lived in tents. Two and a half centuries later Jeremiah held up their faithfulness to his command as a rebuke to unfaithful Judah (Jeremiah 35).",
       "chapters": []
+    },
+    {
+      "id": "jehoiada",
+      "name": "Jehoiada",
+      "title": "The priest who saved David's line",
+      "description": "Jehoiada was the high priest in Jerusalem during Athaliah's usurpation, and his wife Jehosheba was the sister of King Ahaziah (2 Chronicles 22:11). He hid the infant Joash in the temple for six years, then organized the guard, crowned the boy, had Athaliah executed, and led a covenant renewal that tore down Baal's temple (2 Kings 11). He guided Joash for decades and devised the collection chest for the temple repairs (12:9); the Chronicler says he died at 130 and was buried among the kings (2 Chronicles 24:15–16).",
+      "chapters": []
+    },
+    {
+      "id": "joash-judah",
+      "name": "Joash (Jehoash), King of Judah",
+      "title": "The boy-king saved from Athaliah",
+      "description": "The only surviving son of Ahaziah, Joash was rescued as a baby from Athaliah's massacre and crowned at seven by Jehoiada the priest (2 Kings 11). He reigned forty years (c. 835–796 BC), doing right while Jehoiada instructed him and restoring the temple through a public collection chest (12:2, 9–15). Later he stripped the temple's treasures to buy off Hazael and, according to 2 Chronicles 24, turned to idols and had Jehoiada's son Zechariah stoned; he was assassinated by his own servants (12:20–21).",
+      "chapters": []
+    },
+    {
+      "id": "jehoahaz-israel",
+      "name": "Jehoahaz, King of Israel",
+      "title": "Jehu's son under Aram's heel",
+      "description": "Son of Jehu and the second king of his dynasty, Jehoahaz reigned seventeen years in Samaria (c. 814–798 BC) and kept Jeroboam's sins (2 Kings 13:1–2). Under him Hazael and Ben-hadad of Syria reduced Israel's army to fifty horsemen, ten chariots, and ten thousand footmen (13:7). Yet when he besought the LORD, God heard him and sent Israel a saviour (13:4–5).",
+      "chapters": []
+    },
+    {
+      "id": "joash-israel",
+      "name": "Joash (Jehoash), King of Israel",
+      "title": "Elisha's mourner and Amaziah's conqueror",
+      "description": "Jehu's grandson, Joash reigned sixteen years in Samaria (c. 798–782 BC) and continued Jeroboam's calf worship (2 Kings 13:10–11). He wept at Elisha's deathbed, 'O my father, my father,' shot the arrow of the LORD's deliverance, but struck the ground only three times — and so defeated Ben-hadad only three times (13:14–25). He crushed Amaziah of Judah at Beth-shemesh, broke down Jerusalem's wall, and looted its temple (14:8–14); Assyrian records name him paying tribute to Adad-nirari III.",
+      "chapters": []
+    },
+    {
+      "id": "amaziah",
+      "name": "Amaziah, King of Judah",
+      "title": "Victor over Edom, undone by pride",
+      "description": "Son of Joash of Judah, Amaziah reigned twenty-nine years (c. 796–767 BC) and did right, 'yet not like David' (2 Kings 14:3). He punished his father's murderers but spared their children according to the law of Moses, and defeated Edom in the Valley of Salt and captured Sela (14:5–7). Swollen with pride, he provoked Joash of Israel, was captured at Beth-shemesh, and saw Jerusalem plundered; he was later assassinated at Lachish (14:8–20).",
+      "chapters": []
+    },
+    {
+      "id": "jeroboam-ii",
+      "name": "Jeroboam II, King of Israel",
+      "title": "Israel's last prosperous king",
+      "description": "Son of Joash and fourth king of Jehu's dynasty, Jeroboam II reigned forty-one years in Samaria (c. 793–753 BC, including a co-regency), the longest reign of any northern king (2 Kings 14:23). Though he kept the sins of his namesake Jeroboam son of Nebat, God used him to restore Israel's borders from Hamath to the Dead Sea, as Jonah son of Amittai had foretold (14:25–28). His prosperous era is the setting for the prophets Amos and Hosea, who condemned its luxury, injustice, and idolatry.",
+      "chapters": []
+    },
+    {
+      "id": "azariah-uzziah",
+      "name": "Azariah (Uzziah), King of Judah",
+      "title": "The long-reigning leper king",
+      "description": "Made king at sixteen after Amaziah's murder, Azariah — also called Uzziah — reigned fifty-two years (c. 792–740 BC, including co-regencies), rebuilt Elath, and did right in the sight of the LORD (2 Kings 14:21–22; 15:1–3). The LORD struck him with leprosy, and he lived in a separate house while his son Jotham governed (15:5); 2 Chronicles 26 links this to his burning incense in the temple. Isaiah received his great vision 'in the year that king Uzziah died' (Isaiah 6:1).",
+      "chapters": []
+    },
+    {
+      "id": "zechariah-israel",
+      "name": "Zechariah, King of Israel",
+      "title": "The last of Jehu's line",
+      "description": "Son of Jeroboam II, Zechariah reigned only six months in Samaria (c. 753 BC) and continued the sins of Jeroboam son of Nebat (2 Kings 15:8–9). Shallum son of Jabesh assassinated him in public, ending Jehu's dynasty in its fourth generation, exactly as the LORD had told Jehu (15:10–12; 10:30).",
+      "chapters": []
+    },
+    {
+      "id": "shallum",
+      "name": "Shallum son of Jabesh",
+      "title": "The one-month king",
+      "description": "Shallum murdered Zechariah and seized Israel's throne, but reigned only one full month in Samaria (c. 752 BC) before Menahem son of Gadi came up from Tirzah and killed him (2 Kings 15:10, 13–14). His brief reign marks the start of the violent coups that filled Israel's last thirty years.",
+      "chapters": []
+    },
+    {
+      "id": "menahem",
+      "name": "Menahem, King of Israel",
+      "title": "The brutal king who paid off Assyria",
+      "description": "Menahem son of Gadi killed Shallum, savagely sacked Tiphsah, and reigned ten years in Samaria (c. 752–742 BC) (2 Kings 15:14–18). When Pul (Tiglath-pileser III) came against the land, Menahem paid a thousand talents of silver, taxing every wealthy man fifty shekels, to secure his throne (15:19–20). Tiglath-pileser's own annals list 'Menahem of Samaria' among his tributaries.",
+      "chapters": []
+    },
+    {
+      "id": "pekahiah",
+      "name": "Pekahiah, King of Israel",
+      "title": "Menahem's short-lived son",
+      "description": "Pekahiah succeeded his father Menahem and reigned two years in Samaria (c. 742–740 BC), continuing Jeroboam's sins (2 Kings 15:23–24). His own captain Pekah son of Remaliah, with fifty men of Gilead, assassinated him in the palace (15:25).",
+      "chapters": []
+    },
+    {
+      "id": "pekah",
+      "name": "Pekah son of Remaliah",
+      "title": "The anti-Assyrian usurper",
+      "description": "A military captain, Pekah killed Pekahiah and ruled Israel (2 Kings 15:25–27); his twenty years are best counted from c. 752 BC, perhaps as a rival ruler in Gilead, with sole rule c. 740–732 BC. Allied with Rezin of Damascus, he attacked Judah to force it into an anti-Assyrian coalition — the Syro-Ephraimite War of Isaiah 7 (2 Kings 15:37; 16:5). Tiglath-pileser III stripped Galilee and Gilead in his reign, and Hoshea assassinated him (15:29–30); Assyrian records say the Israelites overthrew 'Paqaha' their king.",
+      "chapters": []
+    },
+    {
+      "id": "jotham",
+      "name": "Jotham, King of Judah",
+      "title": "Builder of the temple's high gate",
+      "description": "Son of Azariah (Uzziah), Jotham governed Judah while his father was a leper and then reigned in his own right, sixteen years in all (c. 750–735 BC, counting co-regency) (2 Kings 15:5, 32–33). He did what was right, though the high places remained, and built the higher gate of the house of the LORD (15:34–35). In his days the LORD began to send Rezin and Pekah against Judah (15:37).",
+      "chapters": []
+    },
+    {
+      "id": "ahaz",
+      "name": "Ahaz, King of Judah",
+      "title": "The king who became Assyria's servant",
+      "description": "Son of Jotham, Ahaz reigned sixteen years in Jerusalem (c. 735–715 BC) and walked in the ways of Israel's kings, even making his son pass through the fire (2 Kings 16:1–4). Attacked by Rezin and Pekah, he ignored Isaiah's call to trust the LORD (Isaiah 7) and bought Tiglath-pileser's help with temple treasure, calling himself 'thy servant and thy son' (16:7–8). He copied a Damascus altar for the temple and dismantled Solomon's bronze furnishings 'for the king of Assyria' (16:10–18); Assyrian records call him Jehoahaz of Judah.",
+      "chapters": []
+    },
+    {
+      "id": "hoshea",
+      "name": "Hoshea, King of Israel",
+      "title": "The last king of Israel",
+      "description": "Hoshea son of Elah assassinated Pekah and became Israel's final king (c. 732–722 BC), installed with Tiglath-pileser III's backing according to Assyrian records (2 Kings 15:30). He did evil, though not as the kings before him, and became Shalmaneser's vassal, but rebelled by seeking help from So king of Egypt and withholding tribute (17:1–4). Shalmaneser imprisoned him and besieged Samaria for three years until the city fell and Israel was carried into exile (17:4–6).",
+      "chapters": []
+    },
+    {
+      "id": "rezin",
+      "name": "Rezin, King of Syria",
+      "title": "The last king of Aram-Damascus",
+      "description": "Rezin ruled Aram from Damascus (c. 750–732 BC) and led the anti-Assyrian coalition with Pekah of Israel, besieging Jerusalem and taking Elath from Judah (2 Kings 15:37; 16:5–6). When Ahaz appealed to Assyria, Tiglath-pileser III captured Damascus, deported its people to Kir, and killed Rezin (16:9). Assyrian annals name him 'Rahianu' and describe the siege of his capital.",
+      "chapters": []
+    },
+    {
+      "id": "tiglath-pileser",
+      "name": "Tiglath-pileser III (Pul)",
+      "title": "Founder of Assyria's empire",
+      "description": "Tiglath-pileser III (745–727 BC), called Pul in 2 Kings 15:19 after his Babylonian throne name, turned Assyria into a standing empire with professional armies and mass deportations. He took tribute from Menahem, stripped Galilee and Gilead from Pekah (15:29), captured Damascus and killed Rezin (16:9), and received Ahaz of Judah as a vassal (16:7–10). His annals and the Nimrud palace reliefs name Menahem, Pekah, Hoshea, Rezin, and Ahaz.",
+      "chapters": []
+    },
+    {
+      "id": "shalmaneser-v",
+      "name": "Shalmaneser V",
+      "title": "The Assyrian king who besieged Samaria",
+      "description": "Son of Tiglath-pileser III, Shalmaneser V reigned 727–722 BC and made Hoshea his vassal (2 Kings 17:3). When Hoshea rebelled and turned to Egypt, Shalmaneser imprisoned him and besieged Samaria for three years (17:4–5; 18:9–10). The Babylonian Chronicle credits him with ravaging Samaria, though his successor Sargon II later claimed the conquest and carried out the deportation.",
+      "chapters": []
+    },
+    {
+      "id": "hezekiah",
+      "name": "Hezekiah",
+      "title": "The king who trusted the LORD",
+      "description": "Son of the idolatrous Ahaz, Hezekiah reigned over Judah c. 715–686 BC (possibly as co-regent from 729), and Kings says no king before or after trusted the Lord like him (2 Kings 18:5). He removed the high places, broke up Moses' bronze serpent, rebelled against Assyria, and when Sennacherib's army surrounded Jerusalem in 701 BC he spread the Assyrian letter before the Lord and was delivered. He was healed from a mortal illness and given fifteen more years, but proudly showed his treasures to Babylonian envoys. His name survives on a royal bulla from the Ophel and in Sennacherib's annals, and his tunnel still carries water under the City of David.",
+      "chapters": []
+    },
+    {
+      "id": "isaiah",
+      "name": "Isaiah son of Amoz",
+      "title": "Prophet to Hezekiah",
+      "description": "The great prophet of Jerusalem, whose ministry spanned the reigns of Uzziah to Hezekiah (Isaiah 1:1). In 2 Kings he assures Hezekiah that Sennacherib will not shoot an arrow into the city, delivers the oracle that God will put His hook in Assyria's nose, announces and then reverses Hezekiah's death sentence, and foretells the Babylonian exile. Chapters 36–39 of his book closely parallel 2 Kings 18–20, and a bulla reading 'Isaiah nvy[...]' found near Hezekiah's on the Ophel may bear his name.",
+      "chapters": []
+    },
+    {
+      "id": "sennacherib",
+      "name": "Sennacherib",
+      "title": "King of Assyria",
+      "description": "Sennacherib ruled Assyria 705–681 BC and built a vast palace at Nineveh, where reliefs of his capture of Lachish lined the walls. In 701 BC he devastated Judah's fortified cities and demanded Jerusalem's surrender, but after the angel of the Lord struck his camp he returned home, his annals claiming only that he shut Hezekiah up 'like a bird in a cage.' He was assassinated by his sons while worshipping his god, and Esarhaddon succeeded him.",
+      "chapters": []
+    },
+    {
+      "id": "rabshakeh",
+      "name": "The Rabshakeh",
+      "title": "Sennacherib's field commander and spokesman",
+      "description": "Rabshakeh is an Assyrian title, 'chief cupbearer,' for a high officer sent with the Tartan and the Rabsaris from Lachish to demand Jerusalem's surrender. Speaking Hebrew loudly so the soldiers on the wall could hear, he mocked Egypt as a bruised reed, twisted Hezekiah's reforms, and claimed no god could deliver from Assyria — words Hezekiah carried to the Lord as reproach against the living God.",
+      "chapters": []
+    },
+    {
+      "id": "merodach-baladan",
+      "name": "Merodach-baladan",
+      "title": "King of Babylon who courted Hezekiah",
+      "description": "Marduk-apla-iddina II, a Chaldean chieftain who seized Babylon and held it against Assyria from 722 to 710 BC and again briefly around 703. He sent letters and a gift to Hezekiah after his illness, likely seeking an ally against Assyria, and Hezekiah's display of his treasures to the envoys prompted Isaiah's prophecy of exile to Babylon.",
+      "chapters": []
+    },
+    {
+      "id": "manasseh",
+      "name": "Manasseh",
+      "title": "Judah's longest-reigning and most wicked king",
+      "description": "Hezekiah's son, Manasseh reigned fifty-five years (c. 697–642 BC, including a co-regency), undoing his father's reforms with Baal altars, star worship in the temple courts, child sacrifice, and sorcery, and filling Jerusalem with innocent blood. Kings names his sins as the reason judgment on Judah became irreversible (2 Kings 21:11–15; 23:26; 24:3–4). Assyrian inscriptions of Esarhaddon and Ashurbanipal list him as a tribute-paying vassal, and 2 Chronicles 33 records his captivity and late repentance.",
+      "chapters": []
+    },
+    {
+      "id": "amon",
+      "name": "Amon",
+      "title": "Manasseh's son, murdered after two years",
+      "description": "Amon reigned two years (c. 642–640 BC) and walked in all the idolatry of his father Manasseh. His own servants conspired and killed him in his house, but the people of the land executed the conspirators and set his eight-year-old son Josiah on the throne.",
+      "chapters": []
+    },
+    {
+      "id": "josiah",
+      "name": "Josiah",
+      "title": "The reforming king named in advance",
+      "description": "Josiah reigned c. 640–609 BC, a king named three centuries ahead by the man of God at Bethel (1 Kings 13:2). When the book of the law was found during temple repairs in 622 BC, he tore his clothes, renewed the covenant, purged idolatry from Jerusalem to Bethel, and kept a Passover unmatched since the judges; Kings says no king turned to the Lord with all his heart, soul, and might like him. He died at Megiddo in 609 BC trying to stop Pharaoh Neco's march to aid Assyria.",
+      "chapters": []
+    },
+    {
+      "id": "hilkiah",
+      "name": "Hilkiah",
+      "title": "High priest who found the book of the law",
+      "description": "The high priest under Josiah, Hilkiah found the book of the law in the house of the Lord during the temple repairs of 622 BC and handed it to Shaphan the scribe. He led the delegation to Huldah the prophetess and carried out the king's orders to remove Baal's vessels from the temple.",
+      "chapters": []
+    },
+    {
+      "id": "huldah",
+      "name": "Huldah",
+      "title": "The prophetess Josiah consulted",
+      "description": "A prophetess living in the 'second quarter' of Jerusalem, wife of Shallum the keeper of the wardrobe. When Josiah's officials brought the newly found book of the law, she confirmed that its curses would fall on Judah but told the tender-hearted king he would be gathered to his grave in peace before the disaster came.",
+      "chapters": []
+    },
+    {
+      "id": "pharaoh-neco",
+      "name": "Pharaoh Neco",
+      "title": "King of Egypt who killed Josiah",
+      "description": "Neco II of Egypt's 26th Dynasty (610–595 BC) marched north in 609 BC to support the collapsing Assyrian remnant against Babylon and killed Josiah at Megiddo. He deposed Jehoahaz at Riblah, imposed tribute on Judah, and made Eliakim king as Jehoiakim, but after his defeat by Nebuchadnezzar at Carchemish in 605 BC Egypt came no more out of its land.",
+      "chapters": []
+    },
+    {
+      "id": "jehoahaz-judah",
+      "name": "Jehoahaz (King of Judah)",
+      "title": "Josiah's son, deposed after three months",
+      "description": "Also called Shallum (Jeremiah 22:11), Jehoahaz was made king by the people of the land after Josiah's death in 609 BC. After only three months Pharaoh Neco put him in bands at Riblah and carried him to Egypt, where he died — the first king of Judah to die in exile.",
+      "chapters": []
+    },
+    {
+      "id": "jehoiakim",
+      "name": "Jehoiakim",
+      "title": "Egypt's puppet who rebelled against Babylon",
+      "description": "Born Eliakim, Josiah's son was installed by Pharaoh Neco and renamed Jehoiakim, reigning 609–598 BC. He taxed the land to pay Egypt, then submitted to Nebuchadnezzar for three years before rebelling, bringing raiding bands against Judah. Jeremiah 36 records him cutting up and burning Jeremiah's scroll; he died just before Babylon's siege of 597 BC.",
+      "chapters": []
+    },
+    {
+      "id": "jehoiachin",
+      "name": "Jehoiachin",
+      "title": "The exiled king lifted up in Babylon",
+      "description": "Jehoiakim's son, also called Jeconiah or Coniah, reigned three months before surrendering Jerusalem to Nebuchadnezzar in March 597 BC and going into exile with his mother, officials, and craftsmen. Babylonian ration tablets list oil for 'Ya'u-kinu king of Yahudu' and his sons, and in 561/560 BC Evil-merodach released him from prison and gave him a seat at his table for life. Through him the line of David continued (1 Chronicles 3:17; Matthew 1:12).",
+      "chapters": []
+    },
+    {
+      "id": "zedekiah",
+      "name": "Zedekiah",
+      "title": "Judah's last king",
+      "description": "Born Mattaniah, Josiah's youngest son was set on the throne by Nebuchadnezzar in 597 BC and renamed Zedekiah. Wavering between Jeremiah's counsel and pro-Egyptian officials, he rebelled against Babylon, and after an eighteen-month siege Jerusalem fell in 586 BC. Captured in the plains of Jericho, he saw his sons killed at Riblah before he was blinded and taken to Babylon in chains.",
+      "chapters": []
+    },
+    {
+      "id": "nebuchadnezzar",
+      "name": "Nebuchadnezzar",
+      "title": "King of Babylon who destroyed Jerusalem",
+      "description": "Nebuchadnezzar II ruled Babylon 605–562 BC after defeating Egypt at Carchemish. He took Jerusalem in 597 BC, deporting Jehoiachin and the city's leaders, and after Zedekiah's revolt destroyed the city and temple in 586 BC through his captain Nebuzaradan. His building inscriptions survive by the thousands on Babylon's bricks, and the Babylonian Chronicle records his campaigns against 'the city of Judah.'",
+      "chapters": []
+    },
+    {
+      "id": "gedaliah",
+      "name": "Gedaliah son of Ahikam",
+      "title": "Governor of Judah after the fall",
+      "description": "Grandson of Shaphan the scribe and son of Ahikam, who had protected Jeremiah, Gedaliah was appointed by Nebuchadnezzar to govern the remnant from Mizpah. He urged the people to serve Babylon and live, but within months Ishmael son of Nethaniah, of the royal seed, murdered him, and the survivors fled to Egypt. A bulla from Lachish of 'Gedaliah who is over the house' may be his, though the identification is uncertain.",
+      "chapters": []
+    },
+    {
+      "id": "evil-merodach",
+      "name": "Evil-merodach",
+      "title": "King of Babylon who freed Jehoiachin",
+      "description": "Amel-Marduk ('man of Marduk'), son of Nebuchadnezzar, reigned briefly over Babylon from 562 to 560 BC before being assassinated by his brother-in-law Neriglissar. In the year he began to reign he released Jehoiachin from prison, spoke kindly to him, and gave him a place at his table and a daily allowance — the last scene of Kings.",
+      "chapters": []
     }
   ];
   if (!Array.isArray(window.CHARACTERS)) window.CHARACTERS = [];

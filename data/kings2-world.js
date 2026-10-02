@@ -51,6 +51,51 @@
       id: "edom-libnah", name: "Edom", modernName: "Bozrah (Buseira), Edom's capital, southern Jordan",
       lat: 30.73, lon: 35.61,
       description: "In Jehoram of Judah's days Edom revolted and made itself a king; Jehoram's night attack at Zair barely escaped, 'and Edom revolted from under the hand of Judah unto this day.' Libnah in the Shephelah revolted at the same time (2 Kings 8:20-22)."
+    },
+    {
+      id: "sela", name: "Sela", modernName: "es-Sela' near Bozrah, or Petra's Umm el-Biyara (debated)",
+      lat: 30.85, lon: 35.56,
+      description: "Edom's rock fortress. Amaziah killed ten thousand Edomites in the Valley of Salt, took Sela by war, and renamed it Joktheel — then, proud of it, challenged Israel and lost (2 Kings 14:7-14)."
+    },
+    {
+      id: "hamath", name: "Hamath", modernName: "Hama, Syria",
+      lat: 35.13, lon: 36.75,
+      description: "The great city on the Orontes that marked Israel's ideal northern border. Jeroboam II restored the coast 'from the entering of Hamath' (14:25); Assyria later resettled people from Hamath in Samaria (17:24, 30), and Pharaoh Neco held Jehoahaz at Riblah 'in the land of Hamath' (23:33)."
+    },
+    {
+      id: "abel-beth-maacah", name: "Abel-beth-maacah", modernName: "Tel Abil el-Qamh",
+      lat: 33.258, lon: 35.58,
+      description: "Israel's northern gateway city, the first named in Tiglath-pileser III's sweep of 733 BC: 'Ijon, and Abel-beth-maachah, and Janoah, and Kedesh, and Hazor, and Gilead, and Galilee … and carried them captive to Assyria' (2 Kings 15:29)."
+    },
+    {
+      id: "nineveh", name: "Nineveh", modernName: "Kuyunjik and Nebi Yunus, Mosul, Iraq",
+      lat: 36.36, lon: 43.15,
+      description: "Sennacherib's capital on the Tigris. His palace walls showed the siege of Lachish in carved relief, and his prism boasts he shut Hezekiah up in Jerusalem 'like a bird in a cage' — but never claims to take it. He was murdered there by his sons in the temple of Nisroch (2 Kings 19:36-37)."
+    },
+    {
+      id: "lachish", name: "Lachish", modernName: "Tel Lachish (Tell ed-Duweir)",
+      lat: 31.565, lon: 34.849,
+      description: "Judah's second city. Sennacherib besieged and took it in 701 BC while his Rabshakeh marched on Jerusalem (2 Kings 18:14, 17); the Assyrian siege ramp still stands. In 588 BC its officers wrote the Lachish letters as Babylon closed in."
+    },
+    {
+      id: "libnah", name: "Libnah", modernName: "Tel Burna (probable), Shephelah",
+      lat: 31.63, lon: 34.87,
+      description: "A Shephelah town that revolted in Jehoram's day (8:22). Sennacherib moved on to fight it after Lachish (19:8), and Hamutal, mother of Jehoahaz and Zedekiah, came from here (23:31)."
+    },
+    {
+      id: "gaza", name: "Gaza", modernName: "Gaza",
+      lat: 31.504, lon: 34.464,
+      description: "The southernmost Philistine city. Hezekiah 'smote the Philistines, even unto Gaza' (2 Kings 18:8) as part of his break with Assyria."
+    },
+    {
+      id: "babylon", name: "Babylon", modernName: "Babil, near Hillah, Iraq",
+      lat: 32.536, lon: 44.421,
+      description: "Merodach-baladan's envoys came from here to see Hezekiah's treasures, and Isaiah foretold it would carry them all away (20:12-18). Nebuchadnezzar took Jehoiachin there in 597 BC and the rest of Jerusalem in 586; ration tablets found in its palace name 'Ya'u-kinu, king of the land of Yahudu' (25:27-30)."
+    },
+    {
+      id: "riblah", name: "Riblah", modernName: "Ribla, on the Orontes, Syria",
+      lat: 34.48, lon: 36.55,
+      description: "The field headquarters where Pharaoh Neco put Jehoahaz in chains (23:33), and where Nebuchadnezzar judged Zedekiah — slew his sons before his eyes, then put out his eyes (25:6-7, 20-21)."
     }
   ];
 
@@ -148,6 +193,69 @@
         { loc: "samaria", note: "Seventy sons of Ahab; then the Baal worshippers in their own temple (10:1-28)." }
       ],
       chapters: [9, 10]
+    },
+    {
+      id: "north-falls",
+      title: "Assyria Takes the North",
+      color: "#5e6b7a",
+      book: "kings2",
+      description: "Tiglath-pileser strips Galilee and Gilead; Shalmaneser besieges Samaria three years; Israel is carried to Assyria and strangers are settled in its cities (2 Kings 15–17).",
+      stops: [
+        { loc: "abel-beth-maacah", note: "Tiglath-pileser takes the northern towns and carries Galilee captive (15:29)." },
+        { loc: "hazor", note: "Hazor falls in the same sweep (15:29)." },
+        { loc: "damascus", note: "Ahaz's protector takes Damascus and kills Rezin; Ahaz copies the altar he sees there (16:9-12)." },
+        { loc: "samaria", note: "Three years' siege; 'in the ninth year of Hoshea the king of Assyria took Samaria' (17:5-6)." },
+        { loc: "nineveh", note: "Israel is carried away into Assyria, 'until this day' (17:6, 23)." }
+      ],
+      chapters: [15, 16, 17]
+    },
+    {
+      id: "sennacherib-701",
+      title: "Sennacherib's Campaign, 701 BC",
+      color: "#8a4b2a",
+      book: "kings2",
+      description: "Assyria takes Judah's fenced cities, besieges Lachish, sends the Rabshakeh to taunt Jerusalem, and goes home without it (2 Kings 18–19).",
+      stops: [
+        { loc: "nineveh", note: "Sennacherib marches west against Hezekiah's revolt (18:13)." },
+        { loc: "lachish", note: "The siege and the tribute Hezekiah sends there (18:14-16)." },
+        { loc: "jerusalem", note: "The Rabshakeh at the conduit of the upper pool: 'Let not Hezekiah deceive you' (18:17-37)." },
+        { loc: "libnah", note: "The army moves on to Libnah; Hezekiah spreads the letter before the LORD (19:8-19)." },
+        { loc: "nineveh", note: "185,000 die in a night; Sennacherib goes home and is killed by his sons (19:35-37)." }
+      ],
+      chapters: [18, 19]
+    },
+    {
+      id: "josiah-reform",
+      title: "Josiah's Reform",
+      color: "#2f6f4e",
+      book: "kings2",
+      description: "A lost book is found in the temple, and the young king tears his clothes, then tears down every high place from Geba to Beersheba and the altar Jeroboam built at Bethel — exactly as the man of God foretold (2 Kings 22–23).",
+      stops: [
+        { loc: "jerusalem", note: "Hilkiah finds the book of the law; Huldah's word; the covenant renewed (22:8-23:3)." },
+        { loc: "geba", note: "High places defiled 'from Geba to Beer-sheba' (23:8)." },
+        { loc: "bethel", note: "Jeroboam's altar burned with bones, 'according to the word of the LORD which the man of God proclaimed' (23:15-18; 1 Kgs 13:2)." },
+        { loc: "samaria", note: "The high places of Samaria's cities removed (23:19-20)." },
+        { loc: "jerusalem", note: "A Passover like none since the judges (23:21-23)." },
+        { loc: "megiddo", note: "Josiah goes out against Pharaoh Neco and is killed (23:29-30)." }
+      ],
+      chapters: [22, 23]
+    },
+    {
+      id: "road-to-exile",
+      title: "The Road to Babylon",
+      color: "#3b3b6d",
+      book: "kings2",
+      description: "Jehoiachin is taken in 597; Zedekiah rebels; the city falls in 586, the temple burns, the king is judged at Riblah, and the people go to Babylon — with a last flicker of grace for David's heir (2 Kings 24–25).",
+      stops: [
+        { loc: "jerusalem", note: "Nebuchadnezzar takes Jehoiachin and the treasures (24:10-16)." },
+        { loc: "babylon", note: "Jehoiachin, the mighty men, and the craftsmen carried away (24:15-16)." },
+        { loc: "jerusalem", note: "Siege and famine; the wall breached; the temple and city burned (25:1-10)." },
+        { loc: "riblah", note: "Zedekiah's sons slain before him; his eyes put out (25:6-7)." },
+        { loc: "mizpah", note: "Gedaliah governs the remnant and is murdered (25:22-25)." },
+        { loc: "egypt", note: "The people flee to Egypt for fear of the Chaldees (25:26)." },
+        { loc: "babylon", note: "Jehoiachin lifted from prison to eat at the king's table (25:27-30)." }
+      ],
+      chapters: [24, 25]
     }
   ];
 
@@ -162,7 +270,23 @@
     { year: "c. 848 BC", book: "kings2", event: "Jehoram, Jehoshaphat's son, becomes king of Judah, married to Ahab's daughter Athaliah; Edom and Libnah revolt (2 Kings 8:16-22).", chapters: [8] },
     { year: "c. 842 BC", book: "kings2", event: "Elisha weeps before Hazael, who smothers Ben-hadad and seizes the throne of Damascus (2 Kings 8:7-15).", chapters: [8] },
     { year: "841 BC", book: "kings2", event: "Jehu is anointed at Ramoth-gilead and kills Jehoram of Israel, Ahaziah of Judah, and Jezebel in one sweep (2 Kings 9).", chapters: [9] },
-    { year: "841 BC", book: "kings2", event: "Jehu wipes out Ahab's house and Baal worship in Samaria — and pays tribute to Shalmaneser III, who carves him kneeling on the Black Obelisk (2 Kings 10).", chapters: [10] }
+    { year: "841 BC", book: "kings2", event: "Jehu wipes out Ahab's house and Baal worship in Samaria — and pays tribute to Shalmaneser III, who carves him kneeling on the Black Obelisk (2 Kings 10).", chapters: [10] },
+    { year: "841–835 BC", book: "kings2", event: "Athaliah seizes Judah's throne and kills the royal seed; Jehosheba hides the baby Joash in the temple for six years (2 Kings 11).", chapters: [11] },
+    { year: "835 BC", book: "kings2", event: "Jehoiada crowns seven-year-old Joash; Athaliah is killed and Baal's temple torn down (2 Kings 11).", chapters: [11] },
+    { year: "c. 814 BC", book: "kings2", event: "Joash repairs the temple from the chest by the altar — and later strips it to buy off Hazael (2 Kings 12).", chapters: [12] },
+    { year: "c. 797 BC", book: "kings2", event: "Elisha, dying, has Joash of Israel strike the ground; a dead man revives at Elisha's bones (2 Kings 13).", chapters: [13] },
+    { year: "c. 793–753 BC", book: "kings2", event: "Jeroboam II restores Israel's borders as Jonah son of Amittai foretold; Azariah (Uzziah) reigns long in Judah (2 Kings 14–15).", chapters: [14, 15] },
+    { year: "753–732 BC", book: "kings2", event: "Five northern kings in twenty years; Menahem pays Pul (Tiglath-pileser) a thousand talents (2 Kings 15).", chapters: [15] },
+    { year: "733–732 BC", book: "kings2", event: "Ahaz sends temple silver to Assyria; Damascus falls and Galilee goes into captivity (2 Kings 15:29; 16).", chapters: [15, 16] },
+    { year: "722 BC", book: "kings2", event: "Samaria falls after a three-year siege; Israel is exiled to Assyria and foreigners resettle the land (2 Kings 17).", chapters: [17] },
+    { year: "701 BC", book: "kings2", event: "Sennacherib takes Lachish and threatens Jerusalem; Hezekiah prays, and the Assyrian army is struck in the night (2 Kings 18–19).", chapters: [18, 19] },
+    { year: "c. 701 BC", book: "kings2", event: "Hezekiah's illness, fifteen more years, and the Babylonian envoys (2 Kings 20).", chapters: [20] },
+    { year: "697–642 BC", book: "kings2", event: "Manasseh's 55-year reign fills Jerusalem with idols and innocent blood (2 Kings 21).", chapters: [21] },
+    { year: "622 BC", book: "kings2", event: "The book of the law is found in the temple; Josiah's covenant, reform, and Passover (2 Kings 22–23).", chapters: [22, 23] },
+    { year: "609 BC", book: "kings2", event: "Josiah is killed by Pharaoh Neco at Megiddo (2 Kings 23:29).", chapters: [23] },
+    { year: "597 BC", book: "kings2", event: "Nebuchadnezzar takes Jerusalem and carries Jehoiachin to Babylon (2 Kings 24; Babylonian Chronicle).", chapters: [24] },
+    { year: "586 BC", book: "kings2", event: "Jerusalem falls; the temple is burned and the people exiled; Gedaliah is murdered at Mizpah (2 Kings 25).", chapters: [25] },
+    { year: "561 BC", book: "kings2", event: "Evil-merodach releases Jehoiachin from prison to eat at the king's table — David's line still alive (2 Kings 25:27-30).", chapters: [25] }
   ];
 
   function append(globalName, items) {

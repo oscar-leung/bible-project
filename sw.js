@@ -3,7 +3,7 @@
 // then serve cache-first with a background network refresh (stale-while-
 // revalidate), so the app opens instantly and offline, yet picks up new
 // deploys on the next visit.
-var CACHE = "samuel-kings-v3";
+var CACHE = "samuel-kings-v4";
 var CORE = [
   ".", "index.html", "styles.css", "manifest.webmanifest",
   "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png",

@@ -671,5 +671,330 @@ window.FAQ = {
       "a": "Jehonadab was the founder of the Rechabites, a clan that, as Jeremiah 35:6-10 records, kept his command to drink no wine, build no houses, and live in tents for generations. His rule seems to have been a protest against the settled Canaanite way of life that went with Baal worship. Jehu brought him into his chariot to show his 'zeal for the LORD' and to gain the support of a respected conservative figure (10:15-16, 23). Some see Jehonadab as a genuine reformer and Jehu as using his reputation, though the text does not say what Jehonadab thought of the killings.",
       "refs": "2 Kgs 10:15-16, 23; Jer 35:6-10"
     }
+  ],
+  "kings2:11": [
+    {
+      "q": "How did Athaliah kill the royal family and miss Joash?",
+      "a": "Jehosheba, King Joram's daughter and Ahaziah's sister, stole the infant Joash from among the king's sons who were being killed and hid him with his nurse in a bedchamber (11:2). He then stayed hidden in the temple for six years (11:3), and 2 Chronicles 22:11 adds that Jehosheba was the wife of Jehoiada the priest, which explains why the temple was a safe place. A one-year-old among many royal children could easily be overlooked in a hurried purge. The text presents it as a near miss on which the whole line of David hung.",
+      "refs": "2 Kgs 11:1-3; 2 Chr 22:10-12"
+    },
+    {
+      "q": "Who was Athaliah, and why would a grandmother kill her own grandchildren?",
+      "a": "Athaliah was a daughter of Ahab's house (8:18, 26, where 'daughter of Omri' means descendant), married into Judah to seal an alliance. When her son Ahaziah was killed by Jehu (9:27), she seized power by wiping out rival heirs (11:1). Jehu had just slaughtered Ahab's family in the north (10:1-11), so she may have acted out of fear as well as ambition. Whatever her motives, she is the only ruler of Judah in Kings who was not a descendant of David, and her six-year reign is given no regnal formula, as if it were an interruption.",
+      "refs": "2 Kgs 8:18, 26; 10:1-11; 11:1-3"
+    },
+    {
+      "q": "What was the 'testimony' they gave Joash at his coronation?",
+      "a": "Jehoiada put the crown on Joash and 'gave him the testimony' (11:12). Most interpreters take this as a written copy of the covenant or law, recalling Deuteronomy 17:18-20, where the king is to keep a copy of the law and read it all his life. Some suggest it was a royal covenant document or decree. Either way, the scene makes the point that the restored king rules under God's covenant, which Jehoiada then renews between the Lord, king, and people (11:17).",
+      "refs": "2 Kgs 11:12, 17; Deut 17:18-20"
+    },
+    {
+      "q": "Why was Athaliah taken out of the temple before she was killed?",
+      "a": "Jehoiada ordered, 'Let her not be slain in the house of the LORD' (11:15), so she was taken out by the way of the horses' entry to the palace and executed there (11:16). Shedding blood in the sanctuary would defile it, and the priest was careful to keep the coup from polluting the very place it aimed to restore. The same chapter then turns on Baal's temple, which is torn down and its priest Mattan killed (11:18).",
+      "refs": "2 Kgs 11:13-18"
+    }
+  ],
+  "kings2:12": [
+    {
+      "q": "Why did Joash do right only while Jehoiada instructed him?",
+      "a": "Kings says Joash did right 'all his days wherein Jehoiada the priest instructed him' (12:2), a phrase that hints at a change later. 2 Chronicles 24:17-22 fills this in: after Jehoiada died, Joash turned to idols and even had Jehoiada's son Zechariah stoned in the temple court. Kings is more restrained, but it still ends Joash's story with tribute, humiliation, and assassination (12:17-21). The pattern is a sobering one: a faith that rested on a mentor did not hold up once the mentor was gone.",
+      "refs": "2 Kgs 12:2, 17-21; 2 Chr 24:17-25"
+    },
+    {
+      "q": "Why did it take so long to repair the temple?",
+      "a": "Joash told the priests to use temple income for repairs (12:4-5), but by his twenty-third year nothing had been done (12:6). The text does not accuse the priests of theft outright, but the solution suggests the money was being absorbed elsewhere: a chest with a hole in the lid was set by the altar, and the king's scribe and the high priest counted the money together (12:9-10). The workmen were then paid directly and were trusted because 'they dealt faithfully' (12:15). It is an early example of accountability built into how sacred money was handled.",
+      "refs": "2 Kgs 12:4-16"
+    },
+    {
+      "q": "Why did Joash give the temple treasures to Hazael?",
+      "a": "When Hazael of Aram took Gath and turned toward Jerusalem, Joash bought him off with the dedicated things and gold of the temple and palace (12:17-18). Kings records it without comment, but it is a sad irony for the king who repaired the temple. 2 Chronicles 24:23-24 presents the Aramean invasion as judgment for Judah's turn from the Lord. Paying tribute with temple treasure becomes a recurring sign of weakness in Kings (compare 16:8; 18:15-16).",
+      "refs": "2 Kgs 12:17-18; 2 Chr 24:23-24"
+    },
+    {
+      "q": "Why was Joash assassinated by his own servants?",
+      "a": "Kings simply says his servants conspired and killed him at the house of Millo (12:20-21), without giving a motive. 2 Chronicles 24:25 says they conspired 'for the blood of the sons of Jehoiada the priest', linking it to Joash's killing of Zechariah. The two accounts do not conflict; Chronicles supplies a reason that Kings leaves unstated. His son Amaziah later executed the assassins (14:5).",
+      "refs": "2 Kgs 12:20-21; 14:5; 2 Chr 24:25"
+    }
+  ],
+  "kings2:13": [
+    {
+      "q": "Why did a dead man come back to life touching Elisha's bones?",
+      "a": "Mourners burying a man panicked at a band of Moabite raiders and threw the body into Elisha's tomb; when it touched Elisha's bones, the man revived and stood up (13:20-21). The text gives no explanation, and it does not suggest the bones had power of their own. Most readers see it as God's sign that the life-giving power at work through Elisha (4:32-37) did not die with him, and that his last promises of victory (13:17-19) would still come true. Christians have differed on what this implies about relics: Catholic and Orthodox traditions have cited it in support of venerating them, while Protestants generally see it as a one-time sign.",
+      "refs": "2 Kgs 13:20-21; 4:32-37"
+    },
+    {
+      "q": "Why was Elisha angry the king only struck the ground three times?",
+      "a": "Elisha had just shot 'the arrow of the LORD'S deliverance' and promised victory over Aram (13:17). When he told King Joash to strike the ground with the arrows, the king did it three times and stopped (13:18). Elisha was angry because the half-hearted response showed limited zeal and expectation; five or six strikes would have meant complete victory, but now Joash would beat Aram only three times (13:19, 25). The symbolic act was treated as a measure of the king's faith, and the outcome matched it.",
+      "refs": "2 Kgs 13:14-19, 25"
+    },
+    {
+      "q": "Who was the 'saviour' God gave Israel in 13:5?",
+      "a": "The text does not name him. Some take him to be a later Israelite king who pushed back Aram, such as Joash (13:25) or Jeroboam II (14:25-27). Others point to the Assyrian king Adad-nirari III, whose campaigns against Damascus around 800 BC weakened Aram and relieved pressure on Israel; his inscriptions mention receiving tribute from Joash of Samaria. Both readings fit the point that God answered Jehoahaz's plea (13:4) through whatever means he chose.",
+      "refs": "2 Kgs 13:4-5, 25; 14:25-27"
+    },
+    {
+      "q": "Why did God help Jehoahaz when he kept Jeroboam's sins?",
+      "a": "Jehoahaz did evil and kept the calf worship (13:2, 6), yet when he 'besought the LORD', God heard him because he saw Israel's oppression (13:4). Verse 23 explains: the Lord was gracious 'because of his covenant with Abraham, Isaac, and Jacob' and would not yet cast them off. God's help here flows from his own faithfulness and compassion, not from the king's merit. The relief was real but limited, since the people did not change (13:6).",
+      "refs": "2 Kgs 13:2-6, 22-23"
+    }
+  ],
+  "kings2:14": [
+    {
+      "q": "Why did Amaziah spare the assassins' children?",
+      "a": "Amaziah executed the servants who had murdered his father but not their children, citing the law of Moses: 'The fathers shall not be put to death for the children, nor the children be put to death for the fathers' (14:6, quoting Deut 24:16). In the ancient Near East, wiping out a traitor's whole family was common practice. Kings singles this out as a point where Amaziah followed the written law against the custom of his day.",
+      "refs": "2 Kgs 14:5-6; Deut 24:16"
+    },
+    {
+      "q": "What did Jehoash mean by the thistle and the cedar?",
+      "a": "After beating Edom, Amaziah challenged Israel's King Jehoash to battle (14:7-8). Jehoash replied with a fable: a thistle asked a cedar for its daughter as a bride for his son, and a wild beast trampled the thistle (14:9). The point was that Amaziah, puffed up by a small win, was picking a fight far above his weight. Amaziah ignored the warning and was defeated, captured, and saw part of Jerusalem's wall broken down and the temple treasures taken (14:11-14).",
+      "refs": "2 Kgs 14:7-14"
+    },
+    {
+      "q": "Is the Jonah in 14:25 the same Jonah who went to Nineveh?",
+      "a": "Yes, the same name and father, 'Jonah, the son of Amittai, the prophet, which was of Gath-hepher', appear in Jonah 1:1. Here he is shown predicting that Jeroboam II would restore Israel's borders (14:25). That gives the book of Jonah a historical anchor in the eighth century BC. It also adds depth to the story: a prophet who announced good news for Israel was later sent to warn Israel's great enemy, Assyria.",
+      "refs": "2 Kgs 14:25; Jonah 1:1"
+    },
+    {
+      "q": "Why did God enlarge Israel under Jeroboam II, an evil king?",
+      "a": "Jeroboam II 'did that which was evil' (14:24), yet he restored Israel's borders from Hamath to the Dead Sea (14:25). The text explains that God saw Israel's bitter affliction, that there was no one to help, and that he had not yet said he would blot out Israel's name (14:26-27). The prosperity was an act of mercy, not an endorsement. The prophets Amos and Hosea, who worked in this period, show that the wealth of these years came with injustice and complacency that would soon bring judgment.",
+      "refs": "2 Kgs 14:23-27; Amos 6:1-7"
+    }
+  ],
+  "kings2:15": [
+    {
+      "q": "Why was Azariah (Uzziah) struck with leprosy?",
+      "a": "Kings says only that 'the LORD smote the king' so that he was a leper until he died, and lived in a separate house while his son Jotham governed (15:5). 2 Chronicles 26:16-21 explains that Uzziah, called Azariah here, grew proud and tried to burn incense in the temple, a task reserved for priests, and the disease broke out on his forehead. The two names for the king are generally understood as alternate names for the same person. Kings keeps its account brief, while Chronicles supplies the cause.",
+      "refs": "2 Kgs 15:1-7; 2 Chr 26:16-21"
+    },
+    {
+      "q": "Why did Israel go through so many kings so quickly?",
+      "a": "In about twenty years after Jeroboam II, Israel had six kings, four of whom were assassinated (15:8-31). Zechariah lasted six months and Shallum one month (15:8, 13). Zechariah's death fulfilled the promise that Jehu's line would reign only to the fourth generation (15:12; 10:30). The chaos reflects a kingdom with no stable dynasty facing the revived power of Assyria, and it fits Hosea's lament: 'They have set up kings, but not by me' (Hos 8:4).",
+      "refs": "2 Kgs 15:8-31; 10:30; Hos 8:4"
+    },
+    {
+      "q": "Who was 'Pul', and is Menahem's tribute recorded outside the Bible?",
+      "a": "Pul is the Babylonian throne name of the Assyrian king Tiglath-pileser III (745-727 BC), and 1 Chronicles 5:26 treats the two names together. Menahem paid him a thousand talents of silver, raised by taxing wealthy men fifty shekels each (15:19-20). Tiglath-pileser's own annals list 'Menahem of Samaria' among the kings who paid him tribute. It is one of the clearer points where Assyrian records and Kings meet.",
+      "refs": "2 Kgs 15:19-20, 29; 1 Chr 5:26"
+    },
+    {
+      "q": "Why does Kings record Menahem ripping open pregnant women?",
+      "a": "Verse 16 reports that Menahem attacked Tiphsah and 'all the women therein that were with child he ripped up', a horror attested elsewhere in ancient warfare (8:12; Amos 1:13). Recording it is not approving it; Kings reports Menahem's reign as evil (15:18), and the prophets condemn such atrocities. The detail shows how far Israel's own kings had sunk to the brutality of the nations around them.",
+      "refs": "2 Kgs 15:16-18; 8:12; Amos 1:13"
+    }
+  ],
+  "kings2:16": [
+    {
+      "q": "What was wrong with Ahaz's new altar?",
+      "a": "On a visit to Tiglath-pileser in Damascus, Ahaz saw an altar he admired and had Urijah the priest build a copy in Jerusalem (16:10-11). He then moved the Lord's bronze altar aside and made the new altar the main place of sacrifice, keeping the bronze one for himself 'to enquire by' (16:14-15). The problem was not the shape of an altar but who set the pattern: God had specified the temple's worship (Exod 27:1-8), and Ahaz rearranged it after a foreign model to please his new overlord. He also stripped and rearranged other temple furnishings 'because of the king of Assyria' (16:17-18).",
+      "refs": "2 Kgs 16:10-18; Exod 27:1-8"
+    },
+    {
+      "q": "What does it mean that Ahaz made his son 'pass through the fire'?",
+      "a": "The phrase (16:3) most likely refers to child sacrifice, which the law forbids as one of the abominations of the nations (Deut 18:10; Lev 18:21). 2 Chronicles 28:3 says Ahaz 'burnt his children in the fire'. A few scholars have argued it could mean a dedication ritual rather than death, but most read it as sacrifice, as in 17:17 and 21:6. Kings presents it as the low point of a king who 'walked in the way of the kings of Israel'.",
+      "refs": "2 Kgs 16:3; 17:17; Deut 18:10; 2 Chr 28:3"
+    },
+    {
+      "q": "Why was it wrong for Ahaz to ask Assyria for help?",
+      "a": "Threatened by Aram and Israel together (16:5), Ahaz sent temple silver and gold to Tiglath-pileser with the message 'I am thy servant and thy son' (16:7-8). Isaiah 7 shows that the prophet had urged Ahaz to trust the Lord and even offered him a sign, which Ahaz refused. Assyria did crush Damascus (16:9), but Judah became a vassal, and the cost showed up in Ahaz's temple changes. An Assyrian inscription of Tiglath-pileser lists 'Jehoahaz of Judah', the king's fuller name, among his tributaries.",
+      "refs": "2 Kgs 16:5-9; Isa 7:1-17"
+    }
+  ],
+  "kings2:17": [
+    {
+      "q": "Why did the northern kingdom of Israel fall?",
+      "a": "Historically, King Hoshea stopped paying tribute to Assyria and looked to Egypt for help, so Shalmaneser V besieged Samaria for three years and it fell around 722 BC (17:3-6). Kings then gives a long theological explanation: Israel feared other gods, built high places, made the calves, worshipped Baal and the host of heaven, practised divination and child sacrifice, and ignored the prophets God sent (17:7-18). Both levels are true for the writer: Assyria was the instrument, but the cause was two centuries of covenant unfaithfulness. Assyrian records of Sargon II, who claimed the conquest, say 27,290 people were deported from Samaria.",
+      "refs": "2 Kgs 17:1-23"
+    },
+    {
+      "q": "Who are the Samaritans and where did they come from?",
+      "a": "After deporting Israelites, Assyria resettled Samaria with people from Babylon, Cuthah, Avva, Hamath, and Sepharvaim (17:24), a standard Assyrian policy for breaking up national loyalties. These settlers mixed worship of the Lord with their own gods (17:29-33). Later Jews traced the Samaritans to this mixed population, which helps explain the hostility seen in Ezra 4 and the Gospels (John 4:9). The Samaritans themselves have always said they descend from Israelites who remained in the land, and many historians think the population included both groups.",
+      "refs": "2 Kgs 17:24-41; Ezra 4:1-3; John 4:9"
+    },
+    {
+      "q": "Why did God send lions on the new settlers?",
+      "a": "The newcomers 'feared not the LORD', so lions killed some of them (17:25). They and the Assyrian king interpreted it as not knowing 'the manner of the God of the land', and a deported priest was sent back to teach them (17:26-28). Wild animals multiplying in a depopulated land is also a covenant warning (Lev 26:22). The text shows the Lord still claimed the land as his even after Israel was removed from it.",
+      "refs": "2 Kgs 17:25-28; Lev 26:22"
+    },
+    {
+      "q": "Did the settlers fear the Lord or not? Verses 33 and 34 seem to contradict.",
+      "a": "Verse 33 says 'They feared the LORD, and served their own gods', while verse 34 says 'they fear not the LORD'. The writer is making a deliberate point: outward reverence for the Lord alongside other gods is not really fearing him at all. Verses 35-39 spell out that true fear of the Lord means worshipping him alone. The apparent contradiction is a play on the word, contrasting nominal religion with covenant loyalty.",
+      "refs": "2 Kgs 17:32-41"
+    }
+  ],
+  "kings2:18": [
+    {
+      "q": "Why did Hezekiah destroy the bronze serpent Moses made?",
+      "a": "God had told Moses to make the bronze serpent so that bitten Israelites could look at it and live (Num 21:8-9). Centuries later, people were burning incense to it, and Hezekiah broke it in pieces and called it 'Nehushtan', a word that sounds like 'a piece of bronze' (18:4). A gift from God had become an object of worship in its own right. Hezekiah's act shows that even something with a holy history must go when it takes God's place. Jesus later used the serpent as a picture of his own lifting up (John 3:14-15).",
+      "refs": "2 Kgs 18:4; Num 21:8-9; John 3:14-15"
+    },
+    {
+      "q": "Kings says there was no king like Hezekiah, but it says the same of Josiah. Which is it?",
+      "a": "Hezekiah is unmatched in trusting the Lord: 'after him was none like him among all the kings of Judah, nor any that were before him' (18:5). Josiah is unmatched in turning to the Lord with all his heart according to the law of Moses (23:25). Many readers take each statement as praising a different quality, trust in Hezekiah's case and wholehearted reform in Josiah's. Others treat both as idioms of high praise. Either way, the writer holds both up as the high points of Judah's kings.",
+      "refs": "2 Kgs 18:5-6; 23:25"
+    },
+    {
+      "q": "Is Sennacherib's invasion recorded outside the Bible?",
+      "a": "Yes, and unusually well. Sennacherib's annals, preserved on clay prisms, describe his 701 BC campaign: he claims to have taken 46 of Hezekiah's walled cities and shut Hezekiah up in Jerusalem 'like a bird in a cage', and he lists tribute including 30 talents of gold, the same gold figure as 18:14. His palace at Nineveh had wall reliefs showing the siege and capture of Lachish (18:14, 17), now in the British Museum, and excavations at Lachish have found the Assyrian siege ramp. Notably, the Assyrian account does not claim Jerusalem was captured.",
+      "refs": "2 Kgs 18:13-17"
+    },
+    {
+      "q": "Was the Rabshakeh right that Hezekiah had offended the Lord?",
+      "a": "The Assyrian officer argued that Hezekiah had removed the Lord's high places and altars, so the Lord would not help him (18:22), and even claimed the Lord had sent Assyria (18:25). He was mixing half-truths with propaganda: Hezekiah had removed the high places (18:4), but as a reform toward worship at the temple, not an insult to God. Kings shows his words as psychological warfare aimed at the people on the wall, which is why he spoke in Hebrew (18:26-28). The rest of the story proves him wrong.",
+      "refs": "2 Kgs 18:4, 17-36"
+    }
+  ],
+  "kings2:19": [
+    {
+      "q": "Did an angel really kill 185,000 Assyrians? Is there outside evidence?",
+      "a": "The text says the angel of the Lord struck 185,000 in the Assyrian camp in one night, and Sennacherib went home (19:35-36). Sennacherib's annals boast of many conquests but, tellingly, do not claim to have taken Jerusalem, only that he shut Hezekiah in. The Greek historian Herodotus (2.141) preserves an Egyptian story that Sennacherib's army withdrew after mice gnawed its equipment, which some link to a plague. Kings presents it as a direct act of God; some faithful readers think God may have used a disease, while others take it simply as written, and the outside evidence confirms the withdrawal without explaining it.",
+      "refs": "2 Kgs 19:32-36; Isa 37:36-37"
+    },
+    {
+      "q": "Was Sennacherib really killed by his sons in his temple?",
+      "a": "Yes. Verse 37 says his sons Adrammelech and Sharezer killed him while he worshipped in the house of Nisroch, and Esarhaddon succeeded him. Babylonian chronicles and Esarhaddon's own inscriptions confirm Sennacherib was murdered in a revolt by one or more of his sons in 681 BC, and Esarhaddon took the throne. That was about twenty years after the siege; the text does not say it followed immediately. The irony is pointed: the king who mocked the Lord's power to save was not saved by his own god, in his own temple.",
+      "refs": "2 Kgs 19:7, 37"
+    },
+    {
+      "q": "Why did Hezekiah spread the letter before the Lord?",
+      "a": "Sennacherib sent a letter insisting that the Lord could no more save Jerusalem than the gods of other nations had saved them (19:10-13). Hezekiah took it into the temple and laid it open before the Lord, then prayed (19:14-19). It was a vivid act of handing the threat over to God, and his prayer centres not on his own safety but on God's name: 'that all the kingdoms of the earth may know that thou art the LORD God' (19:19). Isaiah's answer came that the Assyrian had insulted the Holy One of Israel (19:20-22).",
+      "refs": "2 Kgs 19:9-22"
+    },
+    {
+      "q": "Was Tirhakah king of Egypt at the time of the siege?",
+      "a": "Verse 9 calls Tirhakah 'king of Ethiopia' (Cush). Taharqa became pharaoh around 690 BC, about ten years after the 701 campaign, which has puzzled readers. A common explanation is that he led the army as a prince in 701 and the writer uses the title he later held, as we might say 'President Lincoln' of his early years. Some scholars have proposed a second, later campaign by Sennacherib, but there is no clear evidence for it, and most accept the single-campaign view.",
+      "refs": "2 Kgs 19:8-9"
+    }
+  ],
+  "kings2:20": [
+    {
+      "q": "Did God change his mind about Hezekiah's death?",
+      "a": "Isaiah told Hezekiah, 'Set thine house in order; for thou shalt die, and not live' (20:1). Hezekiah wept and prayed, and before Isaiah had left the middle court, God sent him back to promise fifteen more years (20:4-6). Many read the first word as a real warning that left room for response, like Jonah's message to Nineveh (Jonah 3:4-10; compare Jer 18:7-10). Christians differ on how this fits with God's foreknowledge, but the text plainly presents prayer as something God hears and answers.",
+      "refs": "2 Kgs 20:1-6; Jer 18:7-10"
+    },
+    {
+      "q": "Did the shadow really go backward ten steps?",
+      "a": "Hezekiah asked for the shadow on 'the dial of Ahaz' to go back ten steps rather than forward, and Isaiah prayed and it did (20:9-11). The 'dial' was probably a stairway whose steps marked time by the sun's shadow. The text does not say how it happened, and Isaiah 38:8 describes the same sign. Some believers take it as a miracle affecting the earth or sun, others as a local miracle of light at that spot, since 2 Chronicles 32:31 mentions the 'wonder that was done in the land'. All agree it is presented as a sign from God, not a natural event.",
+      "refs": "2 Kgs 20:8-11; Isa 38:7-8; 2 Chr 32:31"
+    },
+    {
+      "q": "What was wrong with Hezekiah showing his treasures to the Babylonian envoys?",
+      "a": "Merodach-baladan (Marduk-apla-iddina II), a Babylonian king known from Assyrian and Babylonian records as a persistent rebel against Assyria, sent envoys after Hezekiah's illness (20:12). Hezekiah showed them everything in his treasury and armoury (20:13), probably to look like a worthy ally against Assyria. Isaiah warned that all of it would one day be carried to Babylon (20:16-18). 2 Chronicles 32:25, 31 suggests the issue was pride, and the scene foreshadows the end of the book.",
+      "refs": "2 Kgs 20:12-18; 2 Chr 32:25, 31"
+    },
+    {
+      "q": "Was Hezekiah being selfish when he said 'peace and truth' would be in his days?",
+      "a": "After hearing that his descendants would be taken to Babylon, Hezekiah called the word 'good' and added, 'Is it not good, if peace and truth be in my days?' (20:19). Many readers find this troubling, as if he were relieved the disaster would fall on others. Others read it more charitably as humble acceptance of God's judgment together with gratitude for its delay, similar to Josiah's response (22:19-20). The text does not judge his words, and readers have long disagreed.",
+      "refs": "2 Kgs 20:16-19; 22:19-20"
+    }
+  ],
+  "kings2:21": [
+    {
+      "q": "If Manasseh repented (2 Chronicles 33), why does Kings blame him for the exile?",
+      "a": "2 Chronicles 33:10-17 tells how Manasseh was taken to Babylon in chains, humbled himself, was restored, and removed foreign gods. Kings does not mention this and treats his reign as the decisive turn toward exile (21:10-15; 23:26; 24:3-4). The two need not conflict: a late personal repentance did not undo fifty years of entrenched idolatry and bloodshed across the nation, and his son Amon went straight back to it (21:20-21). Kings focuses on Manasseh's lasting national impact, while Chronicles highlights God's mercy to a repentant sinner.",
+      "refs": "2 Kgs 21:1-16; 23:26; 24:3-4; 2 Chr 33:10-17"
+    },
+    {
+      "q": "What does 'wipe Jerusalem as a man wipeth a dish' mean?",
+      "a": "God says he will stretch over Jerusalem the same measuring line and plummet he used on Samaria and Ahab's house, and will 'wipe Jerusalem as a man wipeth a dish, wiping it, and turning it upside down' (21:13). The measuring line is a builder's tool used here for marking out demolition. The dish image pictures something wiped clean and turned over, empty. It announces that Jerusalem would suffer the same fate as the northern kingdom.",
+      "refs": "2 Kgs 21:10-15"
+    },
+    {
+      "q": "Is Manasseh mentioned outside the Bible?",
+      "a": "Yes. The Assyrian kings Esarhaddon and Ashurbanipal both list 'Manasseh king of Judah' among vassal kings who supplied materials or tribute. That fits his long reign under Assyrian dominance and helps explain the Assyrian-style astral worship he brought into the temple courts (21:3-5). It also makes the 2 Chronicles account of his being taken captive by Assyria historically plausible, though no outside text records that episode directly.",
+      "refs": "2 Kgs 21:1-5; 2 Chr 33:11"
+    },
+    {
+      "q": "Was Isaiah killed by Manasseh?",
+      "a": "Kings says Manasseh 'shed innocent blood very much, till he had filled Jerusalem from one end to another' (21:16), but names no victims. A Jewish tradition, recorded in the Talmud and the Ascension of Isaiah, says Isaiah was sawn in two under Manasseh, and some connect Hebrews 11:37 ('they were sawn asunder') to it. This is tradition, not stated in Scripture, and should be held loosely.",
+      "refs": "2 Kgs 21:16; Heb 11:37"
+    }
+  ],
+  "kings2:22": [
+    {
+      "q": "Was the 'book of the law' Deuteronomy?",
+      "a": "Many scholars, and many earlier readers, identify it with Deuteronomy or its core, because Josiah's reforms match Deuteronomy closely: worship at one place (Deut 12), removing high places and mediums, keeping Passover in Jerusalem (23:21-23), and the covenant curses that alarmed him (Deut 28). Critical scholars often argue the book was written or shaped not long before it was 'found'. Traditional readers hold that it was an older Mosaic text that had been neglected or lost during Manasseh's reign. The text itself calls it 'the book of the law' and 'the book of the covenant' (22:8; 23:2).",
+      "refs": "2 Kgs 22:8-13; 23:2, 21-25; Deut 12; 28"
+    },
+    {
+      "q": "How could the law of God get lost in the temple?",
+      "a": "Under Manasseh and Amon, Judah spent over fifty years in deliberate idolatry, with altars to other gods in the temple courts (21:4-5). In that climate, scrolls of the law could easily be hidden, neglected, or destroyed, and copies were rare and handwritten. The discovery during temple repairs (22:3-8) fits a sanctuary that had been badly mistreated. Josiah's shock suggests that whatever had survived of the law in practice was far from what the book required (22:11-13).",
+      "refs": "2 Kgs 21:4-5; 22:3-13"
+    },
+    {
+      "q": "Why did they consult Huldah instead of Jeremiah?",
+      "a": "Huldah was a recognised prophetess living in Jerusalem, married to the keeper of the wardrobe (22:14), and the king's officials went to her without any sense that this was unusual. Jeremiah had only begun prophesying a few years before (Jer 1:2), and he may have been at Anathoth. The text treats her word as fully authoritative: 'Thus saith the LORD God of Israel' (22:15). She stands with Miriam and Deborah as women through whom God spoke to Israel.",
+      "refs": "2 Kgs 22:12-20; Jer 1:2"
+    },
+    {
+      "q": "Huldah promised Josiah he would die 'in peace'. Didn't he die in battle?",
+      "a": "Huldah said Josiah would be 'gathered into thy grave in peace' and would not see the coming disaster (22:20), yet he was killed at Megiddo (23:29). Many readers take 'in peace' to refer to the main point of the promise: he died before the destruction of Jerusalem and was buried in his own tomb (23:30), not in exile. Others see the battle as Josiah stepping outside God's protection by ignoring a warning (2 Chr 35:21-22). Either way, he was spared seeing the judgment.",
+      "refs": "2 Kgs 22:18-20; 23:29-30; 2 Chr 35:20-24"
+    }
+  ],
+  "kings2:23": [
+    {
+      "q": "Josiah was the best king. Why did he die young at Megiddo?",
+      "a": "Pharaoh Necho went up to the Euphrates in 609 BC, and Josiah went out to meet him and was killed at Megiddo at about 39 (23:29; 22:1). The Babylonian Chronicle shows Egypt was marching to support the remnant of Assyria against Babylon, so the KJV's 'against the king of Assyria' is better understood as 'to' or 'on behalf of'. 2 Chronicles 35:21-22 says Necho warned Josiah that God had sent him, and Josiah did not listen. Kings itself offers no explanation, and readers have long wrestled with the death of so faithful a king.",
+      "refs": "2 Kgs 23:28-30; 2 Chr 35:20-25"
+    },
+    {
+      "q": "If Josiah's reform was so thorough, why was God's wrath not turned away?",
+      "a": "Kings says plainly that 'the LORD turned not from the fierceness of his great wrath' because of Manasseh's provocations (23:26-27). The problem went deeper than one king's policy; Jeremiah, who prophesied in Josiah's day, shows that the people's hearts had not changed (Jer 3:10). Josiah's reform delayed the judgment and was honoured by God (22:19-20), but his sons reversed it at once (23:32, 37).",
+      "refs": "2 Kgs 23:25-27, 32, 37; Jer 3:10"
+    },
+    {
+      "q": "How did Josiah fulfil a prophecy made 300 years earlier?",
+      "a": "In 1 Kings 13:2, an unnamed man of God told Jeroboam that a son of David named Josiah would burn human bones on the Bethel altar. Josiah did exactly that (23:15-16), and he spared the tomb of that same prophet when he learned whose it was (23:17-18). The writer explicitly says this happened 'according to the word of the LORD which the man of God proclaimed'. Some critical scholars think the name was added later, while traditional readers see it as genuine predictive prophecy.",
+      "refs": "2 Kgs 23:15-18; 1 Kgs 13:1-3"
+    },
+    {
+      "q": "Why was Josiah's reform so violent?",
+      "a": "Josiah defiled altars, burned bones, and killed the priests of the high places in Samaria (23:20). The law commanded harsh measures against those who led Israel into idolatry (Deut 13:6-11; 17:2-5), and Josiah acted as a king enforcing the covenant. Notably, the priests of Judah's high places were not killed but brought to Jerusalem and supported, though barred from the altar (23:8-9). Modern readers often find the violence troubling, and it helps to remember that Kings describes covenant enforcement in its own setting, not a model for Christians today.",
+      "refs": "2 Kgs 23:4-20; Deut 13:6-11"
+    }
+  ],
+  "kings2:24": [
+    {
+      "q": "Is the fall of Jerusalem in 597 BC recorded outside the Bible?",
+      "a": "Yes. The Babylonian Chronicle records that in Nebuchadnezzar's seventh year he besieged 'the city of Judah', took it on the second day of Adar (March 597 BC), captured its king, appointed a king of his own choosing, and took heavy tribute to Babylon. This matches 24:10-17, where Jehoiachin surrenders, is taken to Babylon with the temple treasures, and Zedekiah is installed. It is one of the most precise dates in Old Testament history.",
+      "refs": "2 Kgs 24:10-17"
+    },
+    {
+      "q": "Why were later generations punished for Manasseh's sins?",
+      "a": "Kings says the invasions came 'for the sins of Manasseh' and 'the innocent blood that he shed... which the LORD would not pardon' (24:3-4). This does not mean innocent descendants paid for one man; the following kings and people also 'did evil' (23:32, 37; 24:9, 19). Ezekiel 18 insists each generation answers for its own sin. Manasseh is named because his reign set the nation on a path it never truly turned from, and the guilt accumulated.",
+      "refs": "2 Kgs 24:1-4, 9, 19; Ezek 18:1-20"
+    },
+    {
+      "q": "Was Jehoiachin 18 or 8 when he became king?",
+      "a": "2 Kings 24:8 says eighteen; 2 Chronicles 36:9 in most Hebrew manuscripts says eight. Most scholars and translations treat the Chronicles figure as a copying error, since some Hebrew and Greek manuscripts of Chronicles also read eighteen, and 24:15 mentions his wives being taken into exile, which fits a young man better than a boy. Number errors of this kind are a known feature of hand-copied texts and do not affect the story.",
+      "refs": "2 Kgs 24:8, 15; 2 Chr 36:9"
+    },
+    {
+      "q": "Didn't Jeremiah curse Jehoiachin's line? How is he in Jesus' genealogy?",
+      "a": "Jeremiah declared that no descendant of Coniah (Jehoiachin) would prosper 'sitting upon the throne of David' (Jer 22:30), yet Matthew 1:11-12 lists Jechonias as an ancestor of Joseph. Christians have answered this in a few ways. Some note that Jesus was Joseph's legal son, not his biological son, and Luke 3 traces a different line through Nathan. Others point to Haggai 2:23, where God calls Jehoiachin's grandson Zerubbabel his 'signet', a reversal of the signet ring imagery in Jeremiah 22:24, suggesting the curse was not permanent.",
+      "refs": "2 Kgs 24:8-15; Jer 22:24-30; Hag 2:23; Matt 1:11-12"
+    }
+  ],
+  "kings2:25": [
+    {
+      "q": "Why does Kings end with Jehoiachin eating at Babylon's table?",
+      "a": "After thirty-seven years in prison, Jehoiachin was released by Evil-merodach (Amel-Marduk), given a seat above other captive kings, and ate at the king's table for the rest of his life (25:27-30). It is a quiet ending, but a hopeful one: David's line still lived, and God's promise to David (2 Sam 7:16) had not been cancelled. Readers differ on how much hope to see here; some see a muted reminder that exile was the judgment, others a seed of future restoration. Ration tablets found in Babylon list oil allotments for 'Yaukin king of Judah' and his sons, confirming he was supported by the Babylonian court.",
+      "refs": "2 Kgs 25:27-30; 2 Sam 7:16"
+    },
+    {
+      "q": "Why did Zedekiah have his eyes put out?",
+      "a": "Zedekiah broke his oath to Nebuchadnezzar and rebelled (24:20; Ezek 17:13-16), so when he fled and was captured, his sons were killed in front of him and then he was blinded and taken to Babylon in chains (25:6-7). Blinding rebel kings was a known ancient punishment. It also fulfilled two prophecies that seemed to contradict: Jeremiah said he would see the king of Babylon (Jer 32:4), and Ezekiel said he would be brought to Babylon 'yet shall he not see it' (Ezek 12:13).",
+      "refs": "2 Kgs 25:1-7; Jer 32:4; Ezek 12:13"
+    },
+    {
+      "q": "How could God let his own temple be destroyed?",
+      "a": "The Babylonians burned the temple, broke its bronze pillars, and carried off the vessels (25:9, 13-17). Solomon's dedication prayer and God's reply had warned that the temple would be torn down if Israel turned to other gods (1 Kgs 9:6-9). Jeremiah had told the people not to trust in 'the temple of the LORD' as a guarantee while they lived unjustly (Jer 7:1-15). The destruction showed that God's presence was not tied to a building he was obliged to protect, and the exile became a time when Israel rediscovered its faith without one.",
+      "refs": "2 Kgs 25:8-17; 1 Kgs 9:6-9; Jer 7:1-15"
+    },
+    {
+      "q": "Who was Gedaliah, and why was he murdered?",
+      "a": "Nebuchadnezzar appointed Gedaliah, son of Ahikam, to govern the people left in Judah, and he urged them to serve Babylon and live (25:22-24). Ishmael, a member of the royal family, killed him at Mizpah, probably resenting a non-royal governor who cooperated with Babylon (25:25). The remaining people then fled to Egypt in fear of Babylonian reprisal (25:26), an episode told in more detail in Jeremiah 40-43. Gedaliah's father Ahikam had protected Jeremiah (Jer 26:24), so this was a family that had listened to the prophet.",
+      "refs": "2 Kgs 25:22-26; Jer 26:24; 40-43"
+    }
   ]
 };
