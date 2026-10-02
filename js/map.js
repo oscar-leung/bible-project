@@ -128,7 +128,36 @@
     "#view-map ol.mv-stops .mv-stopname{font:inherit;border:0;background:transparent;padding:0;cursor:pointer;" +
     "color:var(--accent,#28466e);font-weight:bold;}" +
     "#view-map ol.mv-stops .mv-stopname:hover{color:var(--gold,#b08a2e);}" +
-    "#view-map ol.mv-stops .mv-stopnote{color:var(--muted,#6b6152);}";
+    "#view-map ol.mv-stops .mv-stopnote{color:var(--muted,#6b6152);}" +
+
+    // --- pan & zoom chrome ---
+    "#view-map .mv-mapwrap{position:relative;}" +
+    "#view-map svg.mv-svg{touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;}" +
+    "#view-map svg.mv-svg:active{cursor:grabbing;}" +
+    "#view-map .mv-zoomctl{position:absolute;bottom:14px;right:10px;display:flex;flex-direction:column;gap:6px;z-index:3;}" +
+    "#view-map .mv-zbtn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line,#d8ccb2);" +
+    "background:var(--panel,#f7f0df);color:var(--ink,#2b2416);font-size:1.15rem;line-height:1;cursor:pointer;" +
+    "box-shadow:0 1px 4px rgba(0,0,0,.14);}" +
+    "#view-map .mv-zbtn:hover{background:var(--accent,#28466e);color:var(--panel,#f7f0df);}" +
+    "#view-map .mv-views{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .55rem;}" +
+    "#view-map .mv-viewchip{font:inherit;font-size:.8rem;cursor:pointer;border:1px solid var(--line,#d8ccb2);" +
+    "background:var(--panel,#f7f0df);color:var(--accent,#28466e);border-radius:999px;padding:.2rem .65rem;}" +
+    "#view-map .mv-viewchip:hover{background:var(--accent,#28466e);color:var(--panel,#f7f0df);}" +
+    "#view-map .mv-hint{margin:.4rem 0 0;font-size:.78rem;color:var(--muted,#6b6152);font-style:italic;}" +
+
+    // --- zoom-tiered label visibility (data-level on the svg) ---
+    "#view-map .mv-marker text{transition:opacity .25s ease;}" +
+    "#view-map .mv-region-label,#view-map .mv-sea-label{transition:opacity .25s ease;}" +
+    "#view-map svg[data-level='1'] .mv-marker.mv-t2 text," +
+    "#view-map svg[data-level='1'] .mv-marker.mv-minor text{opacity:0;}" +
+    "#view-map svg[data-level='2'] .mv-marker.mv-minor text{opacity:0;}" +
+    "#view-map .mv-marker.mv-selected text{opacity:1 !important;}" +
+
+    // --- map key ---
+    "#view-map .mv-key .mv-key-row{display:flex;align-items:center;gap:.55rem;padding:.24rem 0;" +
+    "font-size:.85rem;color:var(--ink,#2b2416);}" +
+    "#view-map .mv-key svg{flex:none;}" +
+    "#view-map .mv-key .mv-key-note{font-style:italic;color:var(--muted,#6b6152);}";
 
   // ---- geography ----------------------------------------------------------
   // All shapes are computed with project(lat, lon) so markers land correctly.
@@ -257,6 +286,14 @@
   // Minor towns take the smaller atlas type so the Benjamin plateau breathes.
   var MINOR_TOWNS = { geba: 1, nob: 1, bahurim: 1, michmash: 1, mizpah: 1, gibeah: 1 };
 
+  // Anchor places whose names show even when the map is small (a phone at
+  // full zoom-out). Everything else labels in as the viewer zooms closer.
+  var TIER1 = {
+    shiloh: 1, ramah: 1, jerusalem: 1, bethlehem: 1, hebron: 1, gath: 1,
+    ziklag: 1, beersheba: 1, "beth-shan": 1, gilgal: 1, mahanaim: 1,
+    aphek: 1, "en-gedi": 1, geshur: 1, rabbah: 1
+  };
+
   var LABEL_OVERRIDES = {
     bethel: { dx: 0, dy: -16, anchor: "middle" },
     mizpah: { dx: -14, dy: 2, anchor: "end" },
@@ -272,9 +309,14 @@
     "beth-shemesh": { dx: -15, dy: 12, anchor: "end" }
   };
 
-  function placeLabels(locs) {
+  function placeLabels(locs, s, isVisible) {
     // Returns map id -> {dx, dy, anchor}. Greedy: try candidates, keep first
     // whose estimated text box doesn't hit an already placed box or a marker.
+    // s scales every box and offset with the current label size (1 = the
+    // 20px base design); isVisible(loc) filters labels that are hidden at
+    // the current zoom tier so they neither claim space nor block others.
+    s = s || 1;
+    if (!isVisible) isVisible = function () { return true; };
     var placed = [];
     var out = {};
     var candidates = [
@@ -294,13 +336,15 @@
       { dx: 35, dy: 6, anchor: "start" },
       { dx: -35, dy: 6, anchor: "end" }
     ];
+    function scaled(c) { return { dx: c.dx * s, dy: c.dy * s, anchor: c.anchor }; }
     function boxFor(p, name, c, id) {
       var minor = id && MINOR_TOWNS[id];
-      var w = Math.max(minor ? 34 : 44, name.length * (minor ? 7.8 : 10.4)), h = minor ? 16 : 20;
+      var w = Math.max((minor ? 34 : 44) * s, name.length * (minor ? 7.8 : 10.4) * s);
+      var h = (minor ? 16 : 20) * s;
       var x = p.x + c.dx;
       if (c.anchor === "end") x -= w;
       else if (c.anchor === "middle") x -= w / 2;
-      var y = p.y + c.dy - h + 3;
+      var y = p.y + c.dy - h + 3 * s;
       return { x: x, y: y, w: w, h: h };
     }
     function hits(b) {
@@ -316,14 +360,15 @@
       var ld = locs[d];
       if (!ld || typeof ld.lat !== "number" || typeof ld.lon !== "number") continue;
       var pd = project(ld.lat, ld.lon);
-      placed.push({ x: pd.x - 9, y: pd.y - 9, w: 18, h: 18 });
+      var rr = 9 * s;
+      placed.push({ x: pd.x - rr, y: pd.y - rr, w: rr * 2, h: rr * 2 });
     }
     // Hand-tuned overrides claim their spots first.
     for (var o = 0; o < locs.length; o++) {
       var lo = locs[o];
-      if (!lo || !LABEL_OVERRIDES[lo.id]) continue;
+      if (!lo || !LABEL_OVERRIDES[lo.id] || !isVisible(lo)) continue;
       if (typeof lo.lat !== "number" || typeof lo.lon !== "number") continue;
-      out[lo.id] = LABEL_OVERRIDES[lo.id];
+      out[lo.id] = scaled(LABEL_OVERRIDES[lo.id]);
       placed.push(boxFor(project(lo.lat, lo.lon), String(lo.name || lo.id || ""), out[lo.id], lo.id));
     }
     // Place top-to-bottom for stable results.
@@ -335,12 +380,13 @@
     for (var i = 0; i < sorted.length; i++) {
       var loc = sorted[i];
       if (typeof loc.lat !== "number" || typeof loc.lon !== "number") continue;
-      if (LABEL_OVERRIDES[loc.id]) continue;
+      if (out[loc.id] || !isVisible(loc)) continue;
       var p = project(loc.lat, loc.lon);
-      var chosen = candidates[0], b = null;
+      var chosen = scaled(candidates[0]), b = null;
       for (var c = 0; c < candidates.length; c++) {
-        b = boxFor(p, String(loc.name || loc.id || ""), candidates[c], loc.id);
-        if (!hits(b) && b.x >= 2 && b.x + b.w <= VIEW_W - 2 && b.y >= 2) { chosen = candidates[c]; break; }
+        var sc = scaled(candidates[c]);
+        b = boxFor(p, String(loc.name || loc.id || ""), sc, loc.id);
+        if (!hits(b) && b.x >= 12 && b.x + b.w <= VIEW_W - 12 && b.y >= 2) { chosen = sc; break; }
       }
       placed.push(boxFor(p, String(loc.name || loc.id || ""), chosen, loc.id));
       out[loc.id] = chosen;
@@ -350,26 +396,51 @@
 
   // ---- markers ------------------------------------------------------------
   function buildMarkers(layer, locs) {
-    var labelPos = placeLabels(locs);
+    els.markerRefs = {};
     for (var i = 0; i < locs.length; i++) {
       (function (loc) {
         if (!loc || typeof loc.lat !== "number" || typeof loc.lon !== "number") return;
         var p = project(loc.lat, loc.lon);
-        var g = svgEl("g", { "class": "mv-marker" + (MINOR_TOWNS[loc.id] ? " mv-minor" : ""), "data-loc": loc.id, tabindex: "0", role: "button" });
+        var minor = !!MINOR_TOWNS[loc.id];
+        var tier = minor ? " mv-minor" : (TIER1[loc.id] ? " mv-t1" : " mv-t2");
+        var g = svgEl("g", { "class": "mv-marker" + tier, "data-loc": loc.id, tabindex: "0", role: "button" });
         g.appendChild(svgEl("title", null, String(loc.name || loc.id)));
         var halo = svgEl("circle", { "class": "mv-halo", cx: p.x, cy: p.y, r: 14, visibility: "hidden" });
         g.appendChild(halo);
-        g.appendChild(svgEl("circle", { "class": "mv-dot", cx: p.x, cy: p.y, r: 7 }));
-        var lp = labelPos[loc.id] || { dx: 15, dy: 6, anchor: "start" };
-        g.appendChild(svgEl("text", {
-          x: p.x + lp.dx, y: p.y + lp.dy, "text-anchor": lp.anchor
-        }, String(loc.name || loc.id)));
+        var dot = svgEl("circle", { "class": "mv-dot", cx: p.x, cy: p.y, r: 7 });
+        g.appendChild(dot);
+        var text = svgEl("text", {
+          x: p.x + 15, y: p.y + 6, "text-anchor": "start"
+        }, String(loc.name || loc.id));
+        g.appendChild(text);
         g.addEventListener("click", function () { selectLocation(loc.id); });
         g.addEventListener("keydown", function (ev) {
           if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); selectLocation(loc.id); }
         });
         layer.appendChild(g);
+        els.markerRefs[loc.id] = { p: p, minor: minor, text: text, dot: dot, halo: halo };
       })(locs[i]);
+    }
+  }
+
+  function relayoutLabels() {
+    var locs = getLocations();
+    if (!locs || !els.markerRefs) return;
+    var s = state.labelScale || 1;
+    var lvl = state.labelLevel || 2;
+    function vis(loc) {
+      if (MINOR_TOWNS[loc.id]) return lvl >= 3;
+      if (TIER1[loc.id]) return true;
+      return lvl >= 2;
+    }
+    var pos = placeLabels(locs, s, vis);
+    for (var id in els.markerRefs) {
+      if (!Object.prototype.hasOwnProperty.call(els.markerRefs, id)) continue;
+      var ref = els.markerRefs[id];
+      var lp = pos[id] || { dx: 15 * s, dy: 6 * s, anchor: "start" };
+      ref.text.setAttribute("x", (ref.p.x + lp.dx).toFixed(1));
+      ref.text.setAttribute("y", (ref.p.y + lp.dy).toFixed(1));
+      ref.text.setAttribute("text-anchor", lp.anchor);
     }
   }
 
@@ -433,7 +504,7 @@
           var bp = stops[b].point;
           var badge = svgEl("g", { "class": "mv-stopbadge", "pointer-events": "none" });
           badge.appendChild(svgEl("circle", { cx: bp.x, cy: bp.y, r: 10.5, fill: color }));
-          badge.appendChild(svgEl("text", { x: bp.x, y: bp.y + 4 }, String(b + 1)));
+          badge.appendChild(svgEl("text", { x: bp.x, y: bp.y + 4, "data-cy": bp.y }, String(b + 1)));
           g.appendChild(badge);
         }
       }
@@ -623,6 +694,275 @@
       "Click a place marker to learn about it, or toggle a journey in the legend to trace the route."));
   }
 
+  // ---- pan & zoom ---------------------------------------------------------
+  // The whole drawn world sits in one <g class="mv-world"> whose transform is
+  // translate(tx ty) scale(k). Labels, dots, badges and route widths are
+  // re-sized inversely on every zoom change so they hold a constant,
+  // readable size on screen while the land itself grows — and more town
+  // names fade in the closer the viewer comes.
+  var KMAX = 7;
+  var view = { k: 1, tx: 0, ty: 0 };
+  var dynPending = false;
+  var lastLayoutKey = "";
+  var anim = null;
+
+  function clampView() {
+    view.k = Math.max(1, Math.min(KMAX, view.k));
+    view.tx = Math.max(VIEW_W * (1 - view.k), Math.min(0, view.tx));
+    view.ty = Math.max(VIEW_H * (1 - view.k), Math.min(0, view.ty));
+  }
+
+  function applyView() {
+    if (!els.world) return;
+    clampView();
+    els.world.setAttribute("transform",
+      "translate(" + view.tx.toFixed(2) + " " + view.ty.toFixed(2) + ") scale(" + view.k.toFixed(4) + ")");
+    if (!dynPending) {
+      dynPending = true;
+      window.requestAnimationFrame(function () { dynPending = false; updateDynamics(); });
+    }
+  }
+
+  function displayWidth() {
+    var w = 0;
+    if (els.svg) { try { w = els.svg.getBoundingClientRect().width; } catch (e) { /* older browsers */ } }
+    if (w > 10) return w;
+    // Map tab hidden: estimate from the window so first paint is close.
+    var iw = window.innerWidth || 900;
+    return iw < 860 ? Math.max(260, iw - 48) : Math.min(703, iw * 0.55);
+  }
+
+  function updateDynamics() {
+    if (!els.svg || !els.markerRefs) return;
+    var e = displayWidth() / VIEW_W * view.k; // effective on-screen scale
+    var f = Math.max(4.5, Math.min(27, 15 / e));        // major label font (viewBox px)
+    var fm = Math.max(3.6, f * 0.72);                   // minor label font
+    var dot = Math.max(1.6, Math.min(10, 5.5 / e));
+    var badge = Math.max(2.4, Math.min(13, 8 / e));
+    var route = Math.max(0.9, Math.min(3.6, 2.6 / e));
+    var lvl = e >= 1.02 ? 3 : (e >= 0.58 ? 2 : 1);
+    state.labelScale = f / 20;
+    state.labelLevel = lvl;
+    els.svg.setAttribute("data-level", String(lvl));
+
+    for (var id in els.markerRefs) {
+      if (!Object.prototype.hasOwnProperty.call(els.markerRefs, id)) continue;
+      var ref = els.markerRefs[id];
+      var fs = ref.minor ? fm : f;
+      ref.text.style.fontSize = fs.toFixed(2) + "px";
+      ref.text.style.strokeWidth = (fs * 0.23).toFixed(2) + "px";
+      ref.dot.setAttribute("r", dot.toFixed(2));
+      ref.dot.style.strokeWidth = Math.max(0.7, dot * 0.3).toFixed(2) + "px";
+      ref.halo.setAttribute("r", (dot + 7 / Math.sqrt(view.k)).toFixed(2));
+    }
+    if (els.journeyLayer) {
+      var lines = els.journeyLayer.querySelectorAll("path[fill='none']");
+      for (var i = 0; i < lines.length; i++) lines[i].setAttribute("stroke-width", route.toFixed(2));
+      var bc = els.journeyLayer.querySelectorAll(".mv-stopbadge circle");
+      for (var b = 0; b < bc.length; b++) bc[b].setAttribute("r", badge.toFixed(2));
+      var bt = els.journeyLayer.querySelectorAll(".mv-stopbadge text");
+      for (var t = 0; t < bt.length; t++) {
+        bt[t].style.fontSize = (badge * 1.15).toFixed(2) + "px";
+        var cy = parseFloat(bt[t].getAttribute("data-cy") || "0");
+        bt[t].setAttribute("y", (cy + badge * 0.4).toFixed(2));
+      }
+    }
+    // Region & sea names belong to the far view; fade them out up close.
+    var ro = Math.max(0, Math.min(1, (2.7 - view.k) / 1.7));
+    if (els.world) {
+      var rl = els.world.querySelectorAll(".mv-region-label, .mv-sea-label");
+      for (var r = 0; r < rl.length; r++) rl[r].setAttribute("opacity", ro.toFixed(2));
+    }
+    // Re-run label placement only when size or tier actually moved.
+    var key = lvl + ":" + Math.round(f * 2);
+    if (key !== lastLayoutKey) { lastLayoutKey = key; relayoutLabels(); }
+  }
+
+  function svgPoint(clientX, clientY) {
+    var r = els.svg.getBoundingClientRect();
+    return {
+      x: (clientX - r.left) / (r.width || 1) * VIEW_W,
+      y: (clientY - r.top) / (r.height || 1) * VIEW_H
+    };
+  }
+
+  function stopAnim() {
+    if (anim) { window.cancelAnimationFrame(anim.raf); anim = null; }
+  }
+
+  function zoomAt(ux, uy, newK) {
+    stopAnim();
+    newK = Math.max(1, Math.min(KMAX, newK));
+    var wx = (ux - view.tx) / view.k, wy = (uy - view.ty) / view.k;
+    view.k = newK;
+    view.tx = ux - newK * wx;
+    view.ty = uy - newK * wy;
+    applyView();
+  }
+
+  function animateTo(k, tx, ty) {
+    stopAnim();
+    var from = { k: view.k, tx: view.tx, ty: view.ty };
+    var start = null, dur = 420, a = {};
+    function step(ts) {
+      if (start === null) start = ts;
+      var t = Math.min(1, (ts - start) / dur);
+      var u = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      view.k = from.k + (k - from.k) * u;
+      view.tx = from.tx + (tx - from.tx) * u;
+      view.ty = from.ty + (ty - from.ty) * u;
+      applyView();
+      if (t < 1) a.raf = window.requestAnimationFrame(step);
+      else anim = null;
+    }
+    anim = a;
+    a.raf = window.requestAnimationFrame(step);
+  }
+
+  function zoomToRect(x, y, w, h) {
+    var k = Math.max(1, Math.min(KMAX, Math.min(VIEW_W / w, VIEW_H / h)));
+    var tx = Math.max(VIEW_W * (1 - k), Math.min(0, VIEW_W / 2 - k * (x + w / 2)));
+    var ty = Math.max(VIEW_H * (1 - k), Math.min(0, VIEW_H / 2 - k * (y + h / 2)));
+    animateTo(k, tx, ty);
+  }
+
+  function zoomToPoint(p, k) {
+    k = Math.max(1, Math.min(KMAX, k));
+    var tx = Math.max(VIEW_W * (1 - k), Math.min(0, VIEW_W / 2 - k * p.x));
+    var ty = Math.max(VIEW_H * (1 - k), Math.min(0, VIEW_H / 2 - k * p.y));
+    animateTo(k, tx, ty);
+  }
+
+  function bindGestures(svg) {
+    var pointers = {}, pCount = 0, pinch = null, drag = null, moved = 0;
+
+    svg.addEventListener("pointerdown", function (ev) {
+      pointers[ev.pointerId] = { x: ev.clientX, y: ev.clientY };
+      pCount++;
+      moved = 0;
+      stopAnim();
+      try { svg.setPointerCapture(ev.pointerId); } catch (e) { /* ok */ }
+      if (pCount === 2) {
+        var ids = [], pid;
+        for (pid in pointers) if (Object.prototype.hasOwnProperty.call(pointers, pid)) ids.push(pid);
+        var p1 = pointers[ids[0]], p2 = pointers[ids[1]];
+        var mid = svgPoint((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
+        pinch = {
+          d0: Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y)) || 1,
+          k0: view.k,
+          wx: (mid.x - view.tx) / view.k,
+          wy: (mid.y - view.ty) / view.k
+        };
+        drag = null;
+      } else if (pCount === 1 && ev.pointerType === "mouse") {
+        drag = { x0: ev.clientX, y0: ev.clientY, tx0: view.tx, ty0: view.ty };
+      }
+    });
+
+    svg.addEventListener("pointermove", function (ev) {
+      var p = pointers[ev.pointerId];
+      if (!p) return;
+      moved += Math.abs(ev.clientX - p.x) + Math.abs(ev.clientY - p.y);
+      p.x = ev.clientX; p.y = ev.clientY;
+      if (pinch && pCount >= 2) {
+        var ids = [], pid;
+        for (pid in pointers) if (Object.prototype.hasOwnProperty.call(pointers, pid)) ids.push(pid);
+        var a = pointers[ids[0]], b = pointers[ids[1]];
+        var d = Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y)) || 1;
+        var mid = svgPoint((a.x + b.x) / 2, (a.y + b.y) / 2);
+        view.k = Math.max(1, Math.min(KMAX, pinch.k0 * d / pinch.d0));
+        view.tx = mid.x - view.k * pinch.wx;
+        view.ty = mid.y - view.k * pinch.wy;
+        applyView();
+        if (ev.cancelable) ev.preventDefault();
+      } else if (drag) {
+        var r = svg.getBoundingClientRect();
+        view.tx = drag.tx0 + (ev.clientX - drag.x0) * VIEW_W / (r.width || 1);
+        view.ty = drag.ty0 + (ev.clientY - drag.y0) * VIEW_H / (r.height || 1);
+        applyView();
+      }
+    });
+
+    function release(ev) {
+      if (pointers[ev.pointerId]) { delete pointers[ev.pointerId]; pCount--; }
+      if (pCount < 2) pinch = null;
+      if (pCount === 0) drag = null;
+    }
+    svg.addEventListener("pointerup", release);
+    svg.addEventListener("pointercancel", release);
+
+    // A real drag must not fire the marker click underneath it.
+    svg.addEventListener("click", function (ev) {
+      if (moved > 8) { ev.stopPropagation(); ev.preventDefault(); moved = 0; }
+    }, true);
+
+    svg.addEventListener("wheel", function (ev) {
+      ev.preventDefault();
+      var pt = svgPoint(ev.clientX, ev.clientY);
+      zoomAt(pt.x, pt.y, view.k * Math.exp(-ev.deltaY * 0.0016));
+    }, { passive: false });
+
+    svg.addEventListener("dblclick", function (ev) {
+      ev.preventDefault();
+      var pt = svgPoint(ev.clientX, ev.clientY);
+      zoomAt(pt.x, pt.y, view.k * 1.7);
+    });
+  }
+
+  // Quick flights to the story's main stages.
+  var PRESETS = [
+    { label: "🗺️ Whole land", x: 0, y: 0, w: VIEW_W, h: VIEW_H },
+    { label: "Benjamin heartland", x: 440, y: 540, w: 250, h: 190 },
+    { label: "Philistia & the Elah", x: 170, y: 470, w: 420, h: 330 },
+    { label: "Judah & the south", x: 230, y: 600, w: 500, h: 430 },
+    { label: "The north", x: 280, y: 40, w: 520, h: 440 }
+  ];
+
+  function buildMapControls(mapCol, mapWrap) {
+    var chips = el("div", { "class": "mv-views", role: "group", "aria-label": "Quick map views" });
+    for (var i = 0; i < PRESETS.length; i++) {
+      (function (p) {
+        var c = el("button", { "class": "mv-viewchip", type: "button" }, p.label);
+        c.addEventListener("click", function () { zoomToRect(p.x, p.y, p.w, p.h); });
+        chips.appendChild(c);
+      })(PRESETS[i]);
+    }
+    mapCol.insertBefore(chips, mapWrap);
+
+    var ctl = el("div", { "class": "mv-zoomctl" });
+    var zin = el("button", { "class": "mv-zbtn", type: "button", "aria-label": "Zoom in", title: "Zoom in" }, "+");
+    var zout = el("button", { "class": "mv-zbtn", type: "button", "aria-label": "Zoom out", title: "Zoom out" }, "−");
+    var zhome = el("button", { "class": "mv-zbtn", type: "button", "aria-label": "Whole land", title: "Whole land" }, "⌂");
+    zin.addEventListener("click", function () { zoomAt(VIEW_W / 2, VIEW_H / 2, view.k * 1.5); });
+    zout.addEventListener("click", function () { zoomAt(VIEW_W / 2, VIEW_H / 2, view.k / 1.5); });
+    zhome.addEventListener("click", function () { zoomToRect(0, 0, VIEW_W, VIEW_H); });
+    ctl.appendChild(zin);
+    ctl.appendChild(zout);
+    ctl.appendChild(zhome);
+    mapWrap.appendChild(ctl);
+
+    mapCol.appendChild(el("p", { "class": "mv-hint" },
+      "Scroll or pinch to zoom · drag (two fingers on a phone) to move · tap a place for its story. " +
+      "Smaller towns appear as you come closer."));
+  }
+
+  function buildKey(container) {
+    var box = el("div", { "class": "mv-panel mv-key" });
+    box.innerHTML =
+      '<h3 style="margin:0 0 .35rem;font-family:Georgia,\'Times New Roman\',serif;font-size:1rem;">Map key</h3>' +
+      '<div class="mv-key-row"><svg viewBox="0 0 24 16" width="24" height="16" aria-hidden="true">' +
+      '<circle cx="9" cy="8" r="5.5" fill="var(--accent,#28466e)" stroke="var(--panel,#f7f0df)" stroke-width="1.6"/></svg>' +
+      '<span>A place — tap it for its story</span></div>' +
+      '<div class="mv-key-row"><svg viewBox="0 0 24 16" width="24" height="16" aria-hidden="true">' +
+      '<circle cx="9" cy="8" r="7" fill="#4a7c59"/><text x="9" y="11" font-size="9" fill="#fff" text-anchor="middle" font-family="Georgia,serif" font-weight="bold">1</text></svg>' +
+      '<span>Numbered stop on a journey</span></div>' +
+      '<div class="mv-key-row"><svg viewBox="0 0 30 10" width="30" height="10" aria-hidden="true">' +
+      '<path d="M1 5 H29" stroke="#4a7c59" stroke-width="2.6" stroke-dasharray="5 3" fill="none"/></svg>' +
+      '<span>Journey route — toggle under “Journeys”</span></div>' +
+      '<div class="mv-key-row"><span class="mv-key-note">Zoom in and the smaller towns label themselves.</span></div>';
+    container.appendChild(box);
+  }
+
   // ---- toolbar ------------------------------------------------------------
   function buildToolbar(container) {
     var bar = el("div", { "class": "mv-toolbar" });
@@ -698,30 +1038,63 @@
     layout.appendChild(sideCol);
     root.appendChild(layout);
 
+    var mapWrap = el("div", { "class": "mv-mapwrap" });
+    mapCol.appendChild(mapWrap);
+
     var svg = svgEl("svg", {
       "class": "mv-svg", viewBox: "0 0 " + VIEW_W + " " + VIEW_H,
       role: "img", "aria-label": "Map of ancient Israel during 1 Samuel",
       preserveAspectRatio: "xMidYMid meet"
     });
-    mapCol.appendChild(svg);
+    mapWrap.appendChild(svg);
+    els.svg = svg;
 
-    buildGeography(svg);
+    // Everything drawn lives inside one pannable, zoomable world group.
+    els.world = svgEl("g", { "class": "mv-world" });
+    svg.appendChild(els.world);
+
+    buildGeography(els.world);
 
     els.journeyLayer = svgEl("g", { "class": "mv-journeys" });
-    svg.appendChild(els.journeyLayer);
+    els.world.appendChild(els.journeyLayer);
     buildJourneyLayer(els.journeyLayer, journeys);
 
     els.markerLayer = svgEl("g", { "class": "mv-markers" });
-    svg.appendChild(els.markerLayer);
+    els.world.appendChild(els.markerLayer);
     buildMarkers(els.markerLayer, locs);
+
+    buildMapControls(mapCol, mapWrap);
+    bindGestures(svg);
 
     els.panel = el("div", { "class": "mv-panel mv-detail", "aria-live": "polite" });
     sideCol.appendChild(els.panel);
+    buildKey(sideCol);
     els.legend = buildLegend(sideCol, journeys);
 
     updateMarkerClasses();
     updateJourneyVisibility();
     renderPanel();
+
+    // Start on the whole land, then size labels for the real pixels.
+    view.k = 1; view.tx = 0; view.ty = 0;
+    lastLayoutKey = "";
+    applyView();
+
+    // The map tab may be hidden at init (width 0); re-measure when it shows,
+    // and on window resizes, so label sizes always match true screen pixels.
+    if (state._mo) { try { state._mo.disconnect(); } catch (e) { /* ok */ } }
+    if (typeof MutationObserver === "function") {
+      state._mo = new MutationObserver(function () {
+        if (root.classList.contains("active")) updateDynamics();
+      });
+      state._mo.observe(root, { attributes: true, attributeFilter: ["class"] });
+    }
+    if (!state._resizeBound) {
+      state._resizeBound = true;
+      window.addEventListener("resize", function () {
+        if (state.inited) updateDynamics();
+      });
+    }
 
     state.inited = true;
     if (state.pendingFocus) {
@@ -736,8 +1109,14 @@
       state.pendingFocus = locId;
       return;
     }
-    if (!locById(locId)) return;
+    var loc = locById(locId);
+    if (!loc) return;
     selectLocation(locId);
+    // Fly in close enough that the place and its neighbours are labeled.
+    if (typeof loc.lat === "number" && typeof loc.lon === "number") {
+      var p = project(loc.lat, loc.lon);
+      zoomToPoint(p, Math.max(view.k, MINOR_TOWNS[locId] ? 2.8 : 2.2));
+    }
     var m = els.markerLayer.querySelector('.mv-marker[data-loc="' + String(locId).replace(/"/g, '\\"') + '"]');
     if (m && typeof m.scrollIntoView === "function") {
       try { m.scrollIntoView({ block: "nearest", behavior: "smooth" }); } catch (e) { /* older browsers */ }

@@ -242,6 +242,28 @@ commentary.
 - Verified live: `swRegistered: true`, `swActive: true`,
   `manifestOk: true`, zero console errors.
 
+### Phase 16 — The map learns to fly (pan, zoom, and tiered labels)
+- The atlas is now a living map, not a picture: scroll or pinch to
+  zoom (up to 7×), drag to pan, double-tap to dive, with +/−/⌂
+  buttons and one-tap "quick flight" chips (Whole land, Benjamin
+  heartland, Philistia & the Elah, Judah & the south, The north).
+- The real cure for the squish: labels now hold a constant readable
+  size on screen while the land grows underneath them, and the town
+  names come in tiers — 15 anchor places always labeled, the rest
+  fade in at mid-zoom, the six small Benjamin towns only up close.
+  Region and sea names belong to the far view and fade out as you
+  come in. Every dot, route, and stop badge rescales in step.
+- Label placement re-runs live at each zoom tier (the greedy placer
+  now takes a scale factor and a visibility filter), so the layout is
+  computed for exactly the labels on screen — verified zero overlaps
+  at desktop base (33 labels), phone base (15), and full Benjamin
+  close-up (all 39), zero console errors.
+- Clicking a place from a story chapter now flies the map to it,
+  close enough that its neighbourhood labels itself.
+- A "Map key" panel joined the sidebar, and the zoom controls live
+  over the empty southern desert so they never cover a town name.
+- Service worker cache bumped to v2 so installed phones pick this up.
+
 ### Next up
 - Full extraction via scripts/extract-bible-project.sh once the dual
   home should end; more Easter eggs; OneNote notes import if they hold
