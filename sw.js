@@ -3,20 +3,20 @@
 // then serve cache-first with a background network refresh (stale-while-
 // revalidate), so the app opens instantly and offline, yet picks up new
 // deploys on the next visit.
-var CACHE = "samuel-kings-v6";
+var CACHE = "samuel-kings-v7";
 var CORE = [
   ".", "index.html", "styles.css", "manifest.webmanifest",
   "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png",
   "data/samuel1-chapters.js", "data/samuel2-chapters.js", "data/characters.js",
   "data/locations.js", "data/journeys.js", "data/timeline.js", "data/quiz.js",
-  "data/battle-gibeon.js", "data/battle-rephaim.js", "data/battle-ephraim.js",
+  "data/battle-gibeon.js", "data/battle-rephaim.js", "data/battle-ephraim.js", "data/battle-ziklag.js",
   "data/family.js", "data/dialogue.js", "data/study-notes.js",
   "data/kings1-chapters.js", "data/kings1-guide.js", "data/kings1-characters.js", "data/kings1-quiz.js",
   "data/kings2-chapters.js", "data/kings2-guide.js", "data/kings2-characters.js", "data/kings2-quiz.js",
   "data/kings-faq.js", "data/community.js", "data/kings1-world.js", "data/kings2-world.js",
   "js/realm.js", "js/study.js",
   "js/app.js", "js/story.js", "js/map.js", "js/characters.js", "js/timeline.js",
-  "js/game.js", "js/battle.js", "js/battle-rephaim.js", "js/battle-ephraim.js",
+  "js/game.js", "js/battle.js", "js/battle-rephaim.js", "js/battle-ephraim.js", "js/battle-ziklag.js",
   "js/battlehub.js", "js/familytree.js", "js/voices.js", "js/eastereggs.js",
   "js/stage.js", "js/journey.js", "js/lore.js", "js/progress.js"
 ];

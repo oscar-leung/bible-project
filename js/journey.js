@@ -82,7 +82,7 @@
     kings2: { label: "2 Kings", global: "KINGS2", dlgKey: function () { return null; } }
   };
   // Chapters with a playable battle in the hub.
-  var BATTLE_FOR = { "samuel2:2": "gibeon", "samuel2:5": "rephaim", "samuel2:18": "ephraim" };
+  var BATTLE_FOR = { "samuel1:30": "ziklag", "samuel2:2": "gibeon", "samuel2:5": "rephaim", "samuel2:18": "ephraim" };
 
   function chapterData(book, num) {
     var b = BOOKS[book];

@@ -9,6 +9,14 @@
 
   var BATTLES = [
     {
+      id: "ziklag",
+      emblem: "🔥",
+      title: "The Raid on Ziklag",
+      ref: "1 Samuel 30",
+      blurb: "The town burns, the men talk of stoning David — then the ephod speaks, the Besor sorts the army, and a thrown-away slave turns the whole war.",
+      module: "ZiklagView"
+    },
+    {
       id: "gibeon",
       emblem: "⚔️",
       title: "The Battle of Gibeon",

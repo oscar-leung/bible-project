@@ -331,6 +331,26 @@ commentary.
   battle, 12 lore terms in ch. 17 with hover cards, +25 toast on
   marking a chapter read, zero console errors, mobile layout clean.
 
+### Phase 20 — The Raid on Ziklag joins the battle hub
+- The fourth playable battle, and the one this project owed its
+  kindred repo: **1 Samuel 30**, staged on the beat-line of the
+  Ziklag-aftermath and Besor-crossing reenactment scenes in Eric's
+  books-of-samuel project (credited in-app on the final stage).
+- Five stages: the smoking town (the stoning moment as a choice),
+  the ephod's three promises, the brook Besor (the two hundred as a
+  choice, then reviving the Egyptian item by item — bread, water,
+  figs, raisins, each with its verse), the twilight-to-evening rout
+  (strike the feasting camp's fires across three waves; four camels
+  carry an easter egg), and the statute of sharing (the spoil
+  decision, David's ordinance, and the gifts to Judah's elders that
+  seed the crown at Hebron).
+- Wired everywhere: first card in the battle hub, +60 ✦ on victory,
+  and 1 Samuel 30's Journey Mode now ends at a "⚔️ Play this battle"
+  beat that drops onto the field.
+- Verified by playing it end to end: both decision paths, all four
+  provisions, all three fire waves, the camel egg, the victory card,
+  the XP toast, and the journey link — zero console errors.
+
 ### Next up
 - Full extraction via scripts/extract-bible-project.sh once the dual
   home should end; more Easter eggs; OneNote notes import if they hold
