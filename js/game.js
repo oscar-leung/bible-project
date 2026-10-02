@@ -177,7 +177,7 @@
     quizCard.appendChild(el("div", "sq-emblem", "📜"));
     quizCard.appendChild(el("h3", null, "Scroll of Knowledge"));
     quizCard.appendChild(el("p", null, quizData()
-      ? "Answer " + Math.min(QUIZ_LENGTH, quizData().length) + " questions drawn from both books of Samuel. Build a streak, earn your rank."
+      ? "Answer " + Math.min(QUIZ_LENGTH, quizData().length) + " questions drawn from Samuel and Kings. Build a streak, earn your rank."
       : "The scrolls have not yet arrived&hellip;"));
     function startQuiz() {
       if (quizData()) beginQuiz();
@@ -307,9 +307,9 @@
                 : "✗ Not quite."));
       if (q.explain) fb.appendChild(el("p", null, esc(q.explain)));
       if (q.chapter) {
-        var bookName = q.book === "samuel2" ? "2 Samuel" : "1 Samuel";
+        var bookName = { samuel2: "2 Samuel", kings1: "1 Kings", kings2: "2 Kings" }[q.book] || "1 Samuel";
         var link = el("button", "sq-linkbtn", "📖 Read " + bookName + " " + esc(q.chapter));
-        link.addEventListener("click", function () { goToChapter(q.chapter, q.book === "samuel2" ? "samuel2" : undefined); });
+        link.addEventListener("click", function () { goToChapter(q.chapter, q.book || undefined); });
         fb.appendChild(link);
       }
       card.appendChild(fb);
@@ -383,7 +383,7 @@
       if (j.color) pick.style.borderLeftColor = j.color;
       pick.appendChild(el("h4", null, esc(j.title || "Untitled journey")));
       pick.appendChild(el("div", "sq-meta", j.stops.length + " stops" +
-        (Array.isArray(j.chapters) && j.chapters.length ? " · " + (j.book === "samuel2" ? "2 Samuel " : "1 Samuel ") + esc(j.chapters.join(", ")) : "")));
+        (Array.isArray(j.chapters) && j.chapters.length ? " · " + (({ samuel2: "2 Samuel ", kings1: "1 Kings ", kings2: "2 Kings " })[j.book] || "1 Samuel ") + esc(j.chapters.join(", ")) : "")));
       pick.addEventListener("click", function () { beginJourney(j); });
       list.appendChild(pick);
     });

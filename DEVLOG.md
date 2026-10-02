@@ -283,3 +283,100 @@ commentary.
 - Full extraction via scripts/extract-bible-project.sh once the dual
   home should end; more Easter eggs; OneNote notes import if they hold
   material beyond the devotional database.
+
+## 2026-09-28 — Session 6: 1 Kings begins (built in the workspace copy)
+
+### Phase 16 — The study becomes Samuel & Kings
+- 📖 1 Kings added as a third book in the story view — all 22 chapters with
+  summary, KJV key verse, and historian note (two historian agents, each
+  owning one fragment file for chs 1–11 and 12–22, merged by a validating
+  script).
+- ✍️ New study layer (`js/study.js`) on every 1 Kings chapter: the big idea,
+  a "look for as you read" checklist (remembered per chapter), a "connect the
+  story" link back to Samuel, "let it hit home," journaling questions, and a
+  one-line prayer. Every chapter in every book gets **My notes** (autosaved on
+  the device) with "Copy row for my sheet" — tab-separated, so it pastes
+  straight into the Bible Chapter Summaries sheet — plus export-all and .md
+  download.
+- 🧠 Key-verse memorizer: tap-to-reveal cloze in three levels.
+- 👑 "Before you read 1 Kings" primer: the bridge from 2 Samuel 24, the shape
+  of the book, seven ideas that unlock it, and every king's report card
+  (verdict, reign, why) filterable by Judah / Israel.
+- 🧭 Running map: the map's new **My 1 Kings trail** lights every place in
+  the chapters marked read, joins them in reading order, pulses the latest
+  chapter's places, and offers "Next up." 25 new places (Samaria, Tirzah,
+  Carmel, Jezreel, Megiddo, Hazor, Gezer…); places beyond the frame (Tyre,
+  Zarephath, Damascus, Horeb, Egypt, Ezion-geber, Sheba) are pinned to its
+  edge with an arrow. Four new journeys: Solomon's realm, the kingdom tears
+  in two, the journeys of Elijah, Ahab's wars with Aram. Chapter filter now
+  covers 1 Kings.
+- 32 new characters, 16 timeline entries, 22 quest questions; character,
+  timeline, map, and quest chips link into the right book. `#story/1k18`
+  deep links.
+- Verified in-browser: zero console errors at 1280×900 and 390×844, no
+  horizontal scroll; notes persist; Voices stays on Samuel chapters only.
+  Screenshots: `kings1-guide.png`, `kings1-study.png`, `kings1-trail.png`.
+
+## 2026-09-29 — Session 7: 2 Kings begins
+
+### Phase 17 — 2 Kings 1–4 and "From my study"
+- 📖 2 Kings added as a fourth book (chapters 1–4 so far): Ahaziah and
+  Baal-zebub, Elijah's chariot of fire and the double portion, the march on
+  Moab and Mesha's revolt, and Elisha's household miracles. Each chapter has
+  summary, KJV key verse, historian note, and the full study block.
+- 👑 "Before you read 2 Kings" primer (the primer code is now generic per
+  book), with the report card for Ahaziah, Jehoram, Jehoshaphat, and Mesha.
+- 📓 **From my study** (private: kept in the workspace copy, never published to the public site): Oscar's own notes, exported read-only from his
+  Notion (Bible Devotional Study pages for 1 Kings 1–4 and every Kings row in
+  the Thoughts & Questions log) into `data/my-study.js`. Each chapter shows
+  his theme, his questions as tap-to-reveal cards (his first thought, then
+  what he found; open ones flagged), his "why I should care" takeaways, and
+  the practical step for the week.
+- 🧭 The running map is now **My Kings trail** across both books in order;
+  five new places (Elijah's Jordan crossing, the wilderness of Edom, Moab /
+  Dibon, Kir-hareseth, Baal-shalisha) and three journeys: Elijah's Last Walk,
+  the March against Moab, Elisha's Circuit of Mercy. Map filter, chips,
+  characters (6 new), timeline (5 new), and 12 quest questions all know
+  2 Kings; `#story/2k4` deep links.
+- Verified in-browser: zero console errors at 1280 and 390 wide, no
+  horizontal scroll. Screenshots: `my-study.png`, `kings2-guide.png`,
+  `kings2-map.png`.
+
+## 2026-10-02 — Session 8: 2 Kings 5–10
+
+### Phase 18 — Naaman to Jehu
+- 📖 2 Kings 5–10 added: Naaman healed in the Jordan, chariots of fire at
+  Dothan, the siege of Samaria and the four lepers, Hazael and Judah's
+  kings, Jehu's ride, and the end of Baal in Samaria — each with study
+  block. 8 characters, 18 quest questions, four new kings on the report
+  card, three new primer themes.
+- 🗺️ Dothan, Ibleam, the shearing house, and Edom on the map; Naaman's
+  journey, the blinded army at Dothan, and Jehu's ride as journeys; seven
+  timeline entries ending at the Black Obelisk.
+- 📓 From my study re-exported from Notion: 1 Kings 1–10, 122 of Oscar's
+  questions (up from 33), most logged from Claude chats, plus each
+  chapter's theme, takeaways, and practical step. 1 Kings 8's two-part
+  study is merged. No 2 Kings notes exist yet.
+- Merged main (Retrace experiments) into the branch; no overlap.
+
+## 2026-10-02 — Session 9: a royal livery, and questions for everyone
+
+### Phase 19 — The Books of Kings get their own look
+- 👑 Opening a Kings chapter switches the whole app to "The Books of Kings":
+  a gold crown replaces David's lyre and Tyrian purple replaces lapis, in
+  light and dark (`js/realm.js`, `[data-realm]` in styles.css). The choice
+  follows you across tabs and reloads; Samuel chapters switch it back.
+- ❓ A questions panel under every chapter, with three tabs:
+  - **Common questions** — 121 reader FAQs across 1 Kings 1–22 and
+    2 Kings 1–10 (`data/kings-faq.js`): the baby and the sword, 700 wives,
+    the lying spirit, the bears, Mesha's sacrifice, Jehu's bloodshed.
+  - **Discussion** — a public comment thread per chapter through giscus
+    (GitHub Discussions), switched off until `data/community.js` is filled.
+  - **My questions** — a private, on-device list with tick-off.
+- The workspace copy now carries the live site's Samuel study notebook,
+  README and devlog, so it is a superset of what is deployed. The public
+  sync omits `data/my-study.js`.
+- Merged onto the live site's big map (900×1200, larger labels) and PWA:
+  the Kings edge-pinned places and trail scale with it, the offline cache
+  now precaches every Kings file (cache `samuel-kings-v2`), and the
+  installable app is named "Samuel & Kings".

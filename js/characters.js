@@ -58,7 +58,10 @@
           card.appendChild(desc);
         }
 
-        if (c.chapters && c.chapters.length) {
+        var hasS1 = c.chapters && c.chapters.length;
+        var hasK1 = c.kings1 && c.kings1.length;
+        var hasK2 = c.kings2 && c.kings2.length;
+        if (hasS1 || hasK1 || hasK2) {
           var chapWrap = document.createElement("div");
           chapWrap.className = "char-chapters";
 
@@ -67,16 +70,22 @@
           label.textContent = "Appears in";
           chapWrap.appendChild(label);
 
-          for (var j = 0; j < c.chapters.length; j++) {
-            (function (num) {
+          // 1 Samuel chips keep their original "Ch. N" label; 1 Kings chips
+          // are prefixed so the two books can't be confused.
+          var refs = [];
+          for (var j = 0; hasS1 && j < c.chapters.length; j++) refs.push([c.chapters[j], undefined, "Ch. "]);
+          for (var k = 0; hasK1 && k < c.kings1.length; k++) refs.push([c.kings1[k], "kings1", "1 Kgs "]);
+          for (var k2 = 0; hasK2 && k2 < c.kings2.length; k2++) refs.push([c.kings2[k2], "kings2", "2 Kgs "]);
+          for (var r = 0; r < refs.length; r++) {
+            (function (num, book, prefix) {
               var chip = document.createElement("button");
               chip.className = "chip";
-              chip.textContent = "Ch. " + num;
+              chip.textContent = prefix + num;
               chip.addEventListener("click", function () {
-                if (window.App) window.App.goToChapter(num);
+                if (window.App) window.App.goToChapter(num, book);
               });
               chapWrap.appendChild(chip);
-            })(c.chapters[j]);
+            })(refs[r][0], refs[r][1], refs[r][2]);
           }
           card.appendChild(chapWrap);
         }

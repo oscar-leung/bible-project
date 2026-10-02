@@ -13,6 +13,34 @@
 
   var VIEW_W = 900;
   var VIEW_H = 1200;
+
+  // Places beyond the frame (Tyre, Damascus, Horeb, Egypt, Sheba…) are pinned
+  // to the frame edge; `arrow` points the way they really lie.
+  var EDGE = 24;
+  function projectLoc(loc) {
+    var p = project(loc.lat, loc.lon);
+    var x = Math.min(VIEW_W - EDGE, Math.max(EDGE, p.x));
+    var y = Math.min(VIEW_H - EDGE, Math.max(EDGE, p.y));
+    var dx = p.x - x, dy = p.y - y;
+    var off = Math.abs(dx) > 6 || Math.abs(dy) > 6;
+    var arrow = "";
+    if (off) {
+      var a = Math.atan2(dy, dx) * 180 / Math.PI; // 0 = east, 90 = south
+      var dirs = ["\u2192", "\u2198", "\u2193", "\u2199", "\u2190", "\u2196", "\u2191", "\u2197"];
+      arrow = dirs[((Math.round(a / 45) % 8) + 8) % 8];
+    }
+    return { x: x, y: y, off: off, arrow: arrow };
+  }
+  function markerLabel(loc) {
+    var name = String(loc.name || loc.id || "");
+    var p = projectLoc(loc);
+    return p.off ? name + " " + p.arrow : name;
+  }
+  // The running trail walks both books of Kings in canonical order.
+  var TRAIL_BOOKS = [
+    { book: "kings1", global: "KINGS1", label: "1 Kings", key: "kings1.story.readChapters" },
+    { book: "kings2", global: "KINGS2", label: "2 Kings", key: "kings2.story.readChapters" }
+  ];
   var SVG_NS = "http://www.w3.org/2000/svg";
 
   // ---- module state -------------------------------------------------------
@@ -21,7 +49,8 @@
     selectedLoc: null,     // location id or null
     selectedJourney: null, // journey id or null
     visibleJourneys: {},   // id -> bool
-    chapterFilter: 0,      // 0 = all chapters
+    chapterFilter: "",     // "" = all; "s1:N" = 1 Samuel N; "k1:N" = 1 Kings N
+    showTrail: true,       // the 1 Kings reading trail overlay
     pendingFocus: null     // focus() called before init
   };
 
@@ -88,6 +117,20 @@
     "#view-map .mv-marker.mv-selected circle.mv-dot{fill:var(--gold,#b08a2e);}" +
     "#view-map .mv-marker.mv-selected text{fill:var(--gold,#b08a2e);font-weight:bold;}" +
     "#view-map .mv-marker.mv-dim{opacity:.22;}" +
+    "#view-map .mv-marker.mv-off circle.mv-dot{fill:var(--panel,#f7f0df);stroke:var(--accent,#28466e);stroke-width:2;stroke-dasharray:2 2;}" +
+    "#view-map .mv-marker.mv-off text{font-style:italic;}" +
+    "#view-map .mv-marker.mv-visited circle.mv-dot{fill:var(--gold,#b08a2e);}" +
+    "#view-map .mv-marker.mv-here circle.mv-halo{visibility:visible;animation:mvPulse 1.6s ease-in-out infinite;}" +
+    "@keyframes mvPulse{0%,100%{opacity:.25}50%{opacity:1}}" +
+    "@media (prefers-reduced-motion: reduce){#view-map .mv-marker.mv-here circle.mv-halo{animation:none;}}" +
+    "#view-map .mv-trail path{fill:none;stroke:var(--gold,#b08a2e);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;opacity:.85;}" +
+    "#view-map .mv-trailbox h3{display:flex;align-items:center;gap:.4rem;}" +
+    "#view-map .mv-trailbar{height:6px;border-radius:3px;background:var(--line,#d8ccb2);overflow:hidden;margin:.3rem 0 .5rem;}" +
+    "#view-map .mv-trailbar span{display:block;height:100%;background:var(--gold,#b08a2e);}" +
+    "#view-map .mv-traillist{list-style:none;margin:.4rem 0 0;padding:0;max-height:15rem;overflow:auto;}" +
+    "#view-map .mv-traillist li{font-size:.86rem;padding:.25rem 0;border-top:1px dashed var(--line,#d8ccb2);line-height:1.45;}" +
+    "#view-map .mv-traillist .mv-stopname{font:inherit;border:0;background:transparent;padding:0;cursor:pointer;color:var(--accent,#28466e);}" +
+    "#view-map .mv-traillist .mv-stopname:hover{color:var(--gold,#b08a2e);}" +
     "#view-map .mv-halo{fill:none;stroke:var(--gold,#b08a2e);stroke-width:2;opacity:.9;pointer-events:none;}" +
 
     "#view-map .mv-region-label{fill:var(--mv-region);font-family:Georgia,'Times New Roman',serif;" +
@@ -374,7 +417,7 @@
     for (var d = 0; d < locs.length; d++) {
       var ld = locs[d];
       if (!ld || typeof ld.lat !== "number" || typeof ld.lon !== "number") continue;
-      var pd = project(ld.lat, ld.lon);
+      var pd = projectLoc(ld);
       var rr = 9 * s;
       placed.push({ x: pd.x - rr, y: pd.y - rr, w: rr * 2, h: rr * 2 });
     }
@@ -384,26 +427,26 @@
       if (!lo || !LABEL_OVERRIDES[lo.id] || !isVisible(lo)) continue;
       if (typeof lo.lat !== "number" || typeof lo.lon !== "number") continue;
       out[lo.id] = scaled(LABEL_OVERRIDES[lo.id]);
-      placed.push(boxFor(project(lo.lat, lo.lon), String(lo.name || lo.id || ""), out[lo.id], lo.id));
+      placed.push(boxFor(projectLoc(lo), markerLabel(lo), out[lo.id], lo.id));
     }
     // Place top-to-bottom for stable results.
     var sorted = locs.slice().sort(function (a, b) {
-      var ya = typeof a.lat === "number" ? project(a.lat, a.lon).y : 0;
-      var yb = typeof b.lat === "number" ? project(b.lat, b.lon).y : 0;
+      var ya = typeof a.lat === "number" ? projectLoc(a).y : 0;
+      var yb = typeof b.lat === "number" ? projectLoc(b).y : 0;
       return ya - yb;
     });
     for (var i = 0; i < sorted.length; i++) {
       var loc = sorted[i];
       if (typeof loc.lat !== "number" || typeof loc.lon !== "number") continue;
       if (out[loc.id] || !isVisible(loc)) continue;
-      var p = project(loc.lat, loc.lon);
+      var p = projectLoc(loc);
       var chosen = scaled(candidates[0]), b = null;
       for (var c = 0; c < candidates.length; c++) {
         var sc = scaled(candidates[c]);
-        b = boxFor(p, String(loc.name || loc.id || ""), sc, loc.id);
+        b = boxFor(p, markerLabel(loc), sc, loc.id);
         if (!hits(b) && b.x >= 12 && b.x + b.w <= VIEW_W - 12 && b.y >= 2) { chosen = sc; break; }
       }
-      placed.push(boxFor(p, String(loc.name || loc.id || ""), chosen, loc.id));
+      placed.push(boxFor(p, markerLabel(loc), chosen, loc.id));
       out[loc.id] = chosen;
     }
     return out;
@@ -415,10 +458,10 @@
     for (var i = 0; i < locs.length; i++) {
       (function (loc) {
         if (!loc || typeof loc.lat !== "number" || typeof loc.lon !== "number") return;
-        var p = project(loc.lat, loc.lon);
+        var p = projectLoc(loc);
         var minor = !!MINOR_TOWNS[loc.id];
         var tier = minor ? " mv-minor" : (TIER1[loc.id] ? " mv-t1" : " mv-t2");
-        var g = svgEl("g", { "class": "mv-marker" + tier, "data-loc": loc.id, tabindex: "0", role: "button" });
+        var g = svgEl("g", { "class": "mv-marker" + tier + (p.off ? " mv-off" : ""), "data-loc": loc.id, tabindex: "0", role: "button" });
         g.appendChild(svgEl("title", null, String(loc.name || loc.id)));
         var halo = svgEl("circle", { "class": "mv-halo", cx: p.x, cy: p.y, r: 14, visibility: "hidden" });
         g.appendChild(halo);
@@ -426,7 +469,7 @@
         g.appendChild(dot);
         var text = svgEl("text", {
           x: p.x + 15, y: p.y + 6, "text-anchor": "start"
-        }, String(loc.name || loc.id));
+        }, markerLabel(loc));
         g.appendChild(text);
         g.addEventListener("click", function () { selectLocation(loc.id); });
         g.addEventListener("keydown", function (ev) {
@@ -467,7 +510,7 @@
       var s = j.stops[i] || {};
       var loc = locById(s.loc);
       if (loc && typeof loc.lat === "number" && typeof loc.lon === "number") {
-        out.push({ loc: s.loc, note: s.note || "", name: loc.name || s.loc, point: project(loc.lat, loc.lon) });
+        out.push({ loc: s.loc, note: s.note || "", name: loc.name || s.loc, point: projectLoc(loc) });
       }
     }
     return out;
@@ -629,23 +672,28 @@
       if (halo) halo.setAttribute("visibility", selected ? "visible" : "hidden");
       // Chapter filter dimming (selected marker never dims).
       var dim = false;
-      if (state.chapterFilter > 0 && !selected) {
-        var chs = loc && Array.isArray(loc.chapters) ? loc.chapters : [];
-        dim = chs.indexOf(state.chapterFilter) === -1;
+      if (state.chapterFilter && !selected) {
+        var fparts = state.chapterFilter.split(":");
+        var field = fparts[0] === "k1" ? "kings1" : fparts[0] === "k2" ? "kings2" : "chapters";
+        var chs = loc && Array.isArray(loc[field]) ? loc[field] : [];
+        dim = chs.indexOf(parseInt(fparts[1], 10)) === -1;
       }
       if (dim) m.classList.add("mv-dim"); else m.classList.remove("mv-dim");
     }
   }
 
-  function chapterChips(chapters) {
-    var wrap = el("div", { "class": "mv-chips" });
+  var BOOK_NAMES = { samuel1: "1 Samuel", samuel2: "2 Samuel", kings1: "1 Kings", kings2: "2 Kings" };
+  function chapterChips(chapters, book, wrapIn) {
+    var wrap = wrapIn || el("div", { "class": "mv-chips" });
     if (!Array.isArray(chapters)) return wrap;
+    var bookName = BOOK_NAMES[book] || "1 Samuel";
     for (var i = 0; i < chapters.length; i++) {
       (function (n) {
         if (typeof n !== "number") return;
-        var chip = el("button", { "class": "mv-chip", type: "button", title: "Read 1 Samuel " + n }, "Ch. " + n);
+        var chip = el("button", { "class": "mv-chip", type: "button", title: "Read " + bookName + " " + n },
+          (book === "kings1" ? "1 Kgs " : book === "kings2" ? "2 Kgs " : "Ch. ") + n);
         chip.addEventListener("click", function () {
-          if (window.App && typeof window.App.goToChapter === "function") window.App.goToChapter(n);
+          if (window.App && typeof window.App.goToChapter === "function") window.App.goToChapter(n, book);
         });
         wrap.appendChild(chip);
       })(chapters[i]);
@@ -668,9 +716,15 @@
         panel.appendChild(el("h3", null, loc.name || loc.id));
         if (loc.modernName) panel.appendChild(el("p", { "class": "mv-modern" }, "modern: " + loc.modernName));
         if (loc.description) panel.appendChild(el("p", null, loc.description));
-        if (Array.isArray(loc.chapters) && loc.chapters.length) {
+        var s1 = Array.isArray(loc.chapters) && loc.chapters.length;
+        var k1 = Array.isArray(loc.kings1) && loc.kings1.length;
+        var k2 = Array.isArray(loc.kings2) && loc.kings2.length;
+        if (s1 || k1 || k2) {
           panel.appendChild(el("p", { "class": "mv-modern" }, "Appears in:"));
-          panel.appendChild(chapterChips(loc.chapters));
+          var chipWrap = chapterChips(s1 ? loc.chapters : [], "samuel1");
+          if (k1) chapterChips(loc.kings1, "kings1", chipWrap);
+          if (k2) chapterChips(loc.kings2, "kings2", chipWrap);
+          panel.appendChild(chipWrap);
         }
         return;
       }
@@ -713,7 +767,7 @@
         }
         if (Array.isArray(j.chapters) && j.chapters.length) {
           panel.appendChild(el("p", { "class": "mv-modern" }, "Chapters:"));
-          panel.appendChild(chapterChips(j.chapters));
+          panel.appendChild(chapterChips(j.chapters, j.book));
         }
         return;
       }
@@ -1011,20 +1065,164 @@
     var bar = el("div", { "class": "mv-toolbar" });
     var label = el("label", { "for": "mv-chapter-filter" }, "Show places from:");
     var sel = el("select", { id: "mv-chapter-filter" });
-    sel.appendChild(el("option", { value: "0" }, "All chapters"));
-    for (var n = 1; n <= 31; n++) sel.appendChild(el("option", { value: String(n) }, "Chapter " + n));
-    sel.value = String(state.chapterFilter);
+    sel.appendChild(el("option", { value: "" }, "All chapters"));
+    var k2n = window.KINGS2 && Array.isArray(window.KINGS2.chapters) ? window.KINGS2.chapters.length : 0;
+    var groups = [["s1", "1 Samuel", 31, "Chapter "], ["k1", "1 Kings", 22, "1 Kings "], ["k2", "2 Kings", k2n, "2 Kings "]];
+    for (var g = 0; g < groups.length; g++) {
+      if (!groups[g][2]) continue;
+      var og = el("optgroup", { label: groups[g][1] });
+      for (var n = 1; n <= groups[g][2]; n++) og.appendChild(el("option", { value: groups[g][0] + ":" + n }, groups[g][3] + n));
+      sel.appendChild(og);
+    }
+    sel.value = state.chapterFilter;
     sel.addEventListener("change", function () {
-      state.chapterFilter = parseInt(sel.value, 10) || 0;
+      state.chapterFilter = sel.value || "";
       updateMarkerClasses();
+      updateTrail();
     });
     bar.appendChild(label);
     bar.appendChild(sel);
     container.appendChild(bar);
   }
 
+  // ---- my reading trail (1 & 2 Kings) -------------------------------------
+  // A running map of the study: every place in every Kings chapter marked
+  // read turns gold, a gold line joins them in reading order, and the places
+  // of the latest chapter pulse — "you are here."
+  function readSetFor(key) {
+    var out = [];
+    try {
+      var arr = JSON.parse(localStorage.getItem(key) || "[]");
+      if (Array.isArray(arr)) for (var i = 0; i < arr.length; i++) {
+        var n = parseInt(arr[i], 10);
+        if (n >= 1 && out.indexOf(n) === -1) out.push(n);
+      }
+    } catch (e) {}
+    return out.sort(function (a, b) { return a - b; });
+  }
+  function bookChapters(tb) {
+    var d = window[tb.global];
+    return d && Array.isArray(d.chapters) ? d.chapters : [];
+  }
+  function chapterOf(tb, n) {
+    var chs = bookChapters(tb);
+    for (var i = 0; i < chs.length; i++) if (chs[i] && chs[i].num === n) return chs[i];
+    return null;
+  }
+
+  function updateTrail() {
+    if (!els.trailLayer || !els.trailBox) return;
+    clear(els.trailLayer);
+    clear(els.trailBox);
+    // Every chapter of both Kings books that exists, and the ones marked read,
+    // in canonical order (1 Kings 1 … 22, then 2 Kings 1 …).
+    var total = 0, read = [], next = null;
+    for (var b = 0; b < TRAIL_BOOKS.length; b++) {
+      var tb = TRAIL_BOOKS[b];
+      var chs = bookChapters(tb);
+      total += chs.length;
+      var rs = readSetFor(tb.key);
+      for (var c = 0; c < chs.length; c++) {
+        var num = chs[c].num;
+        if (rs.indexOf(num) !== -1) read.push({ tb: tb, num: num, ch: chs[c] });
+        else if (!next) next = { tb: tb, num: num, ch: chs[c] };
+      }
+    }
+    if (!total) { els.trailBox.style.display = "none"; return; }
+
+    var visited = {}, here = {}, seq = [];
+    for (var r = 0; r < read.length; r++) {
+      var locs0 = Array.isArray(read[r].ch.locations) ? read[r].ch.locations : [];
+      for (var l = 0; l < locs0.length; l++) {
+        var id = locs0[l];
+        if (!locById(id)) continue;
+        visited[id] = true;
+        if (r === read.length - 1) here[id] = true;
+        // The line stays inside the frame; edge-pinned places just light up.
+        if (!projectLoc(locById(id)).off && seq[seq.length - 1] !== id) seq.push(id);
+      }
+    }
+
+    // Line through the places in reading order.
+    if (state.showTrail && seq.length > 1) {
+      var d = "";
+      for (var s = 0; s < seq.length; s++) {
+        var p = projectLoc(locById(seq[s]));
+        d += (s ? " L" : "M") + p.x.toFixed(1) + " " + p.y.toFixed(1);
+      }
+      els.trailLayer.appendChild(svgEl("path", { d: d }));
+    }
+    var markers = els.markerLayer ? els.markerLayer.querySelectorAll(".mv-marker") : [];
+    for (var m = 0; m < markers.length; m++) {
+      var mid = markers[m].getAttribute("data-loc");
+      markers[m].classList.toggle("mv-visited", !!(state.showTrail && visited[mid]));
+      markers[m].classList.toggle("mv-here", !!(state.showTrail && here[mid]) && mid !== state.selectedLoc);
+    }
+
+    // Side panel.
+    var box = els.trailBox;
+    box.style.display = "";
+    box.appendChild(el("h3", null, "🧭 My Kings trail"));
+    var nPlaces = 0;
+    for (var k in visited) if (visited[k]) nPlaces++;
+    box.appendChild(el("p", { "class": "mv-modern" },
+      read.length + " of " + total + " chapters read · " + nPlaces + (nPlaces === 1 ? " place" : " places") + " walked"));
+    var bar = el("div", { "class": "mv-trailbar" });
+    var fill = el("span");
+    fill.style.width = Math.round(read.length / total * 100) + "%";
+    bar.appendChild(fill);
+    box.appendChild(bar);
+
+    var row = el("label", { "class": "mv-legend-row" });
+    var cb = el("input", { type: "checkbox" });
+    cb.checked = state.showTrail;
+    cb.addEventListener("change", function () { state.showTrail = cb.checked; updateTrail(); });
+    row.appendChild(cb);
+    row.appendChild(document.createTextNode(" Show my trail on the map"));
+    box.appendChild(row);
+
+    if (next) {
+      var nb = el("button", { "class": "mv-chip", type: "button" },
+        (read.length ? "Next up: " : "Start: ") + next.tb.label + " " + next.num + (next.ch.title ? " — " + next.ch.title : "") + " →");
+      nb.addEventListener("click", function () { if (window.App) window.App.goToChapter(next.num, next.tb.book); });
+      box.appendChild(nb);
+    } else {
+      box.appendChild(el("p", null, "✨ You've walked every chapter here so far."));
+    }
+    if (!read.length) {
+      box.appendChild(el("p", { "class": "mv-placeholder" },
+        "Mark a Kings chapter as read in the Story tab and its places light up here, joined in the order you read them."));
+      return;
+    }
+    var ul = el("ul", { "class": "mv-traillist" });
+    for (var t = read.length - 1; t >= 0; t--) {
+      (function (entry) {
+        var c2 = entry.ch;
+        var li = el("li");
+        var go = el("button", { "class": "mv-stopname", type: "button" }, entry.tb.label + " " + entry.num);
+        go.addEventListener("click", function () { if (window.App) window.App.goToChapter(entry.num, entry.tb.book); });
+        li.appendChild(go);
+        li.appendChild(document.createTextNode(c2.title ? " — " + c2.title + ": " : ": "));
+        var locs = Array.isArray(c2.locations) ? c2.locations : [];
+        for (var q = 0; q < locs.length; q++) {
+          (function (lid, last) {
+            var lo = locById(lid);
+            if (!lo) return;
+            var btn = el("button", { "class": "mv-stopname", type: "button" }, lo.name || lid);
+            btn.addEventListener("click", function () { selectLocation(lid); });
+            li.appendChild(btn);
+            if (!last) li.appendChild(document.createTextNode(", "));
+          })(locs[q], q === locs.length - 1);
+        }
+        ul.appendChild(li);
+      })(read[t]);
+    }
+    box.appendChild(ul);
+  }
+
   // ---- init ---------------------------------------------------------------
   function pickDefaultJourney(journeys) {
+    for (var q = 0; q < journeys.length; q++) if (journeys[q] && journeys[q].id === "solomon-realm") return "solomon-realm";
     for (var i = 0; i < journeys.length; i++) {
       var j = journeys[i];
       if (!j) continue;
@@ -1046,8 +1244,8 @@
     root.appendChild(style);
 
     root.appendChild(el("p", { "class": "mv-intro" },
-      "The world of 1 Samuel — from Shiloh's sanctuary to the Philistine plain. " +
-      "Click a place, or trace a journey."));
+      "The world of Samuel and Kings — from Shiloh's sanctuary to Solomon's temple and Elijah's Carmel. " +
+      "Click a place, trace a journey, or follow your own reading trail. Places beyond the frame sit on its edge, arrow pointing the way."));
 
     var locs = getLocations();
     if (!locs || !locs.length) {
@@ -1086,7 +1284,7 @@
 
     var svg = svgEl("svg", {
       "class": "mv-svg", viewBox: "0 0 " + VIEW_W + " " + VIEW_H,
-      role: "img", "aria-label": "Map of ancient Israel during 1 Samuel",
+      role: "img", "aria-label": "Map of ancient Israel in the books of Samuel and Kings",
       preserveAspectRatio: "xMidYMid meet"
     });
     mapWrap.appendChild(svg);
@@ -1100,6 +1298,9 @@
 
     els.journeyLayer = svgEl("g", { "class": "mv-journeys" });
     els.world.appendChild(els.journeyLayer);
+
+    els.trailLayer = svgEl("g", { "class": "mv-trail" });
+    els.world.appendChild(els.trailLayer);
 
     els.markerLayer = svgEl("g", { "class": "mv-markers" });
     els.world.appendChild(els.markerLayer);
@@ -1115,12 +1316,24 @@
 
     els.panel = el("div", { "class": "mv-panel mv-detail", "aria-live": "polite" });
     sideCol.appendChild(els.panel);
+    els.trailBox = el("div", { "class": "mv-panel mv-trailbox" });
+    sideCol.appendChild(els.trailBox);
     buildKey(sideCol);
     els.legend = buildLegend(sideCol, journeys);
 
     updateMarkerClasses();
     updateJourneyVisibility();
     renderPanel();
+    updateTrail();
+
+    // Re-read the trail whenever the map tab is opened (chapters may have been
+    // marked read in the story view since).
+    if (window.MutationObserver && !root.__mvTrailObs) {
+      root.__mvTrailObs = new MutationObserver(function () {
+        if (root.classList.contains("active")) updateTrail();
+      });
+      root.__mvTrailObs.observe(root, { attributes: true, attributeFilter: ["class"] });
+    }
 
     // Start on the whole land, then size labels for the real pixels.
     view.k = 1; view.tx = 0; view.ty = 0;
@@ -1161,7 +1374,7 @@
     selectLocation(locId);
     // Fly in close enough that the place and its neighbours are labeled.
     if (typeof loc.lat === "number" && typeof loc.lon === "number") {
-      var p = project(loc.lat, loc.lon);
+      var p = projectLoc(loc);
       zoomToPoint(p, Math.max(view.k, MINOR_TOWNS[locId] ? 2.8 : 2.2));
     }
     var m = els.markerLayer.querySelector('.mv-marker[data-loc="' + String(locId).replace(/"/g, '\\"') + '"]');

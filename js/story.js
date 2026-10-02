@@ -7,6 +7,10 @@
  *
  * API: StoryView.show(num)             -> 1 Samuel chapter num (unchanged)
  *      StoryView.show(num, "samuel2")  -> 2 Samuel chapter num
+ *      StoryView.show(num, "kings1")   -> 1 Kings chapter num
+ *      StoryView.show(num, "kings2")   -> 2 Kings chapter num
+ * 1 Kings chapters carry a `study` block; js/study.js (window.StudyKit)
+ * renders it plus notes, the verse memorizer, and the book primer.
  * The chapter panel <article> carries data-book="samuel1|samuel2" and
  * data-chapter="N" so other modules (voices.js) can read the location.
  */
@@ -27,14 +31,31 @@
       lsLast: "samuel2.story.lastChapter",   // parallel keys for book two
       lsRead: "samuel2.story.readChapters",
       canonical: 24                          // full book; data grows toward it
+    },
+    kings1: {
+      label: "1 Kings",
+      global: "KINGS1",
+      lsLast: "kings1.story.lastChapter",
+      lsRead: "kings1.story.readChapters",
+      canonical: 22
+    },
+    kings2: {
+      label: "2 Kings",
+      global: "KINGS2",
+      lsLast: "kings2.story.lastChapter",
+      lsRead: "kings2.story.readChapters",
+      canonical: 25                          // data grows toward it
     }
   };
+  var BOOK_ORDER = ["samuel1", "samuel2", "kings1", "kings2"];
 
   var root = null;              // #view-story
   var currentBook = "samuel1";  // active book id
   var state = {
     samuel1: { current: 1, readSet: {} },
-    samuel2: { current: 1, readSet: {} }
+    samuel2: { current: 1, readSet: {} },
+    kings1: { current: 1, readSet: {} },
+    kings2: { current: 1, readSet: {} }
   };
 
   /* ---------- storage (always wrapped) ---------- */
@@ -61,8 +82,7 @@
   }
 
   function loadState() {
-    loadBookState("samuel1");
-    loadBookState("samuel2");
+    for (var i = 0; i < BOOK_ORDER.length; i++) loadBookState(BOOK_ORDER[i]);
   }
 
   function saveLast() {
@@ -98,8 +118,9 @@
     return null;
   }
 
-  function samuel2Available() {
-    var list = chapters("samuel2");
+  function available(bookId) {
+    if (bookId === "samuel1") return true;
+    var list = BOOKS[bookId] && chapters(bookId);
     return !!(list && list.length);
   }
 
@@ -191,6 +212,12 @@
       "#view-story .story-histnote{margin:1rem 0;padding:.85rem 1.1rem;border-left:4px solid var(--gold);background:color-mix(in srgb,var(--gold) 9%,transparent);border-radius:0 .4rem .4rem 0;}" +
       "#view-story .story-histnote h4{margin:0 0 .35rem;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);}" +
       "#view-story .story-histnote p{margin:0;line-height:1.6;font-size:.95rem;}" +
+      "#view-story .story-chips{margin:.85rem 0 0;}" +
+      "#view-story .story-chips h4{margin:0 0 .35rem;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}" +
+      "#view-story .story-chiprow{display:flex;flex-wrap:wrap;gap:.4rem;}" +
+      "#view-story .story-chiprow .chip{cursor:pointer;}" +
+      "#view-story .story-readtoggle{margin-top:1.1rem;display:inline-flex;align-items:center;gap:.45rem;font-size:.9rem;cursor:pointer;border:1px solid var(--line);border-radius:.45rem;padding:.4rem .8rem;background:var(--panel);color:var(--ink);}" +
+      "#view-story .story-readtoggle.on{border-color:var(--gold);color:var(--gold);font-weight:600;}" +
       "#view-story .story-studynote{margin:1rem 0;padding:.9rem 1.15rem;border:1px dashed var(--accent);background:color-mix(in srgb,var(--accent) 5%,transparent);border-radius:.5rem;}" +
       "#view-story .story-studynote h4{margin:0 0 .4rem;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);}" +
       "#view-story .story-studynote h5{margin:.7rem 0 .25rem;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}" +
@@ -200,12 +227,6 @@
       "#view-story .story-studylist{margin:.3rem 0 .3rem 1.2rem;padding:0;line-height:1.55;font-size:.93rem;}" +
       "#view-story .story-studylist li{margin:.3rem 0;}" +
       "#view-story .story-studyreflect{margin:.7rem 0 0;padding:.55rem .8rem;background:color-mix(in srgb,var(--gold) 8%,transparent);border-radius:.4rem;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:.92rem;line-height:1.55;}" +
-      "#view-story .story-chips{margin:.85rem 0 0;}" +
-      "#view-story .story-chips h4{margin:0 0 .35rem;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}" +
-      "#view-story .story-chiprow{display:flex;flex-wrap:wrap;gap:.4rem;}" +
-      "#view-story .story-chiprow .chip{cursor:pointer;}" +
-      "#view-story .story-readtoggle{margin-top:1.1rem;display:inline-flex;align-items:center;gap:.45rem;font-size:.9rem;cursor:pointer;border:1px solid var(--line);border-radius:.45rem;padding:.4rem .8rem;background:var(--panel);color:var(--ink);}" +
-      "#view-story .story-readtoggle.on{border-color:var(--gold);color:var(--gold);font-weight:600;}" +
       "#view-story .story-placeholder{text-align:center;padding:2.5rem 1rem;color:var(--muted);}" +
       "#view-story .story-placeholder h3{font-family:Georgia,serif;color:var(--ink);}";
     var style = document.createElement("style");
@@ -219,9 +240,11 @@
   function render() {
     if (!root) return;
 
-    // If 2 Samuel was active but its data vanished (shouldn't happen, but be
-    // defensive), fall back to 1 Samuel.
-    if (currentBook === "samuel2" && !samuel2Available()) currentBook = "samuel1";
+    // If a later book was active but its data vanished (shouldn't happen, but
+    // be defensive), fall back to 1 Samuel.
+    if (!available(currentBook)) currentBook = "samuel1";
+    if (window.Realm) window.Realm.set(currentBook);
+    try { localStorage.setItem("story.lastBook", currentBook); } catch (e) {}
 
     var list = chapters(currentBook);
     if (!list || !list.length) {
@@ -229,7 +252,7 @@
         '<div class="card story-placeholder">' +
         "<h3>The scroll is still being copied\u2026</h3>" +
         "<p>Chapter data for " + esc(BOOKS[currentBook].label) + " isn\u2019t loaded yet. " +
-        "Make sure <code>data/" + (currentBook === "samuel2" ? "samuel2" : "samuel1") +
+        "Make sure <code>data/" + currentBook +
         "-chapters.js</code> is included before this script, then reload.</p>" +
         "</div>";
       return;
@@ -244,21 +267,23 @@
     var num = ch && ch.num ? ch.num : st.current;
 
     var html = '<div class="card">' + bookSwitcherHtml() + navigatorHtml(list, max, num) + "</div>";
+    if (window.StudyKit && typeof window.StudyKit.guideHtml === "function") html += window.StudyKit.guideHtml(currentBook);
     html += chapterPanelHtml(ch, max);
     root.innerHTML = html;
   }
 
   function bookSwitcherHtml() {
-    // Renders only when 2 Samuel data is present.
-    if (!samuel2Available()) return "";
+    // Renders only when a second book's data is present.
+    var ids = [];
+    for (var b = 0; b < BOOK_ORDER.length; b++) if (available(BOOK_ORDER[b])) ids.push(BOOK_ORDER[b]);
+    if (ids.length < 2) return "";
     var h = '<div class="story-books" role="group" aria-label="Choose a book">';
-    var ids = ["samuel1", "samuel2"];
     for (var i = 0; i < ids.length; i++) {
       var id = ids[i];
       var cfg = BOOKS[id];
       var label = esc(cfg.label);
-      if (id === "samuel2") {
-        var avail = maxChapter("samuel2");
+      if (id !== "samuel1") {
+        var avail = maxChapter(id);
         if (avail < cfg.canonical) {
           label += ' <span class="story-bookcount">\u00B7 ' + avail +
             (avail === 1 ? " chapter" : " chapters") + " so far</span>";
@@ -278,7 +303,7 @@
       if (list[i]) byNum[list[i].num] = true;
     }
     var bookLabel = BOOKS[currentBook].label;
-    var partial = currentBook === "samuel2" && max < BOOKS.samuel2.canonical;
+    var partial = currentBook !== "samuel1" && max < BOOKS[currentBook].canonical;
     var h =
       '<div class="story-nav-head">' +
       '<span class="story-progress">' + esc(bookLabel) + " \u00B7 Chapter " + num + " of " + max +
@@ -313,6 +338,7 @@
     try {
       var notes = window.STUDY_NOTES;
       if (!notes || !ch) return "";
+      if (currentBook !== "samuel1" && currentBook !== "samuel2") return "";
       var key = currentBook === "samuel2" ? "2s" + ch.num : String(ch.num);
       var n = notes[key];
       if (!n) return "";
@@ -354,14 +380,13 @@
       h += '<blockquote class="story-keyverse">\u201C' + esc(ch.keyVerse.text) + "\u201D";
       if (ch.keyVerse.ref) h += "<cite>\u2014 " + esc(ch.keyVerse.ref) + "</cite>";
       h += "</blockquote>";
+      if (window.StudyKit) h += window.StudyKit.memorizeHtml(ch.keyVerse);
     }
 
     if (ch.historianNote) {
       h += '<aside class="story-histnote"><h4>\uD83D\uDCDC Historian\u2019s note</h4><p>' +
         esc(ch.historianNote) + "</p></aside>";
     }
-
-    h += studyNoteHtml(ch);
 
     var i;
     if (ch.locations && ch.locations.length) {
@@ -382,6 +407,12 @@
           '" title="Open characters view">\uD83D\uDC64 ' + esc(characterName(cid)) + "</button>";
       }
       h += "</div></div>";
+    }
+
+    h += studyNoteHtml(ch);
+
+    if (window.StudyKit && typeof window.StudyKit.chapterHtml === "function") {
+      h += window.StudyKit.chapterHtml(currentBook, ch);
     }
 
     var isRead = !!state[currentBook].readSet[ch.num];
@@ -411,7 +442,7 @@
 
   function switchBook(bookId) {
     if (!BOOKS[bookId] || bookId === currentBook) return;
-    if (bookId === "samuel2" && !samuel2Available()) return;
+    if (!available(bookId)) return;
     currentBook = bookId;
     render();
   }
@@ -427,6 +458,10 @@
         // and must not swallow clicks.
         if (isBtn && node.hasAttribute("data-book")) {
           switchBook(node.getAttribute("data-book"));
+          return;
+        }
+        if (node.hasAttribute("data-study") && window.StudyKit) {
+          if (window.StudyKit.onAction(node, currentBook, state[currentBook].current) === "rerender") render();
           return;
         }
         if (isBtn && node.hasAttribute("data-chapter")) {
@@ -487,6 +522,11 @@
       if (!root) return;
       injectStyles();
       loadState();
+      // Reopen the book you were last reading (falls back to 1 Samuel).
+      try {
+        var lastBook = localStorage.getItem("story.lastBook");
+        if (lastBook && BOOKS[lastBook] && available(lastBook)) currentBook = lastBook;
+      } catch (e) {}
       render();
       if (!root.__storyBound) {
         root.addEventListener("click", onClick);
@@ -498,16 +538,19 @@
       }
     },
     // show(num)            -> 1 Samuel chapter num (original contract, unchanged)
-    // show(num, "samuel2") -> 2 Samuel chapter num (ignored if SAMUEL2 absent)
+    // show(num, "samuel2" | "kings1") -> that book's chapter (ignored if absent)
     show: function (chapterNum, book) {
       if (!root) root = document.getElementById("view-story");
-      var target = book === "samuel2" ? "samuel2" : "samuel1";
+      var target = BOOKS[book] ? book : "samuel1";
       if (target !== currentBook) {
-        if (target === "samuel2" && !samuel2Available()) target = currentBook;
+        if (!available(target)) target = currentBook;
         currentBook = target;
       }
       select(chapterNum);
     },
+    books: function () { return BOOKS; },
+    // Redraw the current chapter in place (no scroll) — used by study.js.
+    refresh: function () { render(); },
     // Current location, mirroring the panel's data attributes.
     getLocation: function () {
       return { book: currentBook, chapter: state[currentBook].current };

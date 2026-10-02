@@ -50,7 +50,7 @@
       if (panel) {
         var book = panel.getAttribute("data-book");
         var pn = parseInt(panel.getAttribute("data-chapter"), 10);
-        if (pn >= 1) return book === "samuel2" ? "2s" + pn : pn;
+        if (pn >= 1) return book === "samuel2" ? "2s" + pn : book === "kings1" ? "1k" + pn : book === "kings2" ? "2k" + pn : pn;
       }
     } catch (e) {}
     try {
