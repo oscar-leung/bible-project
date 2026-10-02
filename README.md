@@ -3,7 +3,7 @@
 **▶ Play it live: [oscar-leung.github.io/bible-project](https://oscar-leung.github.io/bible-project/)**
 
 An illuminated, interactive family study of 1 & 2 Samuel (all 55 chapters), 1 Kings
-(all 22) and 2 Kings (chapters 1–10 so far), built like a manuscript brought to life.
+(all 22) and 2 Kings (all 25) — every chapter from Hannah's prayer to the exile in Babylon, built like a manuscript brought to life.
 Open a Kings chapter and the manuscript turns royal: a gold crown and Tyrian purple. No build step, no backend, no accounts: one folder of
 plain HTML, CSS, and JavaScript that also works offline straight from `file://`.
 
@@ -19,20 +19,20 @@ plain HTML, CSS, and JavaScript that also works offline straight from `file://`.
   read" checklist, a link back to Samuel, "let it hit home", journaling questions, a
   prayer, a key-verse memorizer, private notes that copy straight into a study sheet,
   and a "Before you read" primer with every king's report card.
-- **❓ Questions** — under each chapter: common questions readers ask (the bears, the
-  lying spirit, Jehu's bloodshed…) with honest, text-grounded answers; a public
+- **❓ Questions** — under each chapter: 180 common questions readers ask (the bears, the
+  lying spirit, Jehu's bloodshed, the 185,000, the shadow on the dial…) with honest, text-grounded answers; a public
   Discussion thread (GitHub Discussions via giscus, once switched on); and a private
   "My questions" list.
-- **🗺️ Map** — an SVG map of ancient Israel in a real lat/lon projection: 72 clickable
-  places and 18 toggleable journey routes, from the ark's wanderings to Jehu's ride.
+- **🗺️ Map** — an SVG map of ancient Israel in a real lat/lon projection: 81 clickable
+  places and 22 toggleable journey routes, from the ark's wanderings to the road to Babylon.
 - **⚔️ Battles** — three playable retellings where every choice lands on the text:
   the pool of Gibeon (2 Sam 2), the valley of Rephaim (2 Sam 5), and the wood of
   Ephraim (2 Sam 18).
 - **🌳 Family Lines** — a 49-person genealogy of the houses of David and Saul, each
   person carrying a "neuron map" of every mention and connection.
-- **👥 Characters · 📜 Timeline** — 94 character studies and an 80-event chronology
-  from Hannah's vow to Jehu on the Black Obelisk.
-- **🎮 Quest** — a 106-question scroll of knowledge spanning Samuel and Kings, plus a
+- **👥 Characters · 📜 Timeline** — 130 character studies and a 96-event chronology
+  from Hannah's vow to Jehoiachin eating at Babylon's table.
+- **🎮 Quest** — a 151-question scroll of knowledge spanning Samuel and Kings, plus a
   journey-ordering game. Eight hidden mysteries await the curious.
 
 The map also keeps a running **Kings trail**: chapters you mark as read light up their
