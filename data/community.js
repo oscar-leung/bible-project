@@ -9,11 +9,11 @@
 //   3. Get the ids from https://giscus.app (pick the repo and a category such as
 //      "Q&A") and paste them below. Leave giscus: null to keep it off.
 window.COMMUNITY = {
-  giscus: null
-  // giscus: {
-  //   repo: "oscar-leung/bible-project",
-  //   repoId: "R_...",
-  //   category: "Q&A",
-  //   categoryId: "DIC_..."
-  // }
+  // Comments stay off until categoryId is filled in (study.js checks all four).
+  giscus: {
+    repo: "oscar-leung/bible-project",
+    repoId: "R_kgDOUS6E4A",
+    category: "Q&A",
+    categoryId: ""   // from giscus.app → "Discussion Category" → data-category-id
+  }
 };
