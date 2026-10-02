@@ -205,6 +205,43 @@ commentary.
 - The workspace copy remains the working source until the full subtree
   extraction; syncs are wholesale copies.
 
+## 2026-10-02 — Session 5: the big map, and an app for every pocket
+
+### Phase 14 — The map grows up
+- The whole atlas now projects at 1.5× (900×1200 viewBox) and the map
+  column widened to match, so labels got *actually* bigger on screen —
+  the first attempt scaled the viewBox alone and made every label
+  effectively smaller; the screenshot caught it, the math confirmed it
+  (on-screen px = font px × display width / viewBox width).
+- Marker names at 20px with a land-colored halo (`paint-order: stroke`)
+  so they stay readable over regions, routes, and water.
+- Two-tier labeling for the crowded Benjamin plateau: six minor towns
+  (Geba, Nob, Bahurim, Michmash, Mizpah, Gibeah) drop to 15px, majors
+  keep 20px, and each plateau label is hand-fanned around its dot via
+  `LABEL_OVERRIDES` — anchored left, right, above, or below so the
+  text aligns *around* the cities instead of piling up east of them.
+- Verification is automated now: a Playwright pass reads every label's
+  rendered `getBBox()` and reports pairwise overlaps. Iterated until
+  the report read `overlaps: []` with zero console errors, desktop
+  and 390px mobile both.
+- Regions 25px, seas 21px, dots r7 with wider halos, thicker routes —
+  everything rescaled in proportion, not just the text.
+
+### Phase 15 — Installable everywhere (PWA)
+- The site is now a Progressive Web App: `manifest.webmanifest`
+  (standalone display, parchment theme), a service worker (`sw.js`)
+  that precaches all 30 app files on install and serves cache-first
+  with background refresh — so the app opens instantly, works fully
+  offline, and still picks up new deploys on the next visit.
+- Lyre icon set rendered from an SVG at 192/512/maskable-512, wired
+  for Android (manifest icons) and iPhone (`apple-touch-icon` + web
+  app metas). One codebase: website, Android home-screen app, iPhone
+  home-screen app.
+- Registration is guarded (https/localhost only), so the zero-build
+  file:// workflow still works untouched.
+- Verified live: `swRegistered: true`, `swActive: true`,
+  `manifestOk: true`, zero console errors.
+
 ### Next up
 - Full extraction via scripts/extract-bible-project.sh once the dual
   home should end; more Easter eggs; OneNote notes import if they hold

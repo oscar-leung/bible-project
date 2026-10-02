@@ -8,11 +8,11 @@
 
   // ---- shared projection (see ARCHITECTURE.md) ----------------------------
   var project = function (lat, lon) {
-    return { x: (lon - 34.0) * 300, y: (33.0 - lat) * 360 };
+    return { x: (lon - 34.0) * 450, y: (33.0 - lat) * 540 };
   };
 
-  var VIEW_W = 600;
-  var VIEW_H = 800;
+  var VIEW_W = 900;
+  var VIEW_H = 1200;
   var SVG_NS = "http://www.w3.org/2000/svg";
 
   // ---- module state -------------------------------------------------------
@@ -70,19 +70,20 @@
     "border:1px solid var(--line,#d8ccb2);border-radius:6px;padding:.3rem .5rem;}" +
 
     "#view-map .mv-layout{display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap;}" +
-    "#view-map .mv-mapcol{flex:1 1 340px;min-width:280px;max-width:640px;}" +
-    "#view-map .mv-sidecol{flex:1 1 260px;min-width:240px;display:flex;flex-direction:column;gap:1rem;}" +
+    "#view-map .mv-mapcol{flex:2 1 560px;min-width:300px;max-width:820px;}" +
+    "#view-map .mv-sidecol{flex:1 1 250px;min-width:230px;display:flex;flex-direction:column;gap:1rem;}" +
 
-    "#view-map svg.mv-svg{display:block;width:100%;height:auto;max-width:640px;" +
+    "#view-map svg.mv-svg{display:block;width:100%;height:auto;max-width:820px;" +
     "border:1px solid var(--line,#d8ccb2);border-radius:10px;background:var(--mv-land);" +
     "box-shadow:0 2px 10px rgba(0,0,0,.08);}" +
 
     "#view-map .mv-marker{cursor:pointer;}" +
     "#view-map .mv-marker circle.mv-dot{fill:var(--accent,#28466e);stroke:var(--panel,#f7f0df);" +
-    "stroke-width:1.6;transition:r .12s ease;}" +
+    "stroke-width:2;transition:r .12s ease;}" +
     "#view-map .mv-marker text{fill:var(--ink,#2b2416);font-family:Georgia,'Times New Roman',serif;" +
-    "font-size:13px;paint-order:stroke;stroke:var(--mv-land);stroke-width:3px;stroke-linejoin:round;" +
+    "font-size:20px;letter-spacing:.01em;paint-order:stroke;stroke:var(--mv-land);stroke-width:4.5px;stroke-linejoin:round;" +
     "pointer-events:none;}" +
+    "#view-map .mv-marker.mv-minor text{font-size:15px;}" +
     "#view-map .mv-marker:hover circle.mv-dot{fill:var(--gold,#b08a2e);}" +
     "#view-map .mv-marker.mv-selected circle.mv-dot{fill:var(--gold,#b08a2e);}" +
     "#view-map .mv-marker.mv-selected text{fill:var(--gold,#b08a2e);font-weight:bold;}" +
@@ -90,12 +91,12 @@
     "#view-map .mv-halo{fill:none;stroke:var(--gold,#b08a2e);stroke-width:2;opacity:.9;pointer-events:none;}" +
 
     "#view-map .mv-region-label{fill:var(--mv-region);font-family:Georgia,'Times New Roman',serif;" +
-    "font-size:15px;letter-spacing:.35em;text-transform:uppercase;pointer-events:none;}" +
+    "font-size:25px;letter-spacing:.4em;text-transform:uppercase;pointer-events:none;}" +
     "#view-map .mv-sea-label{fill:var(--mv-shore);font-family:Georgia,'Times New Roman',serif;" +
-    "font-style:italic;font-size:13px;letter-spacing:.12em;pointer-events:none;}" +
+    "font-style:italic;font-size:21px;letter-spacing:.14em;pointer-events:none;}" +
 
-    "#view-map .mv-stopbadge circle{stroke-width:1.4;stroke:var(--panel,#f7f0df);}" +
-    "#view-map .mv-stopbadge text{fill:#fff;font-size:9px;font-family:Georgia,serif;font-weight:bold;" +
+    "#view-map .mv-stopbadge circle{stroke-width:1.8;stroke:var(--panel,#f7f0df);}" +
+    "#view-map .mv-stopbadge text{fill:#fff;font-size:12px;font-family:Georgia,serif;font-weight:bold;" +
     "text-anchor:middle;pointer-events:none;}" +
 
     "#view-map .mv-panel{background:var(--panel,#f7f0df);border:1px solid var(--line,#d8ccb2);" +
@@ -162,7 +163,7 @@
     var seaD = pathThrough(coast, false);
     var last = project(coast[coast.length - 1][0], coast[coast.length - 1][1]);
     seaD += "L0 " + last.y.toFixed(1) + " L0 0 Z";
-    var sea = svgEl("path", { d: seaD, fill: "var(--mv-water)", stroke: "var(--mv-shore)", "stroke-width": "1.6" });
+    var sea = svgEl("path", { d: seaD, fill: "var(--mv-water)", stroke: "var(--mv-shore)", "stroke-width": "2.2" });
     svg.appendChild(sea);
 
     // A softer inner-water band for depth along the west edge.
@@ -194,7 +195,7 @@
         [32.89, 35.58], [32.86, 35.63], [32.80, 35.64], [32.73, 35.61],
         [32.71, 35.57], [32.76, 35.545], [32.83, 35.55]
       ], true),
-      fill: "var(--mv-water)", stroke: "var(--mv-shore)", "stroke-width": "1.2"
+      fill: "var(--mv-water)", stroke: "var(--mv-shore)", "stroke-width": "1.8"
     });
     svg.appendChild(galilee);
 
@@ -204,7 +205,7 @@
         [32.71, 35.585], [32.55, 35.55], [32.40, 35.57], [32.20, 35.55],
         [32.00, 35.53], [31.87, 35.55], [31.76, 35.53]
       ], false),
-      fill: "none", stroke: "var(--mv-river)", "stroke-width": "2.4",
+      fill: "none", stroke: "var(--mv-river)", "stroke-width": "3.2",
       "stroke-linecap": "round", "stroke-dasharray": "none"
     });
     svg.appendChild(jordan);
@@ -216,7 +217,7 @@
         [31.20, 35.56], [31.10, 35.52], [31.15, 35.46], [31.35, 35.43],
         [31.55, 35.44], [31.70, 35.45]
       ], true),
-      fill: "var(--mv-water)", stroke: "var(--mv-shore)", "stroke-width": "1.2"
+      fill: "var(--mv-water)", stroke: "var(--mv-shore)", "stroke-width": "1.8"
     });
     svg.appendChild(deadSea);
 
@@ -229,7 +230,7 @@
     svg.appendChild(medLabel);
     var ds = project(31.42, 35.50);
     svg.appendChild(svgEl("text", {
-      x: ds.x, y: ds.y, "class": "mv-sea-label", "text-anchor": "middle", "font-size": "10",
+      x: ds.x, y: ds.y, "class": "mv-sea-label", "text-anchor": "middle", "font-size": "16",
       transform: "rotate(-80 " + ds.x + " " + ds.y + ")"
     }, "Salt Sea"));
 
@@ -244,7 +245,7 @@
     for (var r = 0; r < regions.length; r++) {
       var rp = project(regions[r][1], regions[r][2]);
       var attrs = { x: rp.x, y: rp.y, "class": "mv-region-label", "text-anchor": "middle" };
-      if (regions[r][0] === "EPHRAIM") attrs["font-size"] = "11";
+      if (regions[r][0] === "EPHRAIM") attrs["font-size"] = "18";
       if (regions[r][3]) attrs.transform = "rotate(" + regions[r][3] + " " + rp.x + " " + rp.y + ")";
       svg.appendChild(svgEl("text", attrs, regions[r][0]));
     }
@@ -253,16 +254,22 @@
   // ---- marker label placement (avoid collisions) --------------------------
   // Hand-tuned placements for the dense Benjamin plateau cluster, where the
   // dots sit too close for any automatic placement to succeed.
+  // Minor towns take the smaller atlas type so the Benjamin plateau breathes.
+  var MINOR_TOWNS = { geba: 1, nob: 1, bahurim: 1, michmash: 1, mizpah: 1, gibeah: 1 };
+
   var LABEL_OVERRIDES = {
-    bethel: { dx: -9, dy: 4, anchor: "end" },
-    mizpah: { dx: -9, dy: 4, anchor: "end" },
-    michmash: { dx: 10, dy: -11, anchor: "start" },
-    geba: { dx: 12, dy: 4, anchor: "start" },
-    ramah: { dx: -9, dy: 6, anchor: "end" },
-    gibeah: { dx: 11, dy: 7, anchor: "start" },
-    nob: { dx: 0, dy: 17, anchor: "middle" },
-    "kiriath-jearim": { dx: -9, dy: 1, anchor: "end" },
-    "beth-shemesh": { dx: -9, dy: 8, anchor: "end" }
+    bethel: { dx: 0, dy: -16, anchor: "middle" },
+    mizpah: { dx: -14, dy: 2, anchor: "end" },
+    michmash: { dx: 15, dy: -14, anchor: "start" },
+    geba: { dx: 17, dy: 3, anchor: "start" },
+    gibeon: { dx: -20, dy: 6, anchor: "end" },
+    ramah: { dx: 18, dy: 17, anchor: "start" },
+    gibeah: { dx: -16, dy: 8, anchor: "end" },
+    nob: { dx: 0, dy: 24, anchor: "middle" },
+    bahurim: { dx: 17, dy: 4, anchor: "start" },
+    jerusalem: { dx: 20, dy: 16, anchor: "start" },
+    "kiriath-jearim": { dx: -15, dy: 20, anchor: "end" },
+    "beth-shemesh": { dx: -15, dy: 12, anchor: "end" }
   };
 
   function placeLabels(locs) {
@@ -271,24 +278,25 @@
     var placed = [];
     var out = {};
     var candidates = [
-      { dx: 9, dy: 4, anchor: "start" },
-      { dx: -9, dy: 4, anchor: "end" },
-      { dx: 0, dy: -10, anchor: "middle" },
-      { dx: 0, dy: 17, anchor: "middle" },
-      { dx: 11, dy: -7, anchor: "start" },
-      { dx: -11, dy: 15, anchor: "end" },
+      { dx: 15, dy: 6, anchor: "start" },
+      { dx: -15, dy: 6, anchor: "end" },
+      { dx: 0, dy: -16, anchor: "middle" },
+      { dx: 0, dy: 27, anchor: "middle" },
+      { dx: 18, dy: -11, anchor: "start" },
+      { dx: -18, dy: 24, anchor: "end" },
       // Farther fallbacks for dense clusters (e.g. the Benjamin plateau).
-      { dx: 16, dy: 4, anchor: "start" },
-      { dx: -16, dy: 4, anchor: "end" },
-      { dx: 14, dy: 15, anchor: "start" },
-      { dx: -14, dy: -7, anchor: "end" },
-      { dx: 0, dy: -18, anchor: "middle" },
-      { dx: 0, dy: 26, anchor: "middle" },
-      { dx: 22, dy: 4, anchor: "start" },
-      { dx: -22, dy: 4, anchor: "end" }
+      { dx: 25, dy: 6, anchor: "start" },
+      { dx: -25, dy: 6, anchor: "end" },
+      { dx: 23, dy: 24, anchor: "start" },
+      { dx: -23, dy: -11, anchor: "end" },
+      { dx: 0, dy: -29, anchor: "middle" },
+      { dx: 0, dy: 41, anchor: "middle" },
+      { dx: 35, dy: 6, anchor: "start" },
+      { dx: -35, dy: 6, anchor: "end" }
     ];
-    function boxFor(p, name, c) {
-      var w = Math.max(30, name.length * 6.6), h = 13;
+    function boxFor(p, name, c, id) {
+      var minor = id && MINOR_TOWNS[id];
+      var w = Math.max(minor ? 34 : 44, name.length * (minor ? 7.8 : 10.4)), h = minor ? 16 : 20;
       var x = p.x + c.dx;
       if (c.anchor === "end") x -= w;
       else if (c.anchor === "middle") x -= w / 2;
@@ -308,7 +316,7 @@
       var ld = locs[d];
       if (!ld || typeof ld.lat !== "number" || typeof ld.lon !== "number") continue;
       var pd = project(ld.lat, ld.lon);
-      placed.push({ x: pd.x - 6, y: pd.y - 6, w: 12, h: 12 });
+      placed.push({ x: pd.x - 9, y: pd.y - 9, w: 18, h: 18 });
     }
     // Hand-tuned overrides claim their spots first.
     for (var o = 0; o < locs.length; o++) {
@@ -316,7 +324,7 @@
       if (!lo || !LABEL_OVERRIDES[lo.id]) continue;
       if (typeof lo.lat !== "number" || typeof lo.lon !== "number") continue;
       out[lo.id] = LABEL_OVERRIDES[lo.id];
-      placed.push(boxFor(project(lo.lat, lo.lon), String(lo.name || lo.id || ""), out[lo.id]));
+      placed.push(boxFor(project(lo.lat, lo.lon), String(lo.name || lo.id || ""), out[lo.id], lo.id));
     }
     // Place top-to-bottom for stable results.
     var sorted = locs.slice().sort(function (a, b) {
@@ -331,10 +339,10 @@
       var p = project(loc.lat, loc.lon);
       var chosen = candidates[0], b = null;
       for (var c = 0; c < candidates.length; c++) {
-        b = boxFor(p, String(loc.name || loc.id || ""), candidates[c]);
+        b = boxFor(p, String(loc.name || loc.id || ""), candidates[c], loc.id);
         if (!hits(b) && b.x >= 2 && b.x + b.w <= VIEW_W - 2 && b.y >= 2) { chosen = candidates[c]; break; }
       }
-      placed.push(boxFor(p, String(loc.name || loc.id || ""), chosen));
+      placed.push(boxFor(p, String(loc.name || loc.id || ""), chosen, loc.id));
       out[loc.id] = chosen;
     }
     return out;
@@ -347,12 +355,12 @@
       (function (loc) {
         if (!loc || typeof loc.lat !== "number" || typeof loc.lon !== "number") return;
         var p = project(loc.lat, loc.lon);
-        var g = svgEl("g", { "class": "mv-marker", "data-loc": loc.id, tabindex: "0", role: "button" });
+        var g = svgEl("g", { "class": "mv-marker" + (MINOR_TOWNS[loc.id] ? " mv-minor" : ""), "data-loc": loc.id, tabindex: "0", role: "button" });
         g.appendChild(svgEl("title", null, String(loc.name || loc.id)));
-        var halo = svgEl("circle", { "class": "mv-halo", cx: p.x, cy: p.y, r: 10, visibility: "hidden" });
+        var halo = svgEl("circle", { "class": "mv-halo", cx: p.x, cy: p.y, r: 14, visibility: "hidden" });
         g.appendChild(halo);
-        g.appendChild(svgEl("circle", { "class": "mv-dot", cx: p.x, cy: p.y, r: 5 }));
-        var lp = labelPos[loc.id] || { dx: 9, dy: 4, anchor: "start" };
+        g.appendChild(svgEl("circle", { "class": "mv-dot", cx: p.x, cy: p.y, r: 7 }));
+        var lp = labelPos[loc.id] || { dx: 15, dy: 6, anchor: "start" };
         g.appendChild(svgEl("text", {
           x: p.x + lp.dx, y: p.y + lp.dy, "text-anchor": lp.anchor
         }, String(loc.name || loc.id)));
@@ -411,7 +419,7 @@
       }
       if (d) {
         g.appendChild(svgEl("path", {
-          d: d, fill: "none", stroke: color, "stroke-width": "2.6",
+          d: d, fill: "none", stroke: color, "stroke-width": "3.4",
           "stroke-linecap": "round", "stroke-dasharray": "7 4", opacity: "0.9"
         }));
         for (var a = 0; a < arrows.length; a++) {
@@ -424,8 +432,8 @@
         for (var b = 0; b < stops.length; b++) {
           var bp = stops[b].point;
           var badge = svgEl("g", { "class": "mv-stopbadge", "pointer-events": "none" });
-          badge.appendChild(svgEl("circle", { cx: bp.x, cy: bp.y, r: 7.5, fill: color }));
-          badge.appendChild(svgEl("text", { x: bp.x, y: bp.y + 3.2 }, String(b + 1)));
+          badge.appendChild(svgEl("circle", { cx: bp.x, cy: bp.y, r: 10.5, fill: color }));
+          badge.appendChild(svgEl("text", { x: bp.x, y: bp.y + 4 }, String(b + 1)));
           g.appendChild(badge);
         }
       }

@@ -1,0 +1,16 @@
+{
+  "name": "The Book of Samuel — An Interactive Journey",
+  "short_name": "Samuel",
+  "description": "An illuminated, interactive family study of 1 & 2 Samuel: story, map, playable battles, family lines, timeline, and quest.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f6efdf",
+  "theme_color": "#f6efdf",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

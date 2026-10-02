@@ -84,6 +84,15 @@
     window.addEventListener("hashchange", function () {
       try { applyHashRoute(); } catch (e) {}
     });
+
+    // PWA: register the offline service worker where the platform allows it
+    // (https or localhost; file:// quietly skips, keeping offline-by-folder use).
+    try {
+      if ("serviceWorker" in navigator &&
+          (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
+        navigator.serviceWorker.register("sw.js").catch(function () { /* optional */ });
+      }
+    } catch (e) { /* optional */ }
   });
 
   /* ---- hash deep links ---------------------------------------------------
