@@ -302,6 +302,35 @@ commentary.
   verse chips link, repeat journey stops share one milestone ("1·5"),
   and the last "1 Samuel"-only copy now says both books.
 
+### Phase 19 — The game layer: walk it, hover it, level it
+- **Journey Mode** (`js/journey.js` + `js/stage.js`): every chapter now
+  has "▶ Walk this chapter" — a tap-by-tap, scene-by-scene reading
+  with a living 2D stage beside the words. The stage engine paints
+  twelve animated parchment-silhouette scenes (duel, battle, siege,
+  camp, temple, throne, wilderness, travel, mourning, feast, altar,
+  scroll), casts them from the names the prose actually mentions, and
+  picks the scene per beat by reading the text. Dialogue chapters get
+  their spoken scenes as beats with the KJV words. Chapters with a
+  playable battle (2 Sam 2, 5, 18) get a "⚔️ Play this battle" beat
+  that drops straight into the battle hub.
+- **Lore layer** (`js/lore.js`): every person and place named in the
+  story text is now linkable and referenceable — dotted-gold terms
+  with a hover note (who/what, one-line bio, chapter chips) and
+  one-tap jumps: places fly the map there, people open their family
+  line or card. Tap-to-pin on touch, Enter on keyboard.
+- **Progression** (`js/progress.js`): reading is now a road. +25 ✦ per
+  chapter read, +40 ✦ per journey walked; nine ranks from Shepherd of
+  Bethlehem to Prophet of Fire; a level pill in the header with an XP
+  bar; book badges when a whole book is sealed; reward toasts (and a
+  rank-up fanfare) as they land. Progress already earned back-fills
+  silently, and unmarking a chapter never claws points back.
+- Consume-first check: the study panels' questions were already
+  read-and-reveal (no typing anywhere in the flow) — kept.
+- Verified end-to-end in-browser: 1 Sam 17 walked (8 beats, dialogue
+  scenes, +40 toast), 2 Sam 5's battle beat launches the Rephaim
+  battle, 12 lore terms in ch. 17 with hover cards, +25 toast on
+  marking a chapter read, zero console errors, mobile layout clean.
+
 ### Next up
 - Full extraction via scripts/extract-bible-project.sh once the dual
   home should end; more Easter eggs; OneNote notes import if they hold

@@ -3,7 +3,7 @@
 // then serve cache-first with a background network refresh (stale-while-
 // revalidate), so the app opens instantly and offline, yet picks up new
 // deploys on the next visit.
-var CACHE = "samuel-kings-v5";
+var CACHE = "samuel-kings-v6";
 var CORE = [
   ".", "index.html", "styles.css", "manifest.webmanifest",
   "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png",
@@ -17,7 +17,8 @@ var CORE = [
   "js/realm.js", "js/study.js",
   "js/app.js", "js/story.js", "js/map.js", "js/characters.js", "js/timeline.js",
   "js/game.js", "js/battle.js", "js/battle-rephaim.js", "js/battle-ephraim.js",
-  "js/battlehub.js", "js/familytree.js", "js/voices.js", "js/eastereggs.js"
+  "js/battlehub.js", "js/familytree.js", "js/voices.js", "js/eastereggs.js",
+  "js/stage.js", "js/journey.js", "js/lore.js", "js/progress.js"
 ];
 
 self.addEventListener("install", function (e) {
