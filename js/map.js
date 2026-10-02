@@ -95,9 +95,15 @@
     "#view-map .mv-sea-label{fill:var(--mv-shore);font-family:Georgia,'Times New Roman',serif;" +
     "font-style:italic;font-size:21px;letter-spacing:.14em;pointer-events:none;}" +
 
-    "#view-map .mv-stopbadge circle{stroke-width:1.8;stroke:var(--panel,#f7f0df);}" +
-    "#view-map .mv-stopbadge text{fill:#fff;font-size:12px;font-family:Georgia,serif;font-weight:bold;" +
-    "text-anchor:middle;pointer-events:none;}" +
+    "#view-map .mv-stopbadge text{font-size:12px;font-family:Georgia,serif;font-weight:bold;" +
+    "text-anchor:middle;pointer-events:none;transition:opacity .2s ease;}" +
+    "#view-map .mv-hillstop-c{stop-color:#8b6e42;stop-opacity:.18;}" +
+    "#view-map .mv-hillstop-m{stop-color:#8b6e42;stop-opacity:.10;}" +
+    "#view-map .mv-hillstop-e{stop-color:#8b6e42;stop-opacity:0;}" +
+    "@media (prefers-color-scheme: dark){" +
+    "#view-map .mv-hillstop-c{stop-color:#d6be8c;stop-opacity:.11;}" +
+    "#view-map .mv-hillstop-m{stop-color:#d6be8c;stop-opacity:.06;}" +
+    "#view-map .mv-hillstop-e{stop-color:#d6be8c;stop-opacity:0;}}" +
 
     "#view-map .mv-panel{background:var(--panel,#f7f0df);border:1px solid var(--line,#d8ccb2);" +
     "border-radius:10px;padding:.9rem 1rem;}" +
@@ -204,17 +210,26 @@
     });
     svg.appendChild(deep);
 
-    // Hill-country shading: soft ellipses along the central ridge + Gilead.
+    // Hill-country shading: feathered radial washes along the central ridge
+    // and Gilead — a gradient that fades to nothing, so no hard oval edges
+    // show at any zoom.
+    var defs = svgEl("defs");
+    var grad = svgEl("radialGradient", { id: "mv-hillgrad" });
+    grad.appendChild(svgEl("stop", { offset: "0%", "class": "mv-hillstop-c" }));
+    grad.appendChild(svgEl("stop", { offset: "70%", "class": "mv-hillstop-m" }));
+    grad.appendChild(svgEl("stop", { offset: "100%", "class": "mv-hillstop-e" }));
+    defs.appendChild(grad);
+    svg.appendChild(defs);
     var hills = [
-      [32.55, 35.30, 40, 90], [32.15, 35.25, 46, 110], [31.75, 35.18, 44, 100],
-      [31.40, 35.10, 42, 95], [31.05, 34.95, 40, 80],
-      [32.45, 35.85, 34, 90], [32.00, 35.80, 34, 90] // Gilead, east of Jordan
+      [32.55, 35.30, 52, 108], [32.15, 35.25, 58, 128], [31.75, 35.18, 56, 118],
+      [31.40, 35.10, 54, 112], [31.05, 34.95, 50, 95],
+      [32.45, 35.85, 44, 106], [32.00, 35.80, 44, 106] // Gilead, east of Jordan
     ];
     for (var h = 0; h < hills.length; h++) {
       var c = project(hills[h][0], hills[h][1]);
       svg.appendChild(svgEl("ellipse", {
         cx: c.x.toFixed(1), cy: c.y.toFixed(1), rx: hills[h][2], ry: hills[h][3],
-        fill: "var(--mv-hill)", "pointer-events": "none"
+        fill: "url(#mv-hillgrad)", "pointer-events": "none"
       }));
     }
 
@@ -458,12 +473,15 @@
     return out;
   }
 
-  function buildJourneyLayer(layer, journeys) {
+  function buildJourneyLayer(layer, journeys, stopLayer) {
     for (var i = 0; i < journeys.length; i++) {
       var j = journeys[i];
       if (!j || !j.id) continue;
       var stops = journeyStops(j);
       var g = svgEl("g", { "class": "mv-journey", "data-journey": j.id });
+      // Stop badges live in their own layer ABOVE the city markers, so the
+      // milestone number is never swallowed by the dot underneath it.
+      var sg = svgEl("g", { "class": "mv-journey-stops", "data-journey": j.id, "pointer-events": "none" });
       var color = j.color || "var(--accent, #28466e)";
       var d = "";
       var arrows = [];
@@ -503,19 +521,31 @@
         for (var b = 0; b < stops.length; b++) {
           var bp = stops[b].point;
           var badge = svgEl("g", { "class": "mv-stopbadge", "pointer-events": "none" });
-          badge.appendChild(svgEl("circle", { cx: bp.x, cy: bp.y, r: 10.5, fill: color }));
-          badge.appendChild(svgEl("text", { x: bp.x, y: bp.y + 4, "data-cy": bp.y }, String(b + 1)));
-          g.appendChild(badge);
+          // A milestone, not a button: parchment disc, journey-colored ring,
+          // journey-colored number (inline styles beat the sheet, so the
+          // colors survive the dynamic re-sizing).
+          var bc = svgEl("circle", { cx: bp.x, cy: bp.y, r: 10.5 });
+          bc.style.fill = "var(--panel, #f7f0df)";
+          bc.style.stroke = color;
+          bc.style.strokeWidth = "2px";
+          badge.appendChild(bc);
+          var bt = svgEl("text", { x: bp.x, y: bp.y + 4, "data-cy": bp.y }, String(b + 1));
+          bt.style.fill = color;
+          badge.appendChild(bt);
+          sg.appendChild(badge);
         }
       }
       g.style.display = state.visibleJourneys[j.id] ? "" : "none";
+      sg.style.display = g.style.display;
       layer.appendChild(g);
+      if (stopLayer) stopLayer.appendChild(sg);
     }
   }
 
   function updateJourneyVisibility() {
     if (!els.journeyLayer) return;
-    var groups = els.journeyLayer.querySelectorAll(".mv-journey");
+    var scope = els.svg || els.journeyLayer;
+    var groups = scope.querySelectorAll(".mv-journey, .mv-journey-stops");
     for (var i = 0; i < groups.length; i++) {
       var id = groups[i].getAttribute("data-journey");
       groups[i].style.display = state.visibleJourneys[id] ? "" : "none";
@@ -752,19 +782,31 @@
       ref.text.style.fontSize = fs.toFixed(2) + "px";
       ref.text.style.strokeWidth = (fs * 0.23).toFixed(2) + "px";
       ref.dot.setAttribute("r", dot.toFixed(2));
-      ref.dot.style.strokeWidth = Math.max(0.7, dot * 0.3).toFixed(2) + "px";
+      ref.dot.style.strokeWidth = Math.max(0.5, dot * 0.22).toFixed(2) + "px";
       ref.halo.setAttribute("r", (dot + 7 / Math.sqrt(view.k)).toFixed(2));
+      ref.halo.style.strokeWidth = Math.max(0.8, dot * 0.3).toFixed(2) + "px";
     }
     if (els.journeyLayer) {
       var lines = els.journeyLayer.querySelectorAll("path[fill='none']");
       for (var i = 0; i < lines.length; i++) lines[i].setAttribute("stroke-width", route.toFixed(2));
-      var bc = els.journeyLayer.querySelectorAll(".mv-stopbadge circle");
-      for (var b = 0; b < bc.length; b++) bc[b].setAttribute("r", badge.toFixed(2));
-      var bt = els.journeyLayer.querySelectorAll(".mv-stopbadge text");
+      // Milestone rings keep their proportions at every zoom: always a step
+      // wider than the city dot they crown, and the number steps aside when
+      // the ring is too small to carry it.
+      var showNum = badge * e >= 6;
+      var ringR = showNum ? Math.max(badge, dot * 1.5) : dot * 1.5;
+      var badgeScope = els.stopLayer || els.journeyLayer;
+      var bc = badgeScope.querySelectorAll(".mv-stopbadge circle");
+      for (var b = 0; b < bc.length; b++) {
+        bc[b].setAttribute("r", ringR.toFixed(2));
+        bc[b].style.strokeWidth = Math.max(0.6, ringR * 0.22).toFixed(2) + "px";
+        bc[b].style.fillOpacity = showNum ? "1" : "0";
+      }
+      var bt = badgeScope.querySelectorAll(".mv-stopbadge text");
       for (var t = 0; t < bt.length; t++) {
-        bt[t].style.fontSize = (badge * 1.15).toFixed(2) + "px";
+        bt[t].style.opacity = showNum ? "1" : "0";
+        bt[t].style.fontSize = (ringR * 1.12).toFixed(2) + "px";
         var cy = parseFloat(bt[t].getAttribute("data-cy") || "0");
-        bt[t].setAttribute("y", (cy + badge * 0.4).toFixed(2));
+        bt[t].setAttribute("y", (cy + ringR * 0.39).toFixed(2));
       }
     }
     // Region & sea names belong to the far view; fade them out up close.
@@ -954,7 +996,8 @@
       '<circle cx="9" cy="8" r="5.5" fill="var(--accent,#28466e)" stroke="var(--panel,#f7f0df)" stroke-width="1.6"/></svg>' +
       '<span>A place — tap it for its story</span></div>' +
       '<div class="mv-key-row"><svg viewBox="0 0 24 16" width="24" height="16" aria-hidden="true">' +
-      '<circle cx="9" cy="8" r="7" fill="#4a7c59"/><text x="9" y="11" font-size="9" fill="#fff" text-anchor="middle" font-family="Georgia,serif" font-weight="bold">1</text></svg>' +
+      '<circle cx="9" cy="8" r="6.5" fill="var(--panel,#f7f0df)" stroke="#4a7c59" stroke-width="1.6"/>' +
+      '<text x="9" y="11" font-size="8.5" fill="#4a7c59" text-anchor="middle" font-family="Georgia,serif" font-weight="bold">1</text></svg>' +
       '<span>Numbered stop on a journey</span></div>' +
       '<div class="mv-key-row"><svg viewBox="0 0 30 10" width="30" height="10" aria-hidden="true">' +
       '<path d="M1 5 H29" stroke="#4a7c59" stroke-width="2.6" stroke-dasharray="5 3" fill="none"/></svg>' +
@@ -1057,11 +1100,15 @@
 
     els.journeyLayer = svgEl("g", { "class": "mv-journeys" });
     els.world.appendChild(els.journeyLayer);
-    buildJourneyLayer(els.journeyLayer, journeys);
 
     els.markerLayer = svgEl("g", { "class": "mv-markers" });
     els.world.appendChild(els.markerLayer);
     buildMarkers(els.markerLayer, locs);
+
+    // Stop badges render above the markers so their numbers stay readable.
+    els.stopLayer = svgEl("g", { "class": "mv-stops-layer" });
+    els.world.appendChild(els.stopLayer);
+    buildJourneyLayer(els.journeyLayer, journeys, els.stopLayer);
 
     buildMapControls(mapCol, mapWrap);
     bindGestures(svg);

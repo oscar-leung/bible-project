@@ -264,6 +264,21 @@ commentary.
   over the empty southern desert so they never cover a town name.
 - Service worker cache bumped to v2 so installed phones pick this up.
 
+### Phase 17 — The circles learn some manners
+- The hill-country shading is no longer seven hard-edged ovals: each
+  hill is now a feathered radial wash that fades to nothing, so the
+  terrain reads as soft ground at every zoom (with its own quieter
+  dark-mode tints).
+- Journey stop badges redesigned from solid buttons into milestones:
+  a parchment disc with a journey-colored ring and number, drawn in a
+  layer *above* the city markers so the number is never swallowed by
+  the dot beneath. Rings stay a step wider than the dots at every
+  zoom, stroke widths scale with their radius (no more white-donut
+  blobs), and when a ring gets too small to carry its number the
+  number bows out and a slim ring remains.
+- City dots and selection halos got proportional strokes too.
+- The map key's milestone swatch matches the new look.
+
 ### Next up
 - Full extraction via scripts/extract-bible-project.sh once the dual
   home should end; more Easter eggs; OneNote notes import if they hold
