@@ -6,14 +6,16 @@
 // To turn it on (owner, once):
 //   1. In the public repo's Settings → General → Features, tick "Discussions".
 //   2. Install the giscus GitHub App on that repo: https://github.com/apps/giscus
-//   3. Get the ids from https://giscus.app (pick the repo and a category such as
-//      "Q&A") and paste them below. Leave giscus: null to keep it off.
+//   3. Get the ids from https://giscus.app (pick the repo and the "Announcements"
+//      category, so only the maintainer and giscus can open new threads) and
+//      paste them below. Set giscus: null to turn comments off.
 window.COMMUNITY = {
-  // Comments stay off until categoryId is filled in (study.js checks all four).
+  // One thread per chapter, titled by its key (e.g. "kings1-18"), created by
+  // giscus on the first comment in the Announcements category.
   giscus: {
     repo: "oscar-leung/bible-project",
     repoId: "R_kgDOUS6E4A",
-    category: "Q&A",
-    categoryId: ""   // from giscus.app → "Discussion Category" → data-category-id
+    category: "Announcements",
+    categoryId: "DIC_kwDOUS6E4M4DG6SB"
   }
 };
