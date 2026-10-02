@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Book of Samuel — An Interactive Journey</title>
-  <meta name="description" content="Walk the book of Samuel like an illuminated manuscript brought to life — both books of Samuel, an interactive map of ancient Israel, playable battles, family lines, and hidden mysteries.">
+  <title>Samuel &amp; Kings — An Interactive Journey</title>
+  <meta name="description" content="Walk Samuel and Kings like an illuminated manuscript brought to life — both books of Samuel, a 1 Kings study with notes and a running map, playable battles, family lines, and hidden mysteries.">
   <meta property="og:title" content="The Book of Samuel — An Interactive Journey">
   <meta property="og:description" content="An illuminated, interactive study of the book of Samuel: story, map, battles, family lines, timeline, and quest.">
   <meta property="og:type" content="website">
@@ -17,7 +17,7 @@
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Samuel">
+  <meta name="apple-mobile-web-app-title" content="Samuel &amp; Kings">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -27,7 +27,7 @@
       <div class="titles">
         <span class="emblem" aria-hidden="true">
           <!-- the shepherd-king's lyre -->
-          <svg viewBox="0 0 48 48" width="42" height="42" role="img" aria-hidden="true" focusable="false">
+          <svg class="realm-lyre" viewBox="0 0 48 48" width="42" height="42" role="img" aria-hidden="true" focusable="false">
             <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M14 6 C10 13 10 21 14 27"/>
               <path d="M34 6 C38 13 38 21 34 27"/>
@@ -40,10 +40,19 @@
             </g>
             <circle cx="24" cy="3.5" r="1.4" fill="currentColor" stroke="none"/>
           </svg>
+          <svg class="realm-crown" viewBox="0 0 48 48" width="42" height="42" role="img" aria-hidden="true" focusable="false">
+            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M8 34 L6 14 L16 24 L24 9 L32 24 L42 14 L40 34 Z"/>
+              <path d="M8 39 H40"/>
+              <path d="M12 29 H36" stroke-width="1.2"/>
+            </g>
+            <circle cx="6" cy="13" r="1.8" fill="currentColor"/><circle cx="24" cy="8" r="2" fill="currentColor"/><circle cx="42" cy="13" r="1.8" fill="currentColor"/>
+            <circle cx="24" cy="31.5" r="1.6" fill="currentColor"/><circle cx="17" cy="31.5" r="1.1" fill="currentColor"/><circle cx="31" cy="31.5" r="1.1" fill="currentColor"/>
+          </svg>
         </span>
         <div class="title-stack">
-          <h1 class="app-title">The Book of Samuel <span class="title-dash">—</span> An Interactive Journey</h1>
-          <p class="app-subtitle">The Bible Project · Book of Samuel</p>
+          <h1 class="app-title"><span id="realm-title">Samuel &amp; Kings</span> <span class="title-dash">—</span> An Interactive Journey</h1>
+          <p class="app-subtitle" id="realm-subtitle">The Bible Project · 1 Samuel · 2 Samuel · 1 Kings · 2 Kings</p>
         </div>
       </div>
       <nav class="tabs" aria-label="App views">
@@ -73,7 +82,7 @@
   </main>
 
   <footer class="app-footer">
-    <p>A family bible study project · 1 &amp; 2 Samuel complete — all 55 chapters</p>
+    <p>A family bible study project · 1 &amp; 2 Samuel complete · 1 Kings — all 22 chapters · 2 Kings 1–10 · with study notes and my own questions</p>
   </footer>
 
   <!-- Data first, then app shell, then view modules (order matters) -->
@@ -90,7 +99,21 @@
   <script src="data/family.js"></script>
   <script src="data/dialogue.js"></script>
   <script src="data/study-notes.js"></script>
+  <script src="data/kings1-chapters.js"></script>
+  <script src="data/kings1-guide.js"></script>
+  <script src="data/kings1-characters.js"></script>
+  <script src="data/kings1-quiz.js"></script>
+  <script src="data/kings2-chapters.js"></script>
+  <script src="data/kings2-guide.js"></script>
+  <script src="data/kings2-characters.js"></script>
+  <script src="data/kings2-quiz.js"></script>
+  <script src="data/kings-faq.js"></script>
+  <script src="data/community.js"></script>
+  <script src="data/kings1-world.js"></script>
+  <script src="data/kings2-world.js"></script>
+  <script src="js/realm.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/study.js"></script>
   <script src="js/story.js"></script>
   <script src="js/map.js"></script>
   <script src="js/characters.js"></script>

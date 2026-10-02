@@ -55,15 +55,15 @@
         if (entry.chapters && entry.chapters.length) {
           var chipRow = document.createElement("div");
           for (var j = 0; j < entry.chapters.length; j++) {
-            (function (num) {
+            (function (num, book) {
               var chip = document.createElement("button");
               chip.className = "chip";
-              chip.textContent = "Ch. " + num;
+              chip.textContent = (book === "kings1" ? "1 Kgs " : book === "kings2" ? "2 Kgs " : "Ch. ") + num;
               chip.addEventListener("click", function () {
-                if (window.App) window.App.goToChapter(num);
+                if (window.App) window.App.goToChapter(num, book);
               });
               chipRow.appendChild(chip);
-            })(entry.chapters[j]);
+            })(entry.chapters[j], entry.book);
           }
           item.appendChild(chipRow);
         }

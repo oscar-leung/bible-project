@@ -520,3 +520,49 @@ main {
   .tabs { gap: 0.3rem; margin-top: 0.7rem; }
   .tab { font-size: 0.9rem; padding: 0.4rem 0.75rem; }
 }
+
+/* ============================================================
+   Realm: the Books of Kings
+   When a Kings book is open (js/realm.js sets data-realm="kings"
+   on <html>) the manuscript turns royal: Tyrian purple ink, a
+   gold crown, porphyry-dark candlelight. Samuel keeps lapis.
+   ============================================================ */
+
+:root[data-realm="kings"] {
+  --bg: #f4eee6;            /* palace limestone */
+  --panel: #fcf8f2;
+  --ink: #2a1e2c;
+  --muted: #84727f;
+  --accent: #5b2a86;        /* Tyrian purple */
+  --gold: #b07d12;
+  --gold-bright: #d7a42a;
+  --line: #dcccd6;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-realm="kings"] {
+    --bg: #150f19;          /* porphyry by candlelight */
+    --panel: #211829;
+    --ink: #efe4ea;
+    --muted: #ab97a8;
+    --accent: #c2a2ee;      /* purple, lightened for contrast */
+    --gold: #e2b347;
+    --gold-bright: #f3cc6a;
+    --line: #3d2f47;
+  }
+}
+:root[data-realm="kings"] body {
+  background-image:
+    var(--grain),
+    radial-gradient(ellipse at 20% 0%, rgba(176, 125, 18, 0.07), transparent 55%),
+    radial-gradient(ellipse at 85% 100%, rgba(91, 42, 134, 0.08), transparent 55%);
+}
+:root[data-realm="kings"] .app-header {
+  border-bottom-color: var(--gold);
+  box-shadow: 0 1px 0 rgba(176, 125, 18, 0.45), 0 2px 0 rgba(91, 42, 134, 0.35), var(--shadow);
+}
+:root[data-realm="kings"] .app-subtitle::before { content: "♛ "; }
+:root[data-realm="kings"] .app-subtitle::after  { content: " ♛"; }
+:root[data-realm="kings"] .story-keyverse { border-left-color: var(--gold); }
+.realm-crown { display: none; }
+:root[data-realm="kings"] .realm-lyre { display: none; }
+:root[data-realm="kings"] .realm-crown { display: inline; }

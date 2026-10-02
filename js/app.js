@@ -99,7 +99,7 @@
      #<view>            -> open that tab            (#family, #map, #timeline…)
      #family/<personId> -> open the tree on someone (#family/david)
      #map/<locationId>  -> open the map on a place  (#map/hebron)
-     #story/<chapter>   -> open a chapter: "17" = 1 Samuel 17, "2s3" = 2 Sam 3 */
+     #story/<chapter>   -> open a chapter: "17" = 1 Samuel 17, "2s3" = 2 Sam 3, "1k18" = 1 Kings 18, "2k4" = 2 Kings 4 */
   function applyHashRoute() {
     var hash = String(window.location.hash || "").replace(/^#\/?/, "");
     if (!hash) return;
@@ -116,8 +116,9 @@
       window.App.showView("battle");
       window.BattleHub.open(arg);
     } else if (view === "story" && arg) {
-      var m = /^(2s)?(\d+)$/.exec(arg);
-      if (m) window.App.goToChapter(parseInt(m[2], 10), m[1] ? "samuel2" : undefined);
+      var m = /^(2s|1k|2k)?(\d+)$/.exec(arg);
+      var hashBooks = { "2s": "samuel2", "1k": "kings1", "2k": "kings2" };
+      if (m) window.App.goToChapter(parseInt(m[2], 10), hashBooks[m[1]]);
       else window.App.showView("story");
     } else {
       window.App.showView(view);
@@ -159,9 +160,13 @@
     var fill = document.getElementById("reading-progress-fill");
     if (!bar || !fill) return;
     var s2total = samuel2ChapterCount();
-    var total = SAMUEL1_CHAPTERS + s2total;
+    var k1total = window.KINGS1 && Object.prototype.toString.call(window.KINGS1.chapters) === "[object Array]" ? window.KINGS1.chapters.length : 0;
+    var k2total = window.KINGS2 && Object.prototype.toString.call(window.KINGS2.chapters) === "[object Array]" ? window.KINGS2.chapters.length : 0;
+    var total = SAMUEL1_CHAPTERS + s2total + k1total + k2total;
     var count = countReadKey("samuel1.story.readChapters", SAMUEL1_CHAPTERS);
     if (s2total > 0) count += countReadKey("samuel2.story.readChapters", s2total);
+    if (k1total > 0) count += countReadKey("kings1.story.readChapters", k1total);
+    if (k2total > 0) count += countReadKey("kings2.story.readChapters", k2total);
     fill.style.width = (count / total * 100) + "%";
     bar.setAttribute("aria-valuemax", String(total));
     bar.setAttribute("aria-valuenow", String(count));
@@ -186,6 +191,7 @@
     if (seen || reduced) return;
     try { sessionStorage.setItem("samuel1.openingSeen", "1"); } catch (e) {}
 
+    var kingsRealm = document.documentElement.getAttribute("data-realm") === "kings";
     var veil = document.createElement("div");
     veil.className = "opening-veil";
     veil.setAttribute("aria-hidden", "true");
@@ -203,8 +209,8 @@
             '<circle cx="24" cy="3.5" r="1.4" fill="currentColor" stroke="none"/>' +
           "</svg>" +
         "</div>" +
-        '<p class="opening-kicker">The Book of</p>' +
-        '<h2 class="opening-title">Samuel</h2>' +
+        '<p class="opening-kicker">' + (kingsRealm ? "The Books of" : "The Book of") + '</p>' +
+        '<h2 class="opening-title">' + (kingsRealm ? "Kings" : "Samuel") + '</h2>' +
         '<p class="opening-colophon">an interactive journey</p>' +
         '<div class="opening-rule opening-rule-bottom"></div>' +
       "</div>";
