@@ -90,10 +90,11 @@
   // ---- styles (scoped to #view-map, injected once per render) -------------
   var CSS = "" +
     "#view-map{--mv-water:#a9c8d6;--mv-water-deep:#8db4c6;--mv-land:#e8ddc3;--mv-land-hi:#ddcfae;" +
-    "--mv-hill:rgba(139,110,66,.16);--mv-shore:#7fa3b5;--mv-river:#7fa3b5;--mv-region:rgba(92,74,44,.55);}" +
+    "--mv-hill:rgba(139,110,66,.16);--mv-shore:#7fa3b5;--mv-river:#7fa3b5;--mv-region:rgba(82,64,36,.75);" +
+    "--mv-sea-ink:#44708a;}" +
     "@media (prefers-color-scheme: dark){#view-map{--mv-water:#1d3a4d;--mv-water-deep:#16303f;" +
     "--mv-land:#2e2a20;--mv-land-hi:#37311f;--mv-hill:rgba(214,190,140,.10);--mv-shore:#3f6579;" +
-    "--mv-river:#4f7d94;--mv-region:rgba(222,205,164,.45);}}" +
+    "--mv-river:#4f7d94;--mv-region:rgba(222,205,164,.6);--mv-sea-ink:#8fb4c9;}}" +
 
     "#view-map .mv-intro{margin:0 0 .6rem;color:var(--muted,#6b6152);font-style:italic;}" +
     "#view-map .mv-toolbar{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.8rem;}" +
@@ -138,7 +139,7 @@
 
     "#view-map .mv-region-label{fill:var(--mv-region);font-family:Georgia,'Times New Roman',serif;" +
     "font-size:25px;letter-spacing:.4em;text-transform:uppercase;pointer-events:none;}" +
-    "#view-map .mv-sea-label{fill:var(--mv-shore);font-family:Georgia,'Times New Roman',serif;" +
+    "#view-map .mv-sea-label{fill:var(--mv-sea-ink,#44708a);font-family:Georgia,'Times New Roman',serif;" +
     "font-style:italic;font-size:21px;letter-spacing:.14em;pointer-events:none;}" +
 
     "#view-map .mv-stopbadge text{font-size:12px;font-family:Georgia,serif;font-weight:bold;" +
@@ -196,6 +197,16 @@
     "background:var(--panel,#f7f0df);color:var(--accent,#28466e);border-radius:999px;padding:.2rem .65rem;}" +
     "#view-map .mv-viewchip:hover{background:var(--accent,#28466e);color:var(--panel,#f7f0df);}" +
     "#view-map .mv-hint{margin:.4rem 0 0;font-size:.78rem;color:var(--muted,#6b6152);font-style:italic;}" +
+    "@media (pointer:coarse){#view-map .mv-zbtn{width:44px;height:44px;}}" +
+
+    // --- phone-width journey toggles (the sidebar legend is below the fold) ---
+    "#view-map .mv-jchips{display:none;flex-wrap:wrap;gap:.35rem;margin:0 0 .55rem;}" +
+    "@media (max-width:700px){#view-map .mv-jchips{display:flex;}}" +
+    "#view-map .mv-jchip{font:inherit;font-size:.78rem;cursor:pointer;border:1px solid var(--line,#d8ccb2);" +
+    "background:var(--panel,#f7f0df);color:var(--ink,#2b2416);border-radius:999px;padding:.3rem .65rem .3rem .5rem;" +
+    "display:inline-flex;align-items:center;gap:.35rem;opacity:.72;}" +
+    "#view-map .mv-jchip .mv-jdot{width:.6em;height:.6em;border-radius:50%;flex:none;display:inline-block;}" +
+    "#view-map .mv-jchip.mv-on{opacity:1;border-color:var(--accent,#28466e);box-shadow:0 0 0 1px var(--accent,#28466e) inset;}" +
 
     // --- zoom-tiered label visibility (data-level on the svg) ---
     "#view-map .mv-marker text{transition:opacity .25s ease;}" +
@@ -475,6 +486,10 @@
         if (p.off) tier = " mv-minor";
         var g = svgEl("g", { "class": "mv-marker" + tier + (p.off ? " mv-off" : ""), "data-loc": loc.id, tabindex: "0", role: "button" });
         g.appendChild(svgEl("title", null, String(loc.name || loc.id)));
+        // Invisible hit-pad: keeps the touch target ~44px on screen even
+        // though the visible dot is small (sized dynamically with zoom).
+        var hit = svgEl("circle", { "class": "mv-hit", cx: p.x, cy: p.y, r: 26, fill: "none", "pointer-events": "all" });
+        g.appendChild(hit);
         var halo = svgEl("circle", { "class": "mv-halo", cx: p.x, cy: p.y, r: 14, visibility: "hidden" });
         g.appendChild(halo);
         var dot = svgEl("circle", { "class": "mv-dot", cx: p.x, cy: p.y, r: 7 });
@@ -488,7 +503,7 @@
           if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); selectLocation(loc.id); }
         });
         layer.appendChild(g);
-        els.markerRefs[loc.id] = { p: p, minor: minor, text: text, dot: dot, halo: halo };
+        els.markerRefs[loc.id] = { p: p, minor: minor, text: text, dot: dot, halo: halo, hit: hit };
       })(locs[i]);
     }
   }
@@ -573,7 +588,17 @@
                        ") rotate(" + arrows[a].angle.toFixed(1) + ")"
           }));
         }
+        // A journey may revisit a place (Absalom's revolt starts and ends
+        // at Jerusalem); stacked badges would hide each other, so repeats
+        // share one badge labeled with every stop number ("1·5").
+        var firstAt = {}, badgeLabels = {};
+        for (var b0 = 0; b0 < stops.length; b0++) {
+          var lk = stops[b0].loc;
+          if (firstAt[lk] == null) { firstAt[lk] = b0; badgeLabels[lk] = String(b0 + 1); }
+          else badgeLabels[lk] += "·" + (b0 + 1);
+        }
         for (var b = 0; b < stops.length; b++) {
+          if (firstAt[stops[b].loc] !== b) continue;
           var bp = stops[b].point;
           var badge = svgEl("g", { "class": "mv-stopbadge", "pointer-events": "none" });
           // A milestone, not a button: parchment disc, journey-colored ring,
@@ -584,7 +609,7 @@
           bc.style.stroke = color;
           bc.style.strokeWidth = "2px";
           badge.appendChild(bc);
-          var bt = svgEl("text", { x: bp.x, y: bp.y + 4, "data-cy": bp.y }, String(b + 1));
+          var bt = svgEl("text", { x: bp.x, y: bp.y + 4, "data-cy": bp.y }, badgeLabels[stops[b].loc]);
           bt.style.fill = color;
           badge.appendChild(bt);
           sg.appendChild(badge);
@@ -612,6 +637,14 @@
       if (cb) cb.checked = !!state.visibleJourneys[rid];
       if (rid === state.selectedJourney) rows[r].classList.add("mv-active");
       else rows[r].classList.remove("mv-active");
+    }
+    // Keep the phone-width journey chips in step with the legend.
+    var jc = els.jchips ? els.jchips.querySelectorAll(".mv-jchip") : [];
+    for (var c = 0; c < jc.length; c++) {
+      var jid = jc[c].getAttribute("data-journey");
+      var on = !!state.visibleJourneys[jid];
+      jc[c].classList.toggle("mv-on", on);
+      jc[c].setAttribute("aria-pressed", on ? "true" : "false");
     }
   }
 
@@ -851,6 +884,8 @@
       ref.dot.style.strokeWidth = Math.max(0.5, dot * 0.22).toFixed(2) + "px";
       ref.halo.setAttribute("r", (dot + 7 / Math.sqrt(view.k)).toFixed(2));
       ref.halo.style.strokeWidth = Math.max(0.8, dot * 0.3).toFixed(2) + "px";
+      // ~22 screen px of invisible tap radius, whatever the zoom.
+      if (ref.hit) ref.hit.setAttribute("r", Math.max(12, Math.min(60, 22 / e)).toFixed(1));
     }
     if (els.journeyLayer) {
       var lines = els.journeyLayer.querySelectorAll("path[fill='none']");
@@ -870,9 +905,12 @@
       var bt = badgeScope.querySelectorAll(".mv-stopbadge text");
       for (var t = 0; t < bt.length; t++) {
         bt[t].style.opacity = showNum ? "1" : "0";
-        bt[t].style.fontSize = (ringR * 1.12).toFixed(2) + "px";
+        // Multi-stop labels ("1·5") take a smaller type to fit the ring.
+        var chars = (bt[t].textContent || "").length || 1;
+        var fit = chars > 1 ? Math.min(1, 2.1 / chars) : 1;
+        bt[t].style.fontSize = (ringR * 1.12 * fit).toFixed(2) + "px";
         var cy = parseFloat(bt[t].getAttribute("data-cy") || "0");
-        bt[t].setAttribute("y", (cy + ringR * 0.39).toFixed(2));
+        bt[t].setAttribute("y", (cy + ringR * 0.39 * fit).toFixed(2));
       }
     }
     // Region & sea names belong to the far view; fade them out up close.
@@ -999,9 +1037,26 @@
     svg.addEventListener("pointerup", release);
     svg.addEventListener("pointercancel", release);
 
-    // A real drag must not fire the marker click underneath it.
+    // A real drag must not fire the marker click underneath it — and because
+    // setPointerCapture retargets the click to the svg itself, a genuine tap
+    // never reaches the marker's own listener, so re-target it by hit-test.
     svg.addEventListener("click", function (ev) {
-      if (moved > 8) { ev.stopPropagation(); ev.preventDefault(); moved = 0; }
+      if (moved > 8) { ev.stopPropagation(); ev.preventDefault(); moved = 0; return; }
+      // Hit-pads of plateau neighbours overlap, so precision wins: a visible
+      // dot anywhere under the point beats whichever invisible pad is on top.
+      var list = document.elementsFromPoint ? document.elementsFromPoint(ev.clientX, ev.clientY) : [];
+      var pick = null;
+      for (var i = 0; i < list.length; i++) {
+        var cl = list[i].classList;
+        if (!cl) continue;
+        if (cl.contains("mv-dot")) { pick = list[i]; break; } // topmost dot wins outright
+        if (!pick && cl.contains("mv-hit")) pick = list[i];   // else nearest pad
+      }
+      var m = pick && pick.closest ? pick.closest(".mv-marker") : null;
+      if (m) {
+        ev.stopPropagation(); // one selection path, even when capture didn't retarget
+        selectLocation(m.getAttribute("data-loc"));
+      }
     }, true);
 
     svg.addEventListener("wheel", function (ev) {
@@ -1036,6 +1091,33 @@
       })(PRESETS[i]);
     }
     mapCol.insertBefore(chips, mapWrap);
+
+    // On phones the Journeys legend sits below the fold, so give the routes
+    // a toggle row right above the map (hidden on wide screens via CSS).
+    var journeys = getJourneys();
+    if (journeys.length) {
+      var jchips = el("div", { "class": "mv-jchips", role: "group", "aria-label": "Journey routes" });
+      for (var ji = 0; ji < journeys.length; ji++) {
+        (function (j) {
+          if (!j || !j.id) return;
+          var c = el("button", { "class": "mv-jchip", type: "button", "data-journey": j.id, "aria-pressed": "false" });
+          var dot = el("span", { "class": "mv-jdot", "aria-hidden": "true" });
+          dot.style.background = j.color || "var(--accent, #28466e)";
+          c.appendChild(dot);
+          c.appendChild(document.createTextNode(j.title || j.id));
+          c.addEventListener("click", function () {
+            var on = !state.visibleJourneys[j.id];
+            state.visibleJourneys[j.id] = on;
+            if (on) selectJourney(j.id);
+            else if (state.selectedJourney === j.id) { state.selectedJourney = null; renderPanel(); }
+            updateJourneyVisibility();
+          });
+          jchips.appendChild(c);
+        })(journeys[ji]);
+      }
+      mapCol.insertBefore(jchips, mapWrap);
+      els.jchips = jchips;
+    }
 
     var ctl = el("div", { "class": "mv-zoomctl" });
     var zin = el("button", { "class": "mv-zbtn", type: "button", "aria-label": "Zoom in", title: "Zoom in" }, "+");
@@ -1377,10 +1459,13 @@
   }
 
   function focus(locId) {
-    if (!state.inited || !document.getElementById("view-map") || !els.markerLayer) {
+    if (!state.inited || !document.getElementById("view-map")) {
       state.pendingFocus = locId;
       return;
     }
+    // Inited without markers means the location data never loaded; a queued
+    // focus would wait forever, so drop the request instead.
+    if (!els.markerLayer) return;
     var loc = locById(locId);
     if (!loc) return;
     selectLocation(locId);

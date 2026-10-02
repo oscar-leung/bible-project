@@ -279,6 +279,29 @@ commentary.
 - City dots and selection halos got proportional strokes too.
 - The map key's milestone swatch matches the new look.
 
+### Phase 18 — The audit, and everything it found
+- Two new control-plane agents (uiux-auditor, rjs-auditor) audited the
+  whole app for the Tier A gate; full findings and resolutions live in
+  AUDIT.md. Headlines:
+- **The humbling P0**: the pan/zoom work had silently broken tapping a
+  city — `setPointerCapture` retargets clicks to the svg, so marker
+  listeners never fired, and keyboard support masked it. Fixed with a
+  capture-phase hit-test where a visible dot beats any overlapping
+  invisible hit-pad; verified by mouse and by a 12px-off touch tap.
+- **The game bug**: journey ordering was keyed to hidden stop indexes,
+  so Absalom's revolt (Jerusalem → … → Jerusalem) showed twin buttons
+  and coin-flipped a perfect run. Clicks now match by place.
+- Contrast pass: dark active tab 2.1→7.3, light muted 4.0→5.3, small
+  gold text 3.1→4.8 (new --gold-text token), map region/sea inks
+  lifted. Touch pass: ~44px invisible hit-pads on every marker, chip
+  and coarse-pointer padding bumps, 44px zoom buttons on touch.
+- Access pass: aria-current on tabs, gold :focus-visible on the family
+  tree, story headings H2→H3 in order, journey chips above the map at
+  phone width so routes aren't below the fold.
+- Plus the quieter fixes: wind timers die with their grove, 2 Samuel
+  verse chips link, repeat journey stops share one milestone ("1·5"),
+  and the last "1 Samuel"-only copy now says both books.
+
 ### Next up
 - Full extraction via scripts/extract-bible-project.sh once the dual
   home should end; more Easter eggs; OneNote notes import if they hold

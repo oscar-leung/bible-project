@@ -203,23 +203,23 @@
       "#view-story .story-chapbtn.read:not(.current){color:var(--gold);border-color:var(--gold);}" +
       "#view-story .story-chapbtn.read:after{content:\"\\2022\";display:block;font-size:.5rem;line-height:.4;}" +
       "#view-story .story-prevnext{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin:.75rem 0;}" +
-      "#view-story .story-era{display:inline-block;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:.15rem .7rem;margin-bottom:.5rem;}" +
+      "#view-story .story-era{display:inline-block;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--gold-text,#8a6a10);border:1px solid var(--gold);border-radius:999px;padding:.15rem .7rem;margin-bottom:.5rem;}" +
       "#view-story .story-title{font-family:Georgia,'Times New Roman',serif;margin:.1rem 0 .75rem;}" +
       "#view-story .story-title .story-chapnum{color:var(--muted);font-weight:400;margin-right:.4rem;}" +
       "#view-story .story-summary{line-height:1.65;margin-bottom:1rem;}" +
       "#view-story .story-keyverse{margin:1rem 0;padding:.85rem 1.1rem;border-left:4px solid var(--accent);background:color-mix(in srgb,var(--accent) 7%,transparent);font-family:Georgia,'Times New Roman',serif;font-style:italic;line-height:1.6;}" +
       "#view-story .story-keyverse cite{display:block;margin-top:.45rem;font-style:normal;font-size:.85rem;color:var(--muted);}" +
       "#view-story .story-histnote{margin:1rem 0;padding:.85rem 1.1rem;border-left:4px solid var(--gold);background:color-mix(in srgb,var(--gold) 9%,transparent);border-radius:0 .4rem .4rem 0;}" +
-      "#view-story .story-histnote h4{margin:0 0 .35rem;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);}" +
+      "#view-story .story-histnote h3{margin:0 0 .35rem;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:var(--gold-text,#8a6a10);}" +
       "#view-story .story-histnote p{margin:0;line-height:1.6;font-size:.95rem;}" +
       "#view-story .story-chips{margin:.85rem 0 0;}" +
-      "#view-story .story-chips h4{margin:0 0 .35rem;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}" +
+      "#view-story .story-chips h3{margin:0 0 .35rem;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}" +
       "#view-story .story-chiprow{display:flex;flex-wrap:wrap;gap:.4rem;}" +
       "#view-story .story-chiprow .chip{cursor:pointer;}" +
       "#view-story .story-readtoggle{margin-top:1.1rem;display:inline-flex;align-items:center;gap:.45rem;font-size:.9rem;cursor:pointer;border:1px solid var(--line);border-radius:.45rem;padding:.4rem .8rem;background:var(--panel);color:var(--ink);}" +
       "#view-story .story-readtoggle.on{border-color:var(--gold);color:var(--gold);font-weight:600;}" +
       "#view-story .story-studynote{margin:1rem 0;padding:.9rem 1.15rem;border:1px dashed var(--accent);background:color-mix(in srgb,var(--accent) 5%,transparent);border-radius:.5rem;}" +
-      "#view-story .story-studynote h4{margin:0 0 .4rem;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);}" +
+      "#view-story .story-studynote h3{margin:0 0 .4rem;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);}" +
       "#view-story .story-studynote h5{margin:.7rem 0 .25rem;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}" +
       "#view-story .story-studydate{font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-size:.8rem;}" +
       "#view-story .story-studytheme{margin:0 0 .5rem;font-family:Georgia,'Times New Roman',serif;font-style:italic;line-height:1.55;color:var(--accent);}" +
@@ -342,8 +342,8 @@
       var key = currentBook === "samuel2" ? "2s" + ch.num : String(ch.num);
       var n = notes[key];
       if (!n) return "";
-      var h = '<aside class="story-studynote"><h4>📓 From the study notebook' +
-        (n.studied ? ' <span class="story-studydate">· studied ' + esc(n.studied) + "</span>" : "") + "</h4>";
+      var h = '<aside class="story-studynote"><h3>📓 From the study notebook' +
+        (n.studied ? ' <span class="story-studydate">· studied ' + esc(n.studied) + "</span>" : "") + "</h3>";
       if (n.theme) h += '<p class="story-studytheme">' + esc(n.theme) + "</p>";
       if (n.context) h += "<p>" + esc(n.context) + "</p>";
       if (n.insights && n.insights.length) {
@@ -384,13 +384,13 @@
     }
 
     if (ch.historianNote) {
-      h += '<aside class="story-histnote"><h4>\uD83D\uDCDC Historian\u2019s note</h4><p>' +
+      h += '<aside class="story-histnote"><h3>\uD83D\uDCDC Historian\u2019s note</h3><p>' +
         esc(ch.historianNote) + "</p></aside>";
     }
 
     var i;
     if (ch.locations && ch.locations.length) {
-      h += '<div class="story-chips"><h4>Places in this chapter</h4><div class="story-chiprow">';
+      h += '<div class="story-chips"><h3>Places in this chapter</h3><div class="story-chiprow">';
       for (i = 0; i < ch.locations.length; i++) {
         var lid = ch.locations[i];
         h += '<button type="button" class="chip" data-loc="' + esc(lid) +
@@ -400,7 +400,7 @@
     }
 
     if (ch.characters && ch.characters.length) {
-      h += '<div class="story-chips"><h4>People in this chapter</h4><div class="story-chiprow">';
+      h += '<div class="story-chips"><h3>People in this chapter</h3><div class="story-chiprow">';
       for (i = 0; i < ch.characters.length; i++) {
         var cid = ch.characters[i];
         h += '<button type="button" class="chip" data-char="' + esc(cid) +

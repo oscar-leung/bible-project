@@ -11,7 +11,7 @@
       root.innerHTML = ""; // idempotent-safe
 
       var heading = document.createElement("h2");
-      heading.textContent = "Timeline of 1 Samuel";
+      heading.textContent = "Timeline of 1 & 2 Samuel";
       root.appendChild(heading);
 
       var data = window.TIMELINE;

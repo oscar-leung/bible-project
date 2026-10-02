@@ -167,7 +167,7 @@
 
     wrap.appendChild(el("h2", "sq-title", "⚔️ The Shepherd&rsquo;s Quest"));
     wrap.appendChild(el("p", "sq-sub",
-      "From the sheepfolds of Bethlehem to the throne of Israel &mdash; prove your knowledge of 1&nbsp;Samuel."));
+      "From the sheepfolds of Bethlehem to the throne of Israel &mdash; prove your knowledge of both books of Samuel."));
 
     var modes = el("div", "sq-modes");
 
@@ -193,7 +193,7 @@
     jCard.appendChild(el("div", "sq-emblem", "🗺️"));
     jCard.appendChild(el("h3", null, "Journey of the Fugitive"));
     jCard.appendChild(el("p", null, journeyData()
-      ? "Retrace the great journeys of 1&nbsp;Samuel &mdash; tap the stops in the order they happened."
+      ? "Retrace the great journeys of both books of Samuel &mdash; tap the stops in the order they happened."
       : "The maps are still being drawn&hellip;"));
     function startJourney() {
       if (journeyData()) renderJourneyPick();
@@ -448,7 +448,11 @@
       var b = el("button", "sq-stop", esc(locationName(stop && stop.loc)));
       b.addEventListener("click", function () {
         if (b.disabled) return;
-        if (stopIdx === state.next) {
+        // Match by PLACE, not by hidden index: journeys may revisit a stop
+        // (Absalom's revolt starts and ends at Jerusalem), so either twin
+        // button is correct when its place is the next place on the road.
+        var expected = j.stops[state.next];
+        if (stop && expected && stop.loc === expected.loc) {
           b.disabled = true;
           b.classList.remove("sq-flash");
           b.classList.add("sq-locked", "sq-pop");

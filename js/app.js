@@ -17,7 +17,11 @@
 
       var tabs = document.querySelectorAll(".tab");
       for (var j = 0; j < tabs.length; j++) {
-        tabs[j].classList.toggle("active", tabs[j].getAttribute("data-view") === name);
+        var isActive = tabs[j].getAttribute("data-view") === name;
+        tabs[j].classList.toggle("active", isActive);
+        // Screen readers need the state, not just the pill color.
+        if (isActive) tabs[j].setAttribute("aria-current", "page");
+        else tabs[j].removeAttribute("aria-current");
       }
     },
 

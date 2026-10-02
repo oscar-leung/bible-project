@@ -191,6 +191,7 @@
     "#view-family .ft-node .ft-badge{font-size:13px;text-anchor:middle;}" +
     "#view-family .ft-node:hover rect,#view-family .ft-node:focus rect{stroke-width:2.6;}" +
     "#view-family .ft-node:focus{outline:none;}" +
+    "#view-family .ft-node:focus-visible{outline:2.5px solid var(--gold,#b08a2e);outline-offset:3px;}" +
     "#view-family .ft-node.ft-selected rect{stroke-width:3;filter:drop-shadow(0 0 5px rgba(184,134,11,.55));}" +
     "#view-family .ft-node.ft-gilboa rect{stroke-dasharray:2 2;}" +
     "#view-family .ft-node.ft-bridge-node rect{stroke:url(#ftBridgeGrad);stroke-width:2.2;}" +
@@ -468,12 +469,13 @@
 
   // ---- detail panel -------------------------------------------------------
   function refChip(ref) {
-    var m = /^1 Samuel (\d+)/.exec(ref);
+    var m = /^([12]) Samuel (\d+)/.exec(ref);
     if (m) {
-      var chapter = parseInt(m[1], 10);
+      var book = m[1] === "2" ? "samuel2" : undefined;
+      var chapter = parseInt(m[2], 10);
       var b = el("button", { "class": "chip ft-link", type: "button", "data-chapter": chapter }, ref + " ↗");
       b.addEventListener("click", function () {
-        if (window.App && App.goToChapter) App.goToChapter(chapter);
+        if (window.App && App.goToChapter) App.goToChapter(chapter, book);
       });
       return b;
     }
@@ -484,14 +486,15 @@
     return String(name || "").replace(/ \(.*\)$/, "");
   }
 
-  // gold verse-chip for the mentions list; "1 Samuel N" refs stay cross-linkable
+  // gold verse-chip for the mentions list; "1/2 Samuel N" refs cross-link
   function mentionRefChip(ref) {
-    var m = /^1 Samuel (\d+)/.exec(ref);
+    var m = /^([12]) Samuel (\d+)/.exec(ref);
     if (m) {
-      var chapter = parseInt(m[1], 10);
+      var book = m[1] === "2" ? "samuel2" : undefined;
+      var chapter = parseInt(m[2], 10);
       var b = el("button", { "class": "chip ft-mref", type: "button", "data-chapter": chapter }, ref + " ↗");
       b.addEventListener("click", function () {
-        if (window.App && App.goToChapter) App.goToChapter(chapter);
+        if (window.App && App.goToChapter) App.goToChapter(chapter, book);
       });
       return b;
     }
@@ -770,7 +773,13 @@
         scroll.scrollTop = st - dy;
       }
     });
-    var end = function () { down = false; rmClass2(scroll, "ft-dragging"); };
+    var end = function () {
+      down = false;
+      rmClass2(scroll, "ft-dragging");
+      // If the drag ends outside the box no click follows to consume the
+      // flag — clear it a tick later so the next real click isn't eaten.
+      window.setTimeout(function () { moved = false; }, 0);
+    };
     scroll.addEventListener("mouseup", end);
     scroll.addEventListener("mouseleave", end);
     // swallow the click that follows a real drag so nodes don't fire

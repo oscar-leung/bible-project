@@ -539,7 +539,8 @@
 
     // The wind cycle: still air, then the "sound of a going" for a short window.
     function windOn() {
-      if (gs.done || state.grove !== gs) return;
+      // The grove left the page (tab switch, hub) — let the wind die out.
+      if (gs.done || state.grove !== gs || !document.body.contains(grove)) return;
       gs.windy = true;
       grove.classList.add("br-windy");
       card.classList.add("br-windy-card");
@@ -547,7 +548,7 @@
       later(windOff, 1700);
     }
     function windOff() {
-      if (state.grove !== gs) return;
+      if (state.grove !== gs || !document.body.contains(grove)) return;
       gs.windy = false;
       grove.classList.remove("br-windy");
       card.classList.remove("br-windy-card");
