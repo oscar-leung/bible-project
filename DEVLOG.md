@@ -351,6 +351,30 @@ commentary.
   provisions, all three fire waves, the camel egg, the victory card,
   the XP toast, and the journey link — zero console errors.
 
+### Phase 21 — The stage goes 3D
+- Journey Mode's side stage is now a true 3D diorama, after the manner
+  of Eric's books-of-samuel reenactment scenes: Three.js (vendored,
+  r147, script-tag build — the zero-build and file:// contract holds),
+  warm late-afternoon directional light, fog the color of the land,
+  rolling displaced-plane terrain with far ridges, and silhouette
+  figures with floating name labels.
+- All twelve scene types rebuilt in 3D: the duel (sling stone arcing
+  between David and the giant), battle lines with arrow volleys, night
+  camps with flickering firelight and star fields, the glowing ark
+  between Shiloh's pillars, the throne hall, the wilderness cave,
+  walking caravans, rain over the mourning bier, the burned town with
+  rising smoke columns (Eric's Ziklag signature), the feast table, the
+  night altar, and the floating scroll.
+- The eye drifts slowly around each scene like Eric's observer camera;
+  prefers-reduced-motion gets a single still frame.
+- js/stage.js remains intact as the automatic 2D fallback: no WebGL,
+  no THREE, or any render error, and the parchment SVG stage returns.
+- One renderer is reused across beats; each scene's geometry and
+  materials are disposed on exit, and the loop halts the moment the
+  canvas leaves the page (the wind-timer lesson, applied).
+- Service worker cache v8 precaches the vendored Three.js, so the 3D
+  stage works offline on installed phones too.
+
 ### Next up
 - Full extraction via scripts/extract-bible-project.sh once the dual
   home should end; more Easter eggs; OneNote notes import if they hold
