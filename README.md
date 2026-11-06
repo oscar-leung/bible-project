@@ -24,7 +24,7 @@
 
 ## Why it exists
 
-Our family studied Samuel chapter by chapter with the Living by the Book method and kept outgrowing the notebook. Commentaries answer questions one at a time; a map, a timeline and a family tree answer them all at once. Nothing we found put the text, the geography and the people in one place without a login, an app store or a subscription, so this does. It is one folder, it works from `file://`, and the study notes are the family's own.
+A family Bible study of Samuel, done chapter by chapter with the Living by the Book method, produced more notes, maps and questions than a notebook could hold. This puts the text, the geography, the people and the family's own study notes in one place, with no login, no app store and no build step. It is one folder that works from `file://`, so it can be shared with a small group by sending the folder.
 
 ## What's inside
 
