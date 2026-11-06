@@ -1,11 +1,30 @@
 # Samuel & Kings — An Interactive Journey
 
+**An interactive, offline-capable study of 1-2 Samuel and 1-2 Kings for families and small groups: every chapter, a clickable map, playable battles, a family tree and a quest, in one folder of plain HTML.**
+
 **▶ Play it live: [oscar-leung.github.io/bible-project](https://oscar-leung.github.io/bible-project/)**
 
-An illuminated, interactive family study of 1 & 2 Samuel (all 55 chapters), 1 Kings
-(all 22) and 2 Kings (all 25) — every chapter from Hannah's prayer to the exile in Babylon, built like a manuscript brought to life.
-Open a Kings chapter and the manuscript turns royal: a gold crown and Tyrian purple. No build step, no backend, no accounts: one folder of
-plain HTML, CSS, and JavaScript that also works offline straight from `file://`.
+[![Pages](https://github.com/oscar-leung/bible-project/actions/workflows/pages.yml/badge.svg)](https://github.com/oscar-leung/bible-project/actions/workflows/pages.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+[![The story view, open on 2 Samuel](screenshots/hero.png)](https://oscar-leung.github.io/bible-project/)
+
+<details>
+<summary>More screenshots</summary>
+
+| Map with journey routes | A playable battle | Family lines |
+|---|---|---|
+| ![](screenshots/map.png) | ![](screenshots/battle-rephaim.png) | ![](screenshots/family-david.png) |
+
+| Kings study page | Timeline | Quest |
+|---|---|---|
+| ![](screenshots/kings1-study.png) | ![](screenshots/timeline.png) | ![](screenshots/game.png) |
+
+</details>
+
+## Why it exists
+
+A family Bible study of Samuel, done chapter by chapter with the Living by the Book method, produced more notes, maps and questions than a notebook could hold. This puts the text, the geography, the people and the family's own study notes in one place, with no login, no app store and no build step. It is one folder that works from `file://`, so it can be shared with a small group by sending the folder.
 
 ## What's inside
 
@@ -39,10 +58,35 @@ The map also keeps a running **Kings trail**: chapters you mark as read light up
 places in order. Deep links work everywhere: `#story/2s18`, `#story/1k18`, `#story/2k5`, `#battle/rephaim`, `#family/david`,
 `#map/jerusalem`.
 
-## Running locally
+## Stack
 
-Open `index.html` in a browser. That's it — no install, no server required
-(`python3 -m http.server` works too).
+- Plain HTML, CSS and JavaScript. No framework, no bundler, no build step.
+- Content lives in `data/*.js` (chapters, characters, journeys, battles, FAQ) and is loaded by `js/`.
+- Inline SVG for the map, in a real latitude and longitude projection.
+- A service worker (`sw.js`) and web manifest make it installable and usable offline.
+- Deployed by `.github/workflows/pages.yml` to GitHub Pages on every push to `main`.
+
+See `ARCHITECTURE.md` for the zero-build design rules.
+
+## Run it
+
+```bash
+git clone https://github.com/oscar-leung/bible-project
+cd bible-project
+python3 -m http.server 8000   # or just open index.html
+```
+
+Open http://localhost:8000. Opening `index.html` directly from the file system works too; the service worker is the only thing that needs a server.
+
+## Tests
+
+There is no automated suite yet. Each release is checked by hand against the checklist in `AUDIT.md`. The next step is a Playwright smoke test that opens every tab and every deep-link pattern in CI, so the Pages badge above can be joined by a real test badge.
+
+## What is next
+
+- The Playwright smoke test above.
+- GitHub Discussions via giscus for the Questions tab (wired, not switched on).
+- Chronicles, once Kings is fully annotated from the study notebook.
 
 ## Kinship
 
@@ -60,3 +104,7 @@ A family bible study project. All scripture quotations are KJV (public domain).
 Dates follow a common conservative chronology and are approximate; historian notes
 flag where scholarship is divided. See `DEVLOG.md` for how this was built, session
 by session, and `ARCHITECTURE.md` for the zero-build design rules.
+
+## License
+
+Code is MIT, see [LICENSE](LICENSE). Scripture quotations are KJV (public domain). The study notes, historian notes, questions and answers in `data/` are © Oscar Leung and are shared under the same MIT terms; attribution appreciated.
